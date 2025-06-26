@@ -69,12 +69,20 @@ const ProfileImage = ({
   src,
   alt,
   initials,
+  onAvatarClick,
 }: {
   src: string;
   alt: string;
   initials: string;
+  onAvatarClick: () => void;
 }) => (
-  <div className="w-16 h-16 md:w-18 md:h-18 rounded-full bg-gray-100 overflow-hidden flex-shrink-0 ring-2 ring-gray-100 mx-auto md:mx-0">
+  <div
+    className="w-16 h-16 md:w-18 md:h-18 rounded-full bg-gray-100 overflow-hidden flex-shrink-0 ring-2 ring-gray-100 mx-auto md:mx-0 cursor-pointer hover:ring-blue-200 transition-all duration-200"
+    onClick={(e) => {
+      e.stopPropagation();
+      onAvatarClick();
+    }}
+  >
     <img
       src={src}
       alt={alt}
@@ -91,8 +99,26 @@ const ProfileImage = ({
   </div>
 );
 
-const ContactInfoItem = ({ icon: Icon, text }: { icon: any; text: string }) => (
-  <div className="flex items-center text-gray-600 justify-center md:justify-start">
+const ContactInfoItem = ({
+  icon: Icon,
+  text,
+  isClickable = false,
+  onClick,
+}: {
+  icon: any;
+  text: string;
+  isClickable?: boolean;
+  onClick?: () => void;
+}) => (
+  <div
+    className={`flex items-center text-gray-600 justify-center md:justify-start ${
+      isClickable ? "cursor-pointer hover:text-gray-800 transition-colors" : ""
+    }`}
+    onClick={(e) => {
+      e.stopPropagation();
+      onClick?.();
+    }}
+  >
     <Icon className="w-4 h-4 mr-2 text-gray-400 flex-shrink-0" />
     <span className="truncate text-xs">{text}</span>
   </div>
@@ -158,12 +184,14 @@ const CardFront = ({
   resumeUrl,
   onCardClick,
   onResumeClick,
+  onAvatarClick,
 }: {
   personalInfo: PersonalInfo;
   contactInfo: ContactInfo;
   resumeUrl?: string;
   onCardClick: () => void;
   onResumeClick: (e: React.MouseEvent) => void;
+  onAvatarClick: () => void;
 }) => (
   <div
     className="absolute inset-0 w-full h-full backface-hidden rounded-2xl bg-white shadow-lg border border-gray-100/80 overflow-hidden cursor-pointer"
@@ -181,20 +209,23 @@ const CardFront = ({
             src={personalInfo.profileImage}
             alt={personalInfo.name}
             initials={createInitials(personalInfo.name)}
+            onAvatarClick={onAvatarClick}
           />
 
           <div className="flex-1 min-w-0 text-center md:text-left">
-            <h1 className="text-xl md:text-2xl font-semibold text-gray-900 mb-1 leading-tight">
-              {personalInfo.name}
-            </h1>
-            <p className="text-gray-600 text-sm md:text-base font-medium mb-3">
-              {personalInfo.jobTitle}
-            </p>
+            <div className="inline-block" onClick={(e) => e.stopPropagation()}>
+              <h1 className="text-xl md:text-2xl font-semibold text-gray-900 mb-1 leading-tight">
+                {personalInfo.name}
+              </h1>
+              <p className="text-gray-600 text-sm md:text-base font-medium mb-3">
+                {personalInfo.jobTitle}
+              </p>
+            </div>
           </div>
         </div>
 
         {/* Bio Section */}
-        <div className="mb-4">
+        <div className="mb-4" onClick={(e) => e.stopPropagation()}>
           <p className="text-gray-700 text-sm leading-relaxed text-center md:text-left">
             {personalInfo.bio}
           </p>
@@ -202,8 +233,18 @@ const CardFront = ({
 
         {/* Contact Information */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
-          <ContactInfoItem icon={Mail} text={contactInfo.email} />
-          <ContactInfoItem icon={Globe} text={contactInfo.website} />
+          <ContactInfoItem
+            icon={Mail}
+            text={contactInfo.email}
+            isClickable={true}
+            onClick={() => handleExternalLink(contactInfo.email, true)}
+          />
+          <ContactInfoItem
+            icon={Globe}
+            text={contactInfo.website}
+            isClickable={true}
+            onClick={() => handleExternalLink(contactInfo.website)}
+          />
           <ContactInfoItem icon={MapPin} text={contactInfo.location} />
         </div>
       </div>
@@ -318,6 +359,7 @@ const DigitalCard = forwardRef<DigitalCardRef, Partial<DigitalCardProps>>(
     const [isFlipped, setIsFlipped] = useState(false);
     const [messageTitle, setMessageTitle] = useState("");
     const [messageText, setMessageText] = useState("");
+    const [isAvatarZoomed, setIsAvatarZoomed] = useState(false);
 
     // Derived State
     const personalInfo: PersonalInfo = { name, jobTitle, bio, profileImage };
@@ -330,12 +372,19 @@ const DigitalCard = forwardRef<DigitalCardRef, Partial<DigitalCardProps>>(
         if (isFlipped) {
           setIsFlipped(false);
         }
+        if (isAvatarZoomed) {
+          setIsAvatarZoomed(false);
+        }
       },
     }));
 
     // Event Handlers
     const handleCardClick = () => {
-      setIsFlipped(!isFlipped);
+      if (isAvatarZoomed) {
+        setIsAvatarZoomed(false);
+      } else {
+        setIsFlipped(!isFlipped);
+      }
     };
 
     const handleCloseCard = (e: React.MouseEvent) => {
@@ -348,6 +397,10 @@ const DigitalCard = forwardRef<DigitalCardRef, Partial<DigitalCardProps>>(
       if (resumeUrl) {
         handleExternalLink(resumeUrl);
       }
+    };
+
+    const handleAvatarClick = () => {
+      setIsAvatarZoomed(true);
     };
 
     const handleSendMessage = (e: React.MouseEvent) => {
@@ -401,6 +454,7 @@ const DigitalCard = forwardRef<DigitalCardRef, Partial<DigitalCardProps>>(
             resumeUrl={resumeUrl}
             onCardClick={!isFlipped ? handleCardClick : () => {}}
             onResumeClick={handleResumeClick}
+            onAvatarClick={handleAvatarClick}
           />
 
           {/* Card Back */}
@@ -415,6 +469,53 @@ const DigitalCard = forwardRef<DigitalCardRef, Partial<DigitalCardProps>>(
             isFormEmpty={isFormEmpty}
           />
         </div>
+
+        {/* Elegant Avatar Modal */}
+        {isAvatarZoomed && (
+          <div
+            className="fixed inset-0 z-50 bg-black/40 backdrop-blur-sm flex items-center justify-center p-4"
+            onClick={handleCardClick}
+          >
+            <div
+              className="bg-white rounded-3xl p-6 shadow-2xl max-w-sm w-full transform transition-all duration-300 scale-100"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div className="text-center space-y-4">
+                <div className="w-32 h-32 mx-auto rounded-2xl bg-gray-100 overflow-hidden ring-1 ring-gray-200">
+                  <img
+                    src={personalInfo.profileImage}
+                    alt={personalInfo.name}
+                    className="w-full h-full object-cover"
+                    onError={(e) => {
+                      const target = e.target as HTMLImageElement;
+                      target.style.display = "none";
+                      target.nextElementSibling?.classList.remove("hidden");
+                    }}
+                  />
+                  <div className="hidden w-full h-full bg-gray-800 flex items-center justify-center text-white font-bold text-2xl">
+                    {createInitials(personalInfo.name)}
+                  </div>
+                </div>
+
+                <div>
+                  <h3 className="text-gray-900 font-semibold text-xl">
+                    {personalInfo.name}
+                  </h3>
+                  <p className="text-gray-600 text-sm mt-1">
+                    {personalInfo.jobTitle}
+                  </p>
+                </div>
+
+                <button
+                  onClick={handleCardClick}
+                  className="text-gray-400 hover:text-gray-600 text-sm font-medium"
+                >
+                  Close
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     );
   },
