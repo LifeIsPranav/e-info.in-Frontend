@@ -26,10 +26,19 @@ const Index = () => {
   // Close expandable cards and flip digital card back when clicking outside
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (
+      const target = event.target as Node;
+
+      // Check if click is outside the main container OR inside links/empty spaces
+      const isOutsideContainer =
+        containerRef.current && !containerRef.current.contains(target);
+
+      // Check if click is on link buttons or empty spaces (but not on the digital card itself)
+      const isOnLinkOrEmptySpace =
         containerRef.current &&
-        !containerRef.current.contains(event.target as Node)
-      ) {
+        containerRef.current.contains(target) &&
+        !target.closest?.(".digital-card-container");
+
+      if (isOutsideContainer || isOnLinkOrEmptySpace) {
         setExpandedCard(null);
         // Also flip the digital card back to front if it's currently flipped
         if (digitalCardRef.current) {
