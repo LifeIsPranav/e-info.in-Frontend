@@ -88,10 +88,15 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 flex items-center justify-center p-4 md:p-6">
+    <div className="min-h-screen bg-gray-50 flex items-center justify-center p-4 md:p-6 relative">
+      {/* Auth Button - Top Right */}
+      <div className="absolute top-4 right-4 z-50">
+        <AuthButton />
+      </div>
+
       <div ref={containerRef} className="w-full max-w-xl mx-auto space-y-6">
         {/* Digital Card */}
-        <DigitalCard />
+        <DigitalCard ref={digitalCardRef} />
 
         {/* Links */}
         <div className="space-y-2">
