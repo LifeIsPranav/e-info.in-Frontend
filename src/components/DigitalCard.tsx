@@ -209,18 +209,18 @@ const CardFront = ({
             src={personalInfo.profileImage}
             alt={personalInfo.name}
             initials={createInitials(personalInfo.name)}
+            onAvatarClick={onAvatarClick}
           />
 
-          <div
-            className="flex-1 min-w-0 text-center md:text-left"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <h1 className="text-xl md:text-2xl font-semibold text-gray-900 mb-1 leading-tight">
-              {personalInfo.name}
-            </h1>
-            <p className="text-gray-600 text-sm md:text-base font-medium mb-3">
-              {personalInfo.jobTitle}
-            </p>
+          <div className="flex-1 min-w-0 text-center md:text-left">
+            <div className="inline-block" onClick={(e) => e.stopPropagation()}>
+              <h1 className="text-xl md:text-2xl font-semibold text-gray-900 mb-1 leading-tight">
+                {personalInfo.name}
+              </h1>
+              <p className="text-gray-600 text-sm md:text-base font-medium mb-3">
+                {personalInfo.jobTitle}
+              </p>
+            </div>
           </div>
         </div>
 
