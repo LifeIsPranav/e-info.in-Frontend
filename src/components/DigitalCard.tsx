@@ -204,7 +204,10 @@ const CardFront = ({
             initials={createInitials(personalInfo.name)}
           />
 
-          <div className="flex-1 min-w-0 text-center md:text-left">
+          <div
+            className="flex-1 min-w-0 text-center md:text-left"
+            onClick={(e) => e.stopPropagation()}
+          >
             <h1 className="text-xl md:text-2xl font-semibold text-gray-900 mb-1 leading-tight">
               {personalInfo.name}
             </h1>
@@ -215,7 +218,7 @@ const CardFront = ({
         </div>
 
         {/* Bio Section */}
-        <div className="mb-4">
+        <div className="mb-4" onClick={(e) => e.stopPropagation()}>
           <p className="text-gray-700 text-sm leading-relaxed text-center md:text-left">
             {personalInfo.bio}
           </p>
@@ -223,8 +226,18 @@ const CardFront = ({
 
         {/* Contact Information */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
-          <ContactInfoItem icon={Mail} text={contactInfo.email} />
-          <ContactInfoItem icon={Globe} text={contactInfo.website} />
+          <ContactInfoItem
+            icon={Mail}
+            text={contactInfo.email}
+            isClickable={true}
+            onClick={() => handleExternalLink(contactInfo.email, true)}
+          />
+          <ContactInfoItem
+            icon={Globe}
+            text={contactInfo.website}
+            isClickable={true}
+            onClick={() => handleExternalLink(contactInfo.website)}
+          />
           <ContactInfoItem icon={MapPin} text={contactInfo.location} />
         </div>
       </div>
