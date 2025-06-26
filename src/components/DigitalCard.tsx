@@ -249,12 +249,7 @@ const CardBack = ({
       </div>
 
       {/* Form Content */}
-      <div className="flex-1 p-4 min-h-0 flex flex-col relative">
-        {/* Configure Button - positioned in message area */}
-        {onConfigureClick && (
-          <ConfigureButton onClick={onConfigureClick} isVisible={isFormEmpty} />
-        )}
-
+      <div className="flex-1 p-4 min-h-0 flex flex-col">
         <div className="space-y-4 flex-1">
           <Input
             value={messageTitle}
@@ -264,13 +259,23 @@ const CardBack = ({
             onClick={(e) => e.stopPropagation()}
           />
 
-          <Textarea
-            value={messageText}
-            onChange={(e) => onMessageTextChange(e.target.value)}
-            placeholder="Your message..."
-            className="bg-gray-50 border-gray-200 text-gray-900 placeholder-gray-400 focus:border-gray-400 focus:ring-1 focus:ring-gray-400 resize-none text-sm flex-1 min-h-20"
-            onClick={(e) => e.stopPropagation()}
-          />
+          <div className="relative flex-1">
+            <Textarea
+              value={messageText}
+              onChange={(e) => onMessageTextChange(e.target.value)}
+              placeholder="Your message..."
+              className="bg-gray-50 border-gray-200 text-gray-900 placeholder-gray-400 focus:border-gray-400 focus:ring-1 focus:ring-gray-400 resize-none text-sm w-full h-full min-h-20 pr-8"
+              onClick={(e) => e.stopPropagation()}
+            />
+
+            {/* Configure Button - positioned inside textarea */}
+            {onConfigureClick && (
+              <ConfigureButton
+                onClick={onConfigureClick}
+                isVisible={isFormEmpty}
+              />
+            )}
+          </div>
         </div>
       </div>
 
