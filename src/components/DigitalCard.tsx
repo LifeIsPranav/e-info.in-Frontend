@@ -128,23 +128,23 @@ export default function DigitalCard({
               </div>
 
               {/* Contact Info Grid */}
-              <div className="space-y-3 text-sm">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
                 {/* Email - Simple display */}
                 <div className="flex items-center text-gray-600">
-                  <Mail className="w-4 h-4 mr-4 text-gray-400 flex-shrink-0" />
-                  <span className="truncate">{email}</span>
+                  <Mail className="w-4 h-4 mr-2 text-gray-400 flex-shrink-0" />
+                  <span className="truncate text-xs">{email}</span>
                 </div>
 
                 {/* Website - Simple display */}
                 <div className="flex items-center text-gray-600">
-                  <Globe className="w-4 h-4 mr-4 text-gray-400 flex-shrink-0" />
-                  <span className="truncate">{website}</span>
+                  <Globe className="w-4 h-4 mr-2 text-gray-400 flex-shrink-0" />
+                  <span className="truncate text-xs">{website}</span>
                 </div>
 
                 {/* Location - Simple display */}
                 <div className="flex items-center text-gray-600">
-                  <MapPin className="w-4 h-4 mr-4 text-gray-400 flex-shrink-0" />
-                  <span className="truncate">{location}</span>
+                  <MapPin className="w-4 h-4 mr-2 text-gray-400 flex-shrink-0" />
+                  <span className="truncate text-xs">{location}</span>
                 </div>
               </div>
             </div>
