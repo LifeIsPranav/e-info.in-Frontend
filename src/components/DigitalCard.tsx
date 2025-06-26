@@ -299,7 +299,7 @@ const CardBack = ({
 );
 
 // Main Component
-export default function DigitalCard(props: Partial<DigitalCardProps> = {}) {
+const DigitalCard = forwardRef<DigitalCardRef, Partial<DigitalCardProps>>((props = {}, ref) => {
   // Merge props with defaults
   const {
     name,
@@ -322,6 +322,15 @@ export default function DigitalCard(props: Partial<DigitalCardProps> = {}) {
   const personalInfo: PersonalInfo = { name, jobTitle, bio, profileImage };
   const contactInfo: ContactInfo = { email, website, location };
   const isFormEmpty = !messageTitle.trim() && !messageText.trim();
+
+  // Expose outside click handler through ref
+  useImperativeHandle(ref, () => ({
+    handleOutsideClick: () => {
+      if (isFlipped) {
+        setIsFlipped(false);
+      }
+    }
+  }));
 
   // Event Handlers
   const handleCardClick = () => {
