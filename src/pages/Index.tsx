@@ -2,10 +2,14 @@ import { useState, useEffect, useRef } from "react";
 import DigitalCard from "@/components/DigitalCard";
 import LinkButton from "@/components/LinkButton";
 import ExpandableCard from "@/components/ExpandableCard";
+import AuthButton from "@/components/AuthButton";
+import Logo from "@/components/Logo";
 
 const Index = () => {
   const [expandedCard, setExpandedCard] = useState<string | null>(null);
+  const [isCardFlipped, setIsCardFlipped] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
+  const digitalCardRef = useRef<{ handleOutsideClick: () => void }>(null);
 
   const handleLinkClick = (linkId: string, href: string) => {
     if (expandedCard === linkId) {
@@ -19,14 +23,28 @@ const Index = () => {
     window.open(href, "_blank", "noopener,noreferrer");
   };
 
-  // Close expandable cards when clicking outside
+  // Close expandable cards and flip digital card back when clicking outside
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (
-        containerRef.current &&
-        !containerRef.current.contains(event.target as Node)
-      ) {
+      const target = event.target as Element;
+
+      // Always close expandable cards when clicking outside the main container
+      if (containerRef.current && !containerRef.current.contains(target)) {
         setExpandedCard(null);
+        if (digitalCardRef.current) {
+          digitalCardRef.current.handleOutsideClick();
+        }
+        return;
+      }
+
+      // If clicking inside the container, check if it's on links or empty space (not the digital card)
+      if (containerRef.current && containerRef.current.contains(target)) {
+        const digitalCardElement = target.closest(".digital-card-container");
+
+        // If not clicking on the digital card itself, flip it back
+        if (!digitalCardElement && digitalCardRef.current) {
+          digitalCardRef.current.handleOutsideClick();
+        }
       }
     };
 
@@ -81,10 +99,22 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 flex items-center justify-center p-4 md:p-6">
-      <div ref={containerRef} className="w-full max-w-xl mx-auto space-y-6">
+    <div className="min-h-screen bg-gray-50 flex items-center justify-center p-4 md:p-6 relative">
+      {/* Logo - Top Left */}
+      <div className="absolute top-4 left-4 z-50">
+        <Logo />
+      </div>
+
+      {/* Auth Button - Top Right */}
+      <div className="absolute top-4 right-4 z-50">
+        <AuthButton />
+      </div>
+
+      <div ref={containerRef} className="w-full max-w-lg mx-auto space-y-6">
         {/* Digital Card */}
-        <DigitalCard />
+        <div className="digital-card-container">
+          <DigitalCard ref={digitalCardRef} />
+        </div>
 
         {/* Links */}
         <div className="space-y-2">
