@@ -27,10 +27,10 @@ export default function Logo() {
 
       {/* Brand Text */}
       <div className="flex flex-col">
-        <span className="text-gray-900 font-bold text-lg leading-none tracking-tight group-hover:text-blue-700 transition-colors duration-200">
-          myone<span className="text-blue-600">Social</span>
+        <span className="text-gray-700 font-medium text-base leading-none tracking-normal group-hover:text-blue-600 transition-colors duration-200">
+          myone<span className="text-blue-500 font-normal">Social</span>
         </span>
-        <span className="text-gray-500 text-xs font-medium leading-none mt-0.5 opacity-75">
+        <span className="text-gray-400 text-xs font-normal leading-none mt-1 opacity-60">
           Connect & Share
         </span>
       </div>
