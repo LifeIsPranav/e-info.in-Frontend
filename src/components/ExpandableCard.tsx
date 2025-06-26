@@ -32,7 +32,7 @@ export default function ExpandableCard({
       }`}
     >
       <div
-        className="bg-white rounded-xl shadow-sm border border-gray-100 p-4 transform transition-transform duration-500 ease-out"
+        className="bg-white rounded-b-xl shadow-sm border-l border-r border-b border-gray-100 p-4 transform transition-transform duration-500 ease-out -mt-1"
         style={{
           transform: isOpen ? "translateY(0)" : "translateY(-10px)",
         }}
