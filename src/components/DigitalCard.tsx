@@ -95,9 +95,10 @@ export default function DigitalCard({
             </Button>
 
             {/* Profile Section */}
-            <div className="flex-1 p-6">
-              <div className="flex items-start gap-5 mb-6">
-                <div className="w-20 h-20 rounded-full bg-gray-100 overflow-hidden flex-shrink-0 ring-2 ring-gray-100">
+            <div className="flex-1 p-5">
+              {/* Profile Header - responsive layout */}
+              <div className="flex flex-col md:flex-row md:items-start gap-4 mb-5">
+                <div className="w-16 h-16 md:w-18 md:h-18 rounded-full bg-gray-100 overflow-hidden flex-shrink-0 ring-2 ring-gray-100 mx-auto md:mx-0">
                   <img
                     src={profileImage}
                     alt={name}
@@ -116,33 +117,39 @@ export default function DigitalCard({
                   </div>
                 </div>
 
-                <div className="flex-1 min-w-0">
-                  <h1 className="text-2xl font-semibold text-gray-900 mb-2 leading-tight">
+                <div className="flex-1 min-w-0 text-center md:text-left">
+                  <h1 className="text-xl md:text-2xl font-semibold text-gray-900 mb-1 leading-tight">
                     {name}
                   </h1>
-                  <p className="text-gray-600 text-base font-medium mb-3">
+                  <p className="text-gray-600 text-sm md:text-base font-medium mb-4">
                     {jobTitle}
                   </p>
-                  <p className="text-gray-700 text-sm leading-relaxed">{bio}</p>
                 </div>
               </div>
 
+              {/* Bio - Full width */}
+              <div className="mb-5">
+                <p className="text-gray-700 text-sm leading-relaxed text-center md:text-left">
+                  {bio}
+                </p>
+              </div>
+
               {/* Contact Info Grid */}
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-3 text-sm">
                 {/* Email - Simple display */}
-                <div className="flex items-center text-gray-600">
+                <div className="flex items-center text-gray-600 justify-center md:justify-start">
                   <Mail className="w-4 h-4 mr-2 text-gray-400 flex-shrink-0" />
                   <span className="truncate text-xs">{email}</span>
                 </div>
 
                 {/* Website - Simple display */}
-                <div className="flex items-center text-gray-600">
+                <div className="flex items-center text-gray-600 justify-center md:justify-start">
                   <Globe className="w-4 h-4 mr-2 text-gray-400 flex-shrink-0" />
                   <span className="truncate text-xs">{website}</span>
                 </div>
 
                 {/* Location - Simple display */}
-                <div className="flex items-center text-gray-600">
+                <div className="flex items-center text-gray-600 justify-center md:justify-start">
                   <MapPin className="w-4 h-4 mr-2 text-gray-400 flex-shrink-0" />
                   <span className="truncate text-xs">{location}</span>
                 </div>
