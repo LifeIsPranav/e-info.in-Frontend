@@ -1,5 +1,14 @@
 import { useState } from "react";
-import { Mail, MapPin, Phone, Globe, X, Send } from "lucide-react";
+import {
+  Mail,
+  MapPin,
+  Phone,
+  Globe,
+  X,
+  Send,
+  FileText,
+  ExternalLink,
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -13,6 +22,7 @@ interface DigitalCardProps {
   location?: string;
   website?: string;
   profileImage?: string;
+  resumeUrl?: string;
 }
 
 export default function DigitalCard({
@@ -24,6 +34,7 @@ export default function DigitalCard({
   location = "San Francisco",
   website = "alexjohnson.design",
   profileImage = "/placeholder.svg",
+  resumeUrl = "https://drive.google.com/file/d/example/view",
 }: DigitalCardProps) {
   const [isFlipped, setIsFlipped] = useState(false);
   const [messageTitle, setMessageTitle] = useState("");
@@ -114,13 +125,25 @@ export default function DigitalCard({
               </div>
             </div>
 
-            {/* CTA */}
+            {/* Resume Button */}
             <div className="mt-6 pt-4 border-t border-gray-100">
-              <div className="text-center">
-                <span className="text-gray-500 text-xs">
-                  Tap to send message
-                </span>
-              </div>
+              <Button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  window.open(resumeUrl, "_blank", "noopener,noreferrer");
+                }}
+                variant="outline"
+                className="w-full h-10 bg-gray-50 hover:bg-gray-100 border-gray-200 text-gray-900"
+              >
+                <FileText className="w-4 h-4 mr-2" />
+                View Resume
+                <ExternalLink className="w-3 h-3 ml-2" />
+              </Button>
+            </div>
+
+            {/* CTA */}
+            <div className="mt-4 text-center">
+              <span className="text-gray-500 text-xs">Tap to send message</span>
             </div>
           </div>
         </div>
@@ -130,9 +153,9 @@ export default function DigitalCard({
           className="absolute inset-0 w-full h-full backface-hidden rotate-y-180 rounded-xl bg-white shadow-sm border border-gray-100"
           onClick={handleCardClick}
         >
-          <div className="p-6 h-full flex flex-col">
+          <div className="p-6 h-full flex flex-col min-h-0">
             {/* Header */}
-            <div className="flex items-center justify-between mb-6">
+            <div className="flex items-center justify-between mb-4 flex-shrink-0">
               <div>
                 <h2 className="text-lg font-medium text-gray-900">
                   Send Message
@@ -153,37 +176,39 @@ export default function DigitalCard({
             </div>
 
             {/* Form */}
-            <div className="flex-1 space-y-4">
-              <div>
+            <div className="flex-1 flex flex-col space-y-3 min-h-0">
+              <div className="flex-shrink-0">
                 <Input
                   value={messageTitle}
                   onChange={(e) => setMessageTitle(e.target.value)}
                   placeholder="Subject"
-                  className="bg-gray-50 border-gray-200 text-gray-900 placeholder-gray-400 focus:border-gray-400 focus:ring-0 h-11"
+                  className="bg-gray-50 border-gray-200 text-gray-900 placeholder-gray-400 focus:border-gray-400 focus:ring-0 h-10"
                   onClick={(e) => e.stopPropagation()}
                 />
               </div>
 
-              <div className="flex-1">
+              <div className="flex-1 min-h-0">
                 <Textarea
                   value={messageText}
                   onChange={(e) => setMessageText(e.target.value)}
                   placeholder="Your message..."
-                  className="bg-gray-50 border-gray-200 text-gray-900 placeholder-gray-400 focus:border-gray-400 focus:ring-0 min-h-28 resize-none"
+                  className="bg-gray-50 border-gray-200 text-gray-900 placeholder-gray-400 focus:border-gray-400 focus:ring-0 h-full resize-none"
                   onClick={(e) => e.stopPropagation()}
                 />
               </div>
             </div>
 
             {/* Send Button */}
-            <Button
-              onClick={handleSendMessage}
-              disabled={!messageTitle.trim() || !messageText.trim()}
-              className="w-full bg-gray-900 hover:bg-gray-800 text-white border-0 mt-4 h-11 disabled:bg-gray-200 disabled:text-gray-400"
-            >
-              <Send className="w-4 h-4 mr-2" />
-              Send
-            </Button>
+            <div className="flex-shrink-0 mt-4">
+              <Button
+                onClick={handleSendMessage}
+                disabled={!messageTitle.trim() || !messageText.trim()}
+                className="w-full bg-gray-900 hover:bg-gray-800 text-white border-0 h-10 disabled:bg-gray-200 disabled:text-gray-400"
+              >
+                <Send className="w-4 h-4 mr-2" />
+                Send
+              </Button>
+            </div>
           </div>
         </div>
       </div>
