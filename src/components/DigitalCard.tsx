@@ -74,7 +74,10 @@ const ProfileImage = ({
   alt: string;
   initials: string;
 }) => (
-  <div className="w-16 h-16 md:w-18 md:h-18 rounded-full bg-gray-100 overflow-hidden flex-shrink-0 ring-2 ring-gray-100 mx-auto md:mx-0">
+  <div
+    className="w-16 h-16 md:w-18 md:h-18 rounded-full bg-gray-100 overflow-hidden flex-shrink-0 ring-2 ring-gray-100 mx-auto md:mx-0"
+    onClick={(e) => e.stopPropagation()}
+  >
     <img
       src={src}
       alt={alt}
