@@ -14,6 +14,10 @@ const Index = () => {
     }
   };
 
+  const handleDirectLink = (href: string) => {
+    window.open(href, "_blank", "noopener,noreferrer");
+  };
+
   const projects = {
     dribbble: {
       title: "Dribbble",
@@ -77,9 +81,10 @@ const Index = () => {
               href={projects.dribbble.href}
               title={projects.dribbble.title}
               description={projects.dribbble.description}
-              onClick={() =>
+              onExpand={() =>
                 handleLinkClick("dribbble", projects.dribbble.href)
               }
+              onDirectLink={() => handleDirectLink(projects.dribbble.href)}
               icon={
                 <svg
                   className="w-4 h-4 text-black"
@@ -103,7 +108,8 @@ const Index = () => {
               href={projects.behance.href}
               title={projects.behance.title}
               description={projects.behance.description}
-              onClick={() => handleLinkClick("behance", projects.behance.href)}
+              onExpand={() => handleLinkClick("behance", projects.behance.href)}
+              onDirectLink={() => handleDirectLink(projects.behance.href)}
               icon={
                 <svg
                   className="w-4 h-4 text-black"
@@ -127,9 +133,10 @@ const Index = () => {
               href={projects.linkedin.href}
               title={projects.linkedin.title}
               description={projects.linkedin.description}
-              onClick={() =>
+              onExpand={() =>
                 handleLinkClick("linkedin", projects.linkedin.href)
               }
+              onDirectLink={() => handleDirectLink(projects.linkedin.href)}
               icon={
                 <svg
                   className="w-4 h-4 text-black"
@@ -153,7 +160,8 @@ const Index = () => {
               href={projects.figma.href}
               title={projects.figma.title}
               description={projects.figma.description}
-              onClick={() => handleLinkClick("figma", projects.figma.href)}
+              onExpand={() => handleLinkClick("figma", projects.figma.href)}
+              onDirectLink={() => handleDirectLink(projects.figma.href)}
               icon={
                 <svg
                   className="w-4 h-4 text-black"
@@ -177,7 +185,8 @@ const Index = () => {
               href={projects.email.href}
               title={projects.email.title}
               description={projects.email.description}
-              onClick={() => handleLinkClick("email", projects.email.href)}
+              onExpand={() => handleLinkClick("email", projects.email.href)}
+              onDirectLink={() => handleDirectLink(projects.email.href)}
               icon={
                 <svg
                   className="w-4 h-4 text-black"

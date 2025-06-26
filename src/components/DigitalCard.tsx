@@ -69,81 +69,80 @@ export default function DigitalCard({
         onClick={!isFlipped ? handleCardClick : undefined}
       >
         {/* Front of card */}
-        <div className="absolute inset-0 w-full h-full backface-hidden rounded-xl bg-white shadow-sm border border-gray-100">
-          <div className="p-8 h-full flex flex-col">
+        <div className="absolute inset-0 w-full h-full backface-hidden rounded-xl bg-white shadow-sm border border-gray-100 overflow-hidden">
+          <div className="h-full flex flex-col">
             {/* Profile Section */}
-            <div className="flex items-start gap-6 mb-8">
-              <div className="w-16 h-16 rounded-full bg-gray-100 overflow-hidden flex-shrink-0">
-                <img
-                  src={profileImage}
-                  alt={name}
-                  className="w-full h-full object-cover"
-                  onError={(e) => {
-                    const target = e.target as HTMLImageElement;
-                    target.style.display = "none";
-                    target.nextElementSibling?.classList.remove("hidden");
-                  }}
-                />
-                <div className="hidden w-full h-full bg-gray-800 flex items-center justify-center text-white font-medium text-lg">
-                  {name
-                    .split(" ")
-                    .map((n) => n[0])
-                    .join("")}
+            <div className="flex-1 p-6">
+              <div className="flex items-start gap-4 mb-6">
+                <div className="w-16 h-16 rounded-full bg-gray-100 overflow-hidden flex-shrink-0">
+                  <img
+                    src={profileImage}
+                    alt={name}
+                    className="w-full h-full object-cover"
+                    onError={(e) => {
+                      const target = e.target as HTMLImageElement;
+                      target.style.display = "none";
+                      target.nextElementSibling?.classList.remove("hidden");
+                    }}
+                  />
+                  <div className="hidden w-full h-full bg-gray-800 flex items-center justify-center text-white font-medium text-lg">
+                    {name
+                      .split(" ")
+                      .map((n) => n[0])
+                      .join("")}
+                  </div>
+                </div>
+
+                <div className="flex-1 min-w-0">
+                  <h1 className="text-xl font-semibold text-gray-900 mb-1 leading-tight">
+                    {name}
+                  </h1>
+                  <p className="text-gray-600 text-sm mb-3 font-medium">
+                    {jobTitle}
+                  </p>
+                  <p className="text-gray-700 text-sm leading-relaxed">{bio}</p>
                 </div>
               </div>
 
-              <div className="flex-1 min-w-0">
-                <h1 className="text-xl font-medium text-gray-900 mb-1 leading-tight">
-                  {name}
-                </h1>
-                <p className="text-gray-600 text-sm mb-3 font-medium">
-                  {jobTitle}
-                </p>
-                <p className="text-gray-700 text-sm leading-relaxed">{bio}</p>
+              {/* Contact Info Grid */}
+              <div className="grid grid-cols-2 gap-3 text-xs">
+                <div className="flex items-center text-gray-600">
+                  <Mail className="w-3 h-3 mr-2 text-gray-400" />
+                  <span className="truncate">{email}</span>
+                </div>
+                <div className="flex items-center text-gray-600">
+                  <Globe className="w-3 h-3 mr-2 text-gray-400" />
+                  <span className="truncate">{website}</span>
+                </div>
+                <div className="flex items-center text-gray-600">
+                  <Phone className="w-3 h-3 mr-2 text-gray-400" />
+                  <span className="truncate">{phone}</span>
+                </div>
+                <div className="flex items-center text-gray-600">
+                  <MapPin className="w-3 h-3 mr-2 text-gray-400" />
+                  <span className="truncate">{location}</span>
+                </div>
               </div>
             </div>
 
-            {/* Contact Info */}
-            <div className="space-y-3 mt-auto">
-              <div className="flex items-center text-gray-600 text-sm">
-                <div className="w-8 flex justify-center">
-                  <Mail className="w-4 h-4" />
-                </div>
-                <span className="text-gray-900">{email}</span>
-              </div>
-              <div className="flex items-center text-gray-600 text-sm">
-                <div className="w-8 flex justify-center">
-                  <Globe className="w-4 h-4" />
-                </div>
-                <span className="text-gray-900">{website}</span>
-              </div>
-              <div className="flex items-center text-gray-600 text-sm">
-                <div className="w-8 flex justify-center">
-                  <MapPin className="w-4 h-4" />
-                </div>
-                <span className="text-gray-900">{location}</span>
-              </div>
-            </div>
-
-            {/* Resume Button */}
-            <div className="mt-6 pt-4 border-t border-gray-100">
+            {/* Action Buttons - Fixed at bottom */}
+            <div className="p-4 border-t border-gray-100 bg-gray-50 space-y-3">
               <Button
                 onClick={(e) => {
                   e.stopPropagation();
                   window.open(resumeUrl, "_blank", "noopener,noreferrer");
                 }}
                 variant="outline"
-                className="w-full h-10 bg-gray-50 hover:bg-gray-100 border-gray-200 text-gray-900 mb-3"
+                className="w-full h-9 bg-white hover:bg-gray-50 border-gray-200 text-gray-900 text-sm"
               >
                 <FileText className="w-4 h-4 mr-2" />
                 View Resume
-                <ExternalLink className="w-3 h-3 ml-2" />
+                <ExternalLink className="w-3 h-3 ml-auto" />
               </Button>
 
-              {/* CTA */}
-              <div className="text-center">
+              <div className="text-center py-1">
                 <span className="text-gray-500 text-xs">
-                  Tap to send message
+                  Tap card to send message
                 </span>
               </div>
             </div>
@@ -152,14 +151,14 @@ export default function DigitalCard({
 
         {/* Back of card */}
         <div
-          className="absolute inset-0 w-full h-full backface-hidden rotate-y-180 rounded-xl bg-white shadow-sm border border-gray-100"
+          className="absolute inset-0 w-full h-full backface-hidden rotate-y-180 rounded-xl bg-white shadow-sm border border-gray-100 overflow-hidden"
           onClick={handleCardClick}
         >
-          <div className="p-6 h-full flex flex-col min-h-0">
+          <div className="h-full flex flex-col">
             {/* Header */}
-            <div className="flex items-center justify-between mb-4 flex-shrink-0">
+            <div className="flex items-center justify-between p-4 border-b border-gray-100 flex-shrink-0">
               <div>
-                <h2 className="text-lg font-medium text-gray-900">
+                <h2 className="text-lg font-semibold text-gray-900">
                   Send Message
                 </h2>
                 <p className="text-gray-500 text-xs mt-1">Let's connect</p>
@@ -177,38 +176,36 @@ export default function DigitalCard({
               </Button>
             </div>
 
-            {/* Form */}
-            <div className="flex-1 flex flex-col space-y-3 min-h-0">
-              <div className="flex-shrink-0">
+            {/* Form Content */}
+            <div className="flex-1 p-4 min-h-0 flex flex-col">
+              <div className="space-y-3 flex-1">
                 <Input
                   value={messageTitle}
                   onChange={(e) => setMessageTitle(e.target.value)}
                   placeholder="Subject"
-                  className="bg-gray-50 border-gray-200 text-gray-900 placeholder-gray-400 focus:border-gray-400 focus:ring-0 h-10"
+                  className="bg-gray-50 border-gray-200 text-gray-900 placeholder-gray-400 focus:border-gray-400 focus:ring-0 h-9 text-sm"
                   onClick={(e) => e.stopPropagation()}
                 />
-              </div>
 
-              <div className="flex-1 min-h-0">
                 <Textarea
                   value={messageText}
                   onChange={(e) => setMessageText(e.target.value)}
                   placeholder="Your message..."
-                  className="bg-gray-50 border-gray-200 text-gray-900 placeholder-gray-400 focus:border-gray-400 focus:ring-0 h-full resize-none"
+                  className="bg-gray-50 border-gray-200 text-gray-900 placeholder-gray-400 focus:border-gray-400 focus:ring-0 resize-none text-sm flex-1 min-h-20"
                   onClick={(e) => e.stopPropagation()}
                 />
               </div>
             </div>
 
-            {/* Send Button */}
-            <div className="flex-shrink-0 mt-4">
+            {/* Send Button - Fixed at bottom */}
+            <div className="p-4 border-t border-gray-100 bg-gray-50 flex-shrink-0">
               <Button
                 onClick={handleSendMessage}
                 disabled={!messageTitle.trim() || !messageText.trim()}
-                className="w-full bg-gray-900 hover:bg-gray-800 text-white border-0 h-10 disabled:bg-gray-200 disabled:text-gray-400"
+                className="w-full bg-gray-900 hover:bg-gray-800 text-white h-9 disabled:bg-gray-200 disabled:text-gray-400 text-sm"
               >
                 <Send className="w-4 h-4 mr-2" />
-                Send
+                Send Message
               </Button>
             </div>
           </div>

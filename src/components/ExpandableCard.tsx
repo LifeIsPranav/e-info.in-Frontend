@@ -21,15 +21,22 @@ export default function ExpandableCard({
   onClose,
   href,
 }: ExpandableCardProps) {
-  if (!isOpen) return null;
-
   const handleVisitLink = () => {
     window.open(href, "_blank", "noopener,noreferrer");
   };
 
   return (
-    <div className="mb-3 overflow-hidden transition-all duration-300 ease-in-out">
-      <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-4">
+    <div
+      className={`overflow-hidden transition-all duration-500 ease-out ${
+        isOpen ? "max-h-96 opacity-100 mb-2" : "max-h-0 opacity-0 mb-0"
+      }`}
+    >
+      <div
+        className="bg-white rounded-xl shadow-sm border border-gray-100 p-4 transform transition-transform duration-500 ease-out"
+        style={{
+          transform: isOpen ? "translateY(0)" : "translateY(-10px)",
+        }}
+      >
         {/* Header */}
         <div className="flex items-center justify-between mb-3">
           <h3 className="text-lg font-medium text-gray-900">{title}</h3>
