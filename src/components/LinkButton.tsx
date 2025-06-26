@@ -22,28 +22,26 @@ export default function LinkButton({
     <Button
       onClick={handleClick}
       variant="ghost"
-      className="w-full h-auto p-4 justify-start bg-white/5 hover:bg-white/10 border border-white/10 hover:border-emerald-400/30 rounded-xl transition-all duration-300 hover:shadow-lg hover:shadow-emerald-500/5 group backdrop-blur-sm"
+      className="w-full h-auto p-4 justify-start bg-white hover:bg-gray-50 border border-gray-200 rounded-lg transition-all duration-200 group"
     >
       <div className="flex items-center gap-4 w-full">
         {/* Icon */}
-        <div className="w-11 h-11 rounded-xl bg-gradient-to-r from-emerald-500 to-blue-500 flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform duration-300 shadow-lg">
-          {icon || <ExternalLink className="w-5 h-5 text-white" />}
+        <div className="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center flex-shrink-0 group-hover:bg-gray-200 transition-colors duration-200">
+          {icon || <ExternalLink className="w-4 h-4 text-gray-600" />}
         </div>
 
         {/* Content */}
         <div className="flex-1 text-left min-w-0">
-          <div className="text-white font-semibold text-base group-hover:text-emerald-100 transition-colors duration-200">
-            {title}
-          </div>
+          <div className="text-gray-900 font-medium text-sm">{title}</div>
           {description && (
-            <div className="text-slate-400 text-sm mt-0.5 group-hover:text-slate-300 transition-colors duration-200 truncate">
+            <div className="text-gray-500 text-xs mt-0.5 truncate">
               {description}
             </div>
           )}
         </div>
 
         {/* Arrow */}
-        <ExternalLink className="w-5 h-5 text-slate-400 group-hover:text-emerald-400 group-hover:scale-110 transition-all duration-300 flex-shrink-0" />
+        <ExternalLink className="w-4 h-4 text-gray-400 group-hover:text-gray-600 transition-colors duration-200 flex-shrink-0" />
       </div>
     </Button>
   );
