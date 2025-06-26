@@ -35,7 +35,7 @@ const Index = () => {
         </div>
 
         {/* Links Section */}
-        <div className="mt-16 max-w-md mx-auto">
+        <div className="mt-16 max-w-lg mx-auto">
           <h2 className="text-2xl font-bold text-white text-center mb-8">
             Connect with me
           </h2>
