@@ -467,35 +467,48 @@ const DigitalCard = forwardRef<DigitalCardRef, Partial<DigitalCardProps>>(
           />
         </div>
 
-        {/* Zoomed Avatar Overlay */}
+        {/* Elegant Avatar Modal */}
         {isAvatarZoomed && (
           <div
-            className="fixed inset-0 z-50 bg-black/80 flex items-center justify-center"
+            className="fixed inset-0 z-50 bg-black/40 backdrop-blur-sm flex items-center justify-center p-4"
             onClick={handleCardClick}
           >
-            <div className="relative">
-              <div className="w-64 h-64 rounded-2xl bg-gray-100 overflow-hidden ring-4 ring-white shadow-2xl">
-                <img
-                  src={personalInfo.profileImage}
-                  alt={personalInfo.name}
-                  className="w-full h-full object-cover"
-                  onError={(e) => {
-                    const target = e.target as HTMLImageElement;
-                    target.style.display = "none";
-                    target.nextElementSibling?.classList.remove("hidden");
-                  }}
-                />
-                <div className="hidden w-full h-full bg-gray-800 flex items-center justify-center text-white font-bold text-4xl">
-                  {createInitials(personalInfo.name)}
+            <div
+              className="bg-white rounded-3xl p-6 shadow-2xl max-w-sm w-full transform transition-all duration-300 scale-100"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div className="text-center space-y-4">
+                <div className="w-32 h-32 mx-auto rounded-2xl bg-gray-100 overflow-hidden ring-1 ring-gray-200">
+                  <img
+                    src={personalInfo.profileImage}
+                    alt={personalInfo.name}
+                    className="w-full h-full object-cover"
+                    onError={(e) => {
+                      const target = e.target as HTMLImageElement;
+                      target.style.display = "none";
+                      target.nextElementSibling?.classList.remove("hidden");
+                    }}
+                  />
+                  <div className="hidden w-full h-full bg-gray-800 flex items-center justify-center text-white font-bold text-2xl">
+                    {createInitials(personalInfo.name)}
+                  </div>
                 </div>
-              </div>
 
-              {/* Avatar info */}
-              <div className="absolute -bottom-16 left-1/2 transform -translate-x-1/2 text-center">
-                <h3 className="text-white font-semibold text-lg">
-                  {personalInfo.name}
-                </h3>
-                <p className="text-white/80 text-sm">{personalInfo.jobTitle}</p>
+                <div>
+                  <h3 className="text-gray-900 font-semibold text-xl">
+                    {personalInfo.name}
+                  </h3>
+                  <p className="text-gray-600 text-sm mt-1">
+                    {personalInfo.jobTitle}
+                  </p>
+                </div>
+
+                <button
+                  onClick={handleCardClick}
+                  className="text-gray-400 hover:text-gray-600 text-sm font-medium"
+                >
+                  Close
+                </button>
               </div>
             </div>
           </div>
