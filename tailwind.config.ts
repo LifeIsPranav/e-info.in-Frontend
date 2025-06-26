@@ -18,6 +18,9 @@ export default {
       },
     },
     extend: {
+      spacing: {
+        "18": "4.5rem",
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
@@ -85,20 +88,10 @@ export default {
             height: "0",
           },
         },
-        flip: {
-          "0%": { transform: "rotateY(0deg)" },
-          "100%": { transform: "rotateY(180deg)" },
-        },
-        "flip-back": {
-          "0%": { transform: "rotateY(180deg)" },
-          "100%": { transform: "rotateY(0deg)" },
-        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
-        flip: "flip 0.6s ease-in-out",
-        "flip-back": "flip-back 0.6s ease-in-out",
       },
     },
   },
