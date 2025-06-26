@@ -375,7 +375,11 @@ const DigitalCard = forwardRef<DigitalCardRef, Partial<DigitalCardProps>>(
 
     // Event Handlers
     const handleCardClick = () => {
-      setIsFlipped(!isFlipped);
+      if (isAvatarZoomed) {
+        setIsAvatarZoomed(false);
+      } else {
+        setIsFlipped(!isFlipped);
+      }
     };
 
     const handleCloseCard = (e: React.MouseEvent) => {
@@ -388,6 +392,10 @@ const DigitalCard = forwardRef<DigitalCardRef, Partial<DigitalCardProps>>(
       if (resumeUrl) {
         handleExternalLink(resumeUrl);
       }
+    };
+
+    const handleAvatarClick = () => {
+      setIsAvatarZoomed(true);
     };
 
     const handleSendMessage = (e: React.MouseEvent) => {
