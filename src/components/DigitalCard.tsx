@@ -138,13 +138,13 @@ const ConfigureButton = ({
     onClick={onClick}
     variant="ghost"
     size="sm"
-    className={`absolute top-3 right-3 z-10 h-8 w-8 p-1.5 rounded-full bg-white/90 hover:bg-white border border-gray-200 shadow-sm backdrop-blur-sm transition-all duration-200 ${
+    className={`absolute top-2 right-2 z-10 h-6 w-6 p-1 rounded-md hover:bg-gray-100/50 transition-all duration-200 ${
       isVisible
-        ? "opacity-100 scale-100"
+        ? "opacity-60 hover:opacity-100 scale-100"
         : "opacity-0 scale-95 pointer-events-none"
     }`}
   >
-    <Settings className="w-4 h-4 text-gray-600" />
+    <Settings className="w-4 h-4 text-gray-400" />
   </Button>
 );
 
