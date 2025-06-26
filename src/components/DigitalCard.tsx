@@ -357,6 +357,7 @@ const DigitalCard = forwardRef<DigitalCardRef, Partial<DigitalCardProps>>(
     const [isFlipped, setIsFlipped] = useState(false);
     const [messageTitle, setMessageTitle] = useState("");
     const [messageText, setMessageText] = useState("");
+    const [isAvatarZoomed, setIsAvatarZoomed] = useState(false);
 
     // Derived State
     const personalInfo: PersonalInfo = { name, jobTitle, bio, profileImage };
