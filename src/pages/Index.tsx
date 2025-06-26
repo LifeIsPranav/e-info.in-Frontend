@@ -3,6 +3,7 @@ import DigitalCard from "@/components/DigitalCard";
 import LinkButton from "@/components/LinkButton";
 import ExpandableCard from "@/components/ExpandableCard";
 import AuthButton from "@/components/AuthButton";
+import Logo from "@/components/Logo";
 
 const Index = () => {
   const [expandedCard, setExpandedCard] = useState<string | null>(null);
