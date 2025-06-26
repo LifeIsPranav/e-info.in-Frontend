@@ -33,6 +33,10 @@ interface DigitalCardProps extends PersonalInfo, ContactInfo {
   onConfigureClick?: () => void;
 }
 
+interface DigitalCardRef {
+  handleOutsideClick: () => void;
+}
+
 // Constants
 const DEFAULT_PROPS: DigitalCardProps = {
   name: "Alex Johnson",
