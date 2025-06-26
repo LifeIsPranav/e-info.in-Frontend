@@ -111,7 +111,9 @@ const Index = () => {
 
       <div ref={containerRef} className="w-full max-w-xl mx-auto space-y-6">
         {/* Digital Card */}
-        <DigitalCard ref={digitalCardRef} />
+        <div className="digital-card-container">
+          <DigitalCard ref={digitalCardRef} />
+        </div>
 
         {/* Links */}
         <div className="space-y-2">
