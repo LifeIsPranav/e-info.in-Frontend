@@ -18,36 +18,44 @@ const Index = () => {
     dribbble: {
       title: "Dribbble",
       description: "Design Portfolio",
-      imageUrl: "https://images.unsplash.com/photo-1561070791-2526d30994b5?w=400&h=240&fit=crop",
-      projectDetails: "Featured UI/UX design shots including mobile app interfaces, web designs, and branding projects. Check out my latest work and creative explorations.",
-      href: "https://dribbble.com"
+      imageUrl:
+        "https://images.unsplash.com/photo-1561070791-2526d30994b5?w=400&h=240&fit=crop",
+      projectDetails:
+        "Featured UI/UX design shots including mobile app interfaces, web designs, and branding projects. Check out my latest work and creative explorations.",
+      href: "https://dribbble.com",
     },
     behance: {
       title: "Behance",
       description: "Case Studies",
-      imageUrl: "https://images.unsplash.com/photo-1559028006-448665bd7c7f?w=400&h=240&fit=crop",
-      projectDetails: "In-depth case studies showcasing my design process from research to final implementation. Detailed breakdowns of user experience challenges and solutions.",
-      href: "https://behance.net"
+      imageUrl:
+        "https://images.unsplash.com/photo-1559028006-448665bd7c7f?w=400&h=240&fit=crop",
+      projectDetails:
+        "In-depth case studies showcasing my design process from research to final implementation. Detailed breakdowns of user experience challenges and solutions.",
+      href: "https://behance.net",
     },
     linkedin: {
       title: "LinkedIn",
       description: "Professional Network",
-      projectDetails: "Connect with me professionally to see my work experience, recommendations, and industry insights. Let's grow our professional network together.",
-      href: "https://linkedin.com"
+      projectDetails:
+        "Connect with me professionally to see my work experience, recommendations, and industry insights. Let's grow our professional network together.",
+      href: "https://linkedin.com",
     },
     figma: {
       title: "Figma",
       description: "Design Files",
-      imageUrl: "https://images.unsplash.com/photo-1609921212029-bb5a28e60960?w=400&h=240&fit=crop",
-      projectDetails: "Access to design systems, wireframes, and interactive prototypes. See how I organize design files and collaborate with development teams.",
-      href: "https://figma.com"
+      imageUrl:
+        "https://images.unsplash.com/photo-1609921212029-bb5a28e60960?w=400&h=240&fit=crop",
+      projectDetails:
+        "Access to design systems, wireframes, and interactive prototypes. See how I organize design files and collaborate with development teams.",
+      href: "https://figma.com",
     },
     email: {
       title: "Email",
       description: "Direct Contact",
-      projectDetails: "Get in touch directly for project inquiries, collaborations, or just to say hello. I typically respond within 24 hours.",
-      href: "mailto:alex@example.com"
-    }
+      projectDetails:
+        "Get in touch directly for project inquiries, collaborations, or just to say hello. I typically respond within 24 hours.",
+      href: "mailto:alex@example.com",
+    },
   };
 
   return (
@@ -69,7 +77,9 @@ const Index = () => {
               href={projects.dribbble.href}
               title={projects.dribbble.title}
               description={projects.dribbble.description}
-              onClick={() => handleLinkClick("dribbble", projects.dribbble.href)}
+              onClick={() =>
+                handleLinkClick("dribbble", projects.dribbble.href)
+              }
               icon={
                 <svg
                   className="w-4 h-4 text-black"
@@ -117,7 +127,9 @@ const Index = () => {
               href={projects.linkedin.href}
               title={projects.linkedin.title}
               description={projects.linkedin.description}
-              onClick={() => handleLinkClick("linkedin", projects.linkedin.href)}
+              onClick={() =>
+                handleLinkClick("linkedin", projects.linkedin.href)
+              }
               icon={
                 <svg
                   className="w-4 h-4 text-black"
@@ -182,6 +194,7 @@ const Index = () => {
                 </svg>
               }
             />
+          </div>
         </div>
       </div>
     </div>
