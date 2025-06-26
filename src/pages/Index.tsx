@@ -110,7 +110,7 @@ const Index = () => {
         <AuthButton />
       </div>
 
-      <div ref={containerRef} className="w-full max-w-xl mx-auto space-y-6">
+      <div ref={containerRef} className="w-full max-w-lg mx-auto space-y-6">
         {/* Digital Card */}
         <div className="digital-card-container">
           <DigitalCard ref={digitalCardRef} />
