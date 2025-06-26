@@ -1,47 +1,318 @@
 import { useState } from "react";
-import {
-  Mail,
-  MapPin,
-  Phone,
-  Globe,
-  X,
-  Send,
-  FileText,
-  ExternalLink,
-} from "lucide-react";
+import { Mail, MapPin, Globe, X, Send, FileText, Settings } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 
-interface DigitalCardProps {
-  name?: string;
-  jobTitle?: string;
-  bio?: string;
-  email?: string;
-  phone?: string;
-  location?: string;
-  website?: string;
-  profileImage?: string;
-  resumeUrl?: string;
+// Types
+interface ContactInfo {
+  email: string;
+  website: string;
+  location: string;
 }
 
-export default function DigitalCard({
-  name = "Alex Johnson",
-  jobTitle = "UI/UX Designer",
-  bio = "Creating digital experiences that matter. Clean, functional, human-centered design.",
-  email = "alex@example.com",
-  phone = "+1 (555) 123-4567",
-  location = "San Francisco",
-  website = "alexjohnson.design",
-  profileImage = "/placeholder.svg",
-  resumeUrl = "https://drive.google.com/file/d/example/view",
-}: DigitalCardProps) {
+interface PersonalInfo {
+  name: string;
+  jobTitle: string;
+  bio: string;
+  profileImage: string;
+}
+
+interface DigitalCardProps extends PersonalInfo, ContactInfo {
+  resumeUrl?: string;
+  onConfigureClick?: () => void;
+}
+
+// Constants
+const DEFAULT_PROPS: DigitalCardProps = {
+  name: "Alex Johnson",
+  jobTitle: "UI/UX Designer",
+  bio: "Creating digital experiences that matter. Clean, functional, human-centered design.",
+  email: "alex@example.com",
+  website: "alexjohnson.design",
+  location: "San Francisco",
+  profileImage: "/placeholder.svg",
+  resumeUrl: "https://drive.google.com/file/d/example/view",
+};
+
+// Utility Functions
+const createInitials = (name: string): string => {
+  return name
+    .split(" ")
+    .map((n) => n[0])
+    .join("")
+    .toUpperCase();
+};
+
+const handleExternalLink = (url: string, useMailto = false): void => {
+  const finalUrl = useMailto ? `mailto:${url}` : `https://${url}`;
+  const target = useMailto ? "_self" : "_blank";
+  window.open(finalUrl, target, useMailto ? "" : "noopener,noreferrer");
+};
+
+// Sub-components
+const ProfileImage = ({
+  src,
+  alt,
+  initials,
+}: {
+  src: string;
+  alt: string;
+  initials: string;
+}) => (
+  <div className="w-16 h-16 md:w-18 md:h-18 rounded-full bg-gray-100 overflow-hidden flex-shrink-0 ring-2 ring-gray-100 mx-auto md:mx-0">
+    <img
+      src={src}
+      alt={alt}
+      className="w-full h-full object-cover"
+      onError={(e) => {
+        const target = e.target as HTMLImageElement;
+        target.style.display = "none";
+        target.nextElementSibling?.classList.remove("hidden");
+      }}
+    />
+    <div className="hidden w-full h-full bg-gray-800 flex items-center justify-center text-white font-medium text-sm">
+      {initials}
+    </div>
+  </div>
+);
+
+const ContactInfoItem = ({ icon: Icon, text }: { icon: any; text: string }) => (
+  <div className="flex items-center text-gray-600 justify-center md:justify-start">
+    <Icon className="w-4 h-4 mr-2 text-gray-400 flex-shrink-0" />
+    <span className="truncate text-xs">{text}</span>
+  </div>
+);
+
+const ResumeButton = ({
+  onClick,
+}: {
+  onClick: (e: React.MouseEvent) => void;
+}) => (
+  <Button
+    onClick={onClick}
+    variant="ghost"
+    size="sm"
+    className="absolute top-4 right-4 z-10 h-9 w-9 p-2 rounded-full bg-white/90 hover:bg-white border border-gray-200 shadow-sm backdrop-blur-sm transition-all duration-200"
+  >
+    <FileText className="w-4 h-4 text-gray-600" />
+  </Button>
+);
+
+const ConfigureButton = ({
+  onClick,
+  isVisible,
+}: {
+  onClick: () => void;
+  isVisible: boolean;
+}) => (
+  <Button
+    onClick={onClick}
+    variant="ghost"
+    size="sm"
+    className={`absolute top-4 right-14 z-10 h-9 w-9 p-2 rounded-full bg-white/90 hover:bg-white border border-gray-200 shadow-sm backdrop-blur-sm transition-all duration-200 ${
+      isVisible
+        ? "opacity-100 scale-100"
+        : "opacity-0 scale-95 pointer-events-none"
+    }`}
+  >
+    <Settings className="w-4 h-4 text-gray-600" />
+  </Button>
+);
+
+const CardFront = ({
+  personalInfo,
+  contactInfo,
+  resumeUrl,
+  onCardClick,
+  onResumeClick,
+}: {
+  personalInfo: PersonalInfo;
+  contactInfo: ContactInfo;
+  resumeUrl?: string;
+  onCardClick: () => void;
+  onResumeClick: (e: React.MouseEvent) => void;
+}) => (
+  <div
+    className="absolute inset-0 w-full h-full backface-hidden rounded-2xl bg-white shadow-lg border border-gray-100/80 overflow-hidden cursor-pointer"
+    onClick={onCardClick}
+  >
+    <div className="h-full flex flex-col relative">
+      {/* Resume Button */}
+      {resumeUrl && <ResumeButton onClick={onResumeClick} />}
+
+      {/* Profile Section */}
+      <div className="flex-1 p-4">
+        {/* Header with Image and Basic Info */}
+        <div className="flex flex-col md:flex-row md:items-start gap-4 mb-4">
+          <ProfileImage
+            src={personalInfo.profileImage}
+            alt={personalInfo.name}
+            initials={createInitials(personalInfo.name)}
+          />
+
+          <div className="flex-1 min-w-0 text-center md:text-left">
+            <h1 className="text-xl md:text-2xl font-semibold text-gray-900 mb-1 leading-tight">
+              {personalInfo.name}
+            </h1>
+            <p className="text-gray-600 text-sm md:text-base font-medium mb-3">
+              {personalInfo.jobTitle}
+            </p>
+          </div>
+        </div>
+
+        {/* Bio Section */}
+        <div className="mb-4">
+          <p className="text-gray-700 text-sm leading-relaxed text-center md:text-left">
+            {personalInfo.bio}
+          </p>
+        </div>
+
+        {/* Contact Information */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+          <ContactInfoItem icon={Mail} text={contactInfo.email} />
+          <ContactInfoItem icon={Globe} text={contactInfo.website} />
+          <ContactInfoItem icon={MapPin} text={contactInfo.location} />
+        </div>
+      </div>
+
+      {/* Call to Action */}
+      <div className="p-4 border-t border-gray-100 bg-gray-50/50">
+        <div className="text-center py-2">
+          <span className="text-gray-500 text-sm font-medium">
+            Tap card to send message
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+);
+
+const CardBack = ({
+  messageTitle,
+  messageText,
+  onMessageTitleChange,
+  onMessageTextChange,
+  onSendMessage,
+  onCloseCard,
+  onConfigureClick,
+  isFormEmpty,
+}: {
+  messageTitle: string;
+  messageText: string;
+  onMessageTitleChange: (value: string) => void;
+  onMessageTextChange: (value: string) => void;
+  onSendMessage: (e: React.MouseEvent) => void;
+  onCloseCard: (e: React.MouseEvent) => void;
+  onConfigureClick?: () => void;
+  isFormEmpty: boolean;
+}) => (
+  <div className="absolute inset-0 w-full h-full backface-hidden rotate-y-180 rounded-2xl bg-white shadow-lg border border-gray-100/80 overflow-hidden">
+    <div className="h-full flex flex-col">
+      {/* Header */}
+      <div className="flex items-center justify-between p-4 border-b border-gray-100 flex-shrink-0">
+        <div>
+          <h2 className="text-xl font-semibold text-gray-900">Send Message</h2>
+          <p className="text-gray-500 text-sm mt-1">Let's connect</p>
+        </div>
+
+        <div className="flex items-center gap-2">
+          {/* Configure Button - only visible when form is empty */}
+          {onConfigureClick && (
+            <ConfigureButton
+              onClick={onConfigureClick}
+              isVisible={isFormEmpty}
+            />
+          )}
+
+          {/* Close Button */}
+          <Button
+            variant="ghost"
+            size="sm"
+            onClick={onCloseCard}
+            className="text-gray-400 hover:text-gray-600 p-2 h-9 w-9 rounded-full hover:bg-gray-50"
+          >
+            <X className="w-4 h-4" />
+          </Button>
+        </div>
+      </div>
+
+      {/* Form Content */}
+      <div className="flex-1 p-4 min-h-0 flex flex-col">
+        <div className="space-y-4 flex-1">
+          <Input
+            value={messageTitle}
+            onChange={(e) => onMessageTitleChange(e.target.value)}
+            placeholder="Subject"
+            className="bg-gray-50 border-gray-200 text-gray-900 placeholder-gray-400 focus:border-gray-400 focus:ring-1 focus:ring-gray-400 h-11 text-sm"
+            onClick={(e) => e.stopPropagation()}
+          />
+
+          <Textarea
+            value={messageText}
+            onChange={(e) => onMessageTextChange(e.target.value)}
+            placeholder="Your message..."
+            className="bg-gray-50 border-gray-200 text-gray-900 placeholder-gray-400 focus:border-gray-400 focus:ring-1 focus:ring-gray-400 resize-none text-sm flex-1 min-h-20"
+            onClick={(e) => e.stopPropagation()}
+          />
+        </div>
+      </div>
+
+      {/* Send Button */}
+      <div className="p-4 border-t border-gray-100 bg-gray-50/50 flex-shrink-0">
+        <Button
+          onClick={onSendMessage}
+          disabled={!messageTitle.trim() || !messageText.trim()}
+          className="w-full bg-gray-900 hover:bg-gray-800 text-white h-11 disabled:bg-gray-200 disabled:text-gray-400 text-sm font-medium transition-colors"
+        >
+          <Send className="w-4 h-4 mr-2" />
+          Send Message
+        </Button>
+      </div>
+    </div>
+  </div>
+);
+
+// Main Component
+export default function DigitalCard(props: Partial<DigitalCardProps> = {}) {
+  // Merge props with defaults
+  const {
+    name,
+    jobTitle,
+    bio,
+    email,
+    website,
+    location,
+    profileImage,
+    resumeUrl,
+    onConfigureClick,
+  } = { ...DEFAULT_PROPS, ...props };
+
+  // State Management
   const [isFlipped, setIsFlipped] = useState(false);
   const [messageTitle, setMessageTitle] = useState("");
   const [messageText, setMessageText] = useState("");
 
+  // Derived State
+  const personalInfo: PersonalInfo = { name, jobTitle, bio, profileImage };
+  const contactInfo: ContactInfo = { email, website, location };
+  const isFormEmpty = !messageTitle.trim() && !messageText.trim();
+
+  // Event Handlers
   const handleCardClick = () => {
     setIsFlipped(!isFlipped);
+  };
+
+  const handleCloseCard = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setIsFlipped(false);
+  };
+
+  const handleResumeClick = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (resumeUrl) {
+      handleExternalLink(resumeUrl);
+    }
   };
 
   const handleSendMessage = (e: React.MouseEvent) => {
@@ -50,184 +321,58 @@ export default function DigitalCard({
 
     if (!messageTitle.trim() || !messageText.trim()) return;
 
+    // Here you can integrate with your preferred messaging service
     console.log("Sending message:", {
       title: messageTitle,
       message: messageText,
+      timestamp: new Date().toISOString(),
     });
-    alert("Message sent!");
+
+    // Show success feedback
+    alert("Message sent successfully!");
+
+    // Reset form and close card
     setMessageTitle("");
     setMessageText("");
     setIsFlipped(false);
   };
 
-  const handleEmailClick = (e: React.MouseEvent) => {
-    e.stopPropagation();
-    window.open(`mailto:${email}`, "_self");
+  const handleConfigureClick = () => {
+    if (onConfigureClick) {
+      onConfigureClick();
+    } else {
+      console.log("Configure button clicked - implement your logic here");
+    }
   };
 
-  const handleWebsiteClick = (e: React.MouseEvent) => {
-    e.stopPropagation();
-    window.open(`https://${website}`, "_blank", "noopener,noreferrer");
-  };
-
+  // Render
   return (
     <div className="perspective-1000 w-full">
       <div
-        className={`relative w-full h-96 transition-transform duration-700 preserve-3d cursor-pointer ${
+        className={`relative w-full h-80 transition-transform duration-700 preserve-3d ${
           isFlipped ? "rotate-y-180" : ""
         }`}
-        onClick={!isFlipped ? handleCardClick : undefined}
       >
-        {/* Front of card */}
-        <div className="absolute inset-0 w-full h-full backface-hidden rounded-2xl bg-white shadow-lg border border-gray-100/80 overflow-hidden">
-          <div className="h-full flex flex-col relative">
-            {/* Resume Button - Top Right */}
-            <Button
-              onClick={(e) => {
-                e.stopPropagation();
-                window.open(resumeUrl, "_blank", "noopener,noreferrer");
-              }}
-              variant="ghost"
-              size="sm"
-              className="absolute top-5 right-5 z-10 h-10 w-10 p-2 rounded-full bg-white/90 hover:bg-white border border-gray-200 shadow-sm backdrop-blur-sm transition-all duration-200"
-            >
-              <FileText className="w-4 h-4 text-gray-600" />
-            </Button>
+        {/* Card Front */}
+        <CardFront
+          personalInfo={personalInfo}
+          contactInfo={contactInfo}
+          resumeUrl={resumeUrl}
+          onCardClick={!isFlipped ? handleCardClick : () => {}}
+          onResumeClick={handleResumeClick}
+        />
 
-            {/* Profile Section */}
-            <div className="flex-1 p-5">
-              {/* Profile Header - responsive layout */}
-              <div className="flex flex-col md:flex-row md:items-start gap-4 mb-5">
-                <div className="w-16 h-16 md:w-18 md:h-18 rounded-full bg-gray-100 overflow-hidden flex-shrink-0 ring-2 ring-gray-100 mx-auto md:mx-0">
-                  <img
-                    src={profileImage}
-                    alt={name}
-                    className="w-full h-full object-cover"
-                    onError={(e) => {
-                      const target = e.target as HTMLImageElement;
-                      target.style.display = "none";
-                      target.nextElementSibling?.classList.remove("hidden");
-                    }}
-                  />
-                  <div className="hidden w-full h-full bg-gray-800 flex items-center justify-center text-white font-medium text-lg">
-                    {name
-                      .split(" ")
-                      .map((n) => n[0])
-                      .join("")}
-                  </div>
-                </div>
-
-                <div className="flex-1 min-w-0 text-center md:text-left">
-                  <h1 className="text-xl md:text-2xl font-semibold text-gray-900 mb-1 leading-tight">
-                    {name}
-                  </h1>
-                  <p className="text-gray-600 text-sm md:text-base font-medium mb-4">
-                    {jobTitle}
-                  </p>
-                </div>
-              </div>
-
-              {/* Bio - Full width */}
-              <div className="mb-5">
-                <p className="text-gray-700 text-sm leading-relaxed text-center md:text-left">
-                  {bio}
-                </p>
-              </div>
-
-              {/* Contact Info Grid */}
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-3 text-sm">
-                {/* Email - Simple display */}
-                <div className="flex items-center text-gray-600 justify-center md:justify-start">
-                  <Mail className="w-4 h-4 mr-2 text-gray-400 flex-shrink-0" />
-                  <span className="truncate text-xs">{email}</span>
-                </div>
-
-                {/* Website - Simple display */}
-                <div className="flex items-center text-gray-600 justify-center md:justify-start">
-                  <Globe className="w-4 h-4 mr-2 text-gray-400 flex-shrink-0" />
-                  <span className="truncate text-xs">{website}</span>
-                </div>
-
-                {/* Location - Simple display */}
-                <div className="flex items-center text-gray-600 justify-center md:justify-start">
-                  <MapPin className="w-4 h-4 mr-2 text-gray-400 flex-shrink-0" />
-                  <span className="truncate text-xs">{location}</span>
-                </div>
-              </div>
-            </div>
-
-            {/* CTA - Fixed at bottom */}
-            <div className="p-4 border-t border-gray-100 bg-gray-50/50">
-              <div className="text-center py-2">
-                <span className="text-gray-500 text-sm font-medium">
-                  Tap card to send message
-                </span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Back of card */}
-        <div
-          className="absolute inset-0 w-full h-full backface-hidden rotate-y-180 rounded-2xl bg-white shadow-lg border border-gray-100/80 overflow-hidden"
-          onClick={handleCardClick}
-        >
-          <div className="h-full flex flex-col">
-            {/* Header */}
-            <div className="flex items-center justify-between p-6 border-b border-gray-100 flex-shrink-0">
-              <div>
-                <h2 className="text-xl font-semibold text-gray-900">
-                  Send Message
-                </h2>
-                <p className="text-gray-500 text-sm mt-1">Let's connect</p>
-              </div>
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  setIsFlipped(false);
-                }}
-                className="text-gray-400 hover:text-gray-600 p-2 h-10 w-10 rounded-full hover:bg-gray-50"
-              >
-                <X className="w-5 h-5" />
-              </Button>
-            </div>
-
-            {/* Form Content */}
-            <div className="flex-1 p-6 min-h-0 flex flex-col">
-              <div className="space-y-4 flex-1">
-                <Input
-                  value={messageTitle}
-                  onChange={(e) => setMessageTitle(e.target.value)}
-                  placeholder="Subject"
-                  className="bg-gray-50 border-gray-200 text-gray-900 placeholder-gray-400 focus:border-gray-400 focus:ring-1 focus:ring-gray-400 h-12 text-sm"
-                  onClick={(e) => e.stopPropagation()}
-                />
-
-                <Textarea
-                  value={messageText}
-                  onChange={(e) => setMessageText(e.target.value)}
-                  placeholder="Your message..."
-                  className="bg-gray-50 border-gray-200 text-gray-900 placeholder-gray-400 focus:border-gray-400 focus:ring-1 focus:ring-gray-400 resize-none text-sm flex-1 min-h-24"
-                  onClick={(e) => e.stopPropagation()}
-                />
-              </div>
-            </div>
-
-            {/* Send Button - Fixed at bottom */}
-            <div className="p-6 border-t border-gray-100 bg-gray-50/50 flex-shrink-0">
-              <Button
-                onClick={handleSendMessage}
-                disabled={!messageTitle.trim() || !messageText.trim()}
-                className="w-full bg-gray-900 hover:bg-gray-800 text-white h-12 disabled:bg-gray-200 disabled:text-gray-400 text-sm font-medium transition-colors"
-              >
-                <Send className="w-4 h-4 mr-2" />
-                Send Message
-              </Button>
-            </div>
-          </div>
-        </div>
+        {/* Card Back */}
+        <CardBack
+          messageTitle={messageTitle}
+          messageText={messageText}
+          onMessageTitleChange={setMessageTitle}
+          onMessageTextChange={setMessageText}
+          onSendMessage={handleSendMessage}
+          onCloseCard={handleCloseCard}
+          onConfigureClick={handleConfigureClick}
+          isFormEmpty={isFormEmpty}
+        />
       </div>
     </div>
   );
