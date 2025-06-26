@@ -69,14 +69,19 @@ const ProfileImage = ({
   src,
   alt,
   initials,
+  onAvatarClick,
 }: {
   src: string;
   alt: string;
   initials: string;
+  onAvatarClick: () => void;
 }) => (
   <div
-    className="w-16 h-16 md:w-18 md:h-18 rounded-full bg-gray-100 overflow-hidden flex-shrink-0 ring-2 ring-gray-100 mx-auto md:mx-0"
-    onClick={(e) => e.stopPropagation()}
+    className="w-16 h-16 md:w-18 md:h-18 rounded-full bg-gray-100 overflow-hidden flex-shrink-0 ring-2 ring-gray-100 mx-auto md:mx-0 cursor-pointer hover:ring-blue-200 transition-all duration-200"
+    onClick={(e) => {
+      e.stopPropagation();
+      onAvatarClick();
+    }}
   >
     <img
       src={src}
