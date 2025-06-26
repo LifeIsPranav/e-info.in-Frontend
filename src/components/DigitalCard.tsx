@@ -466,6 +466,40 @@ const DigitalCard = forwardRef<DigitalCardRef, Partial<DigitalCardProps>>(
             isFormEmpty={isFormEmpty}
           />
         </div>
+
+        {/* Zoomed Avatar Overlay */}
+        {isAvatarZoomed && (
+          <div
+            className="fixed inset-0 z-50 bg-black/80 flex items-center justify-center"
+            onClick={handleCardClick}
+          >
+            <div className="relative">
+              <div className="w-64 h-64 rounded-2xl bg-gray-100 overflow-hidden ring-4 ring-white shadow-2xl">
+                <img
+                  src={personalInfo.profileImage}
+                  alt={personalInfo.name}
+                  className="w-full h-full object-cover"
+                  onError={(e) => {
+                    const target = e.target as HTMLImageElement;
+                    target.style.display = "none";
+                    target.nextElementSibling?.classList.remove("hidden");
+                  }}
+                />
+                <div className="hidden w-full h-full bg-gray-800 flex items-center justify-center text-white font-bold text-4xl">
+                  {createInitials(personalInfo.name)}
+                </div>
+              </div>
+
+              {/* Avatar info */}
+              <div className="absolute -bottom-16 left-1/2 transform -translate-x-1/2 text-center">
+                <h3 className="text-white font-semibold text-lg">
+                  {personalInfo.name}
+                </h3>
+                <p className="text-white/80 text-sm">{personalInfo.jobTitle}</p>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     );
   },
