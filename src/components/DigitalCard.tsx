@@ -451,6 +451,7 @@ const DigitalCard = forwardRef<DigitalCardRef, Partial<DigitalCardProps>>(
             resumeUrl={resumeUrl}
             onCardClick={!isFlipped ? handleCardClick : () => {}}
             onResumeClick={handleResumeClick}
+            onAvatarClick={handleAvatarClick}
           />
 
           {/* Card Back */}
