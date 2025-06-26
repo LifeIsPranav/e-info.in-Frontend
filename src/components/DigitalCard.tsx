@@ -184,12 +184,14 @@ const CardFront = ({
   resumeUrl,
   onCardClick,
   onResumeClick,
+  onAvatarClick,
 }: {
   personalInfo: PersonalInfo;
   contactInfo: ContactInfo;
   resumeUrl?: string;
   onCardClick: () => void;
   onResumeClick: (e: React.MouseEvent) => void;
+  onAvatarClick: () => void;
 }) => (
   <div
     className="absolute inset-0 w-full h-full backface-hidden rounded-2xl bg-white shadow-lg border border-gray-100/80 overflow-hidden cursor-pointer"
