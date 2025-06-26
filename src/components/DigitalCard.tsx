@@ -128,41 +128,21 @@ export default function DigitalCard({
               </div>
 
               {/* Contact Info Grid */}
-              <div className="grid grid-cols-1 gap-3 text-sm">
-                {/* Email - Clickable */}
-                <button
-                  onClick={handleEmailClick}
-                  className="flex items-center text-gray-600 hover:text-gray-900 hover:bg-gray-50 p-4 rounded-xl transition-all duration-200 text-left group border border-transparent hover:border-gray-200 hover:shadow-sm"
-                >
+              <div className="space-y-3 text-sm">
+                {/* Email - Simple display */}
+                <div className="flex items-center text-gray-600">
                   <Mail className="w-4 h-4 mr-4 text-gray-400 flex-shrink-0" />
-                  <span className="truncate flex-1">{email}</span>
-                  <ExternalLink className="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity ml-2 flex-shrink-0" />
-                </button>
-
-                {/* Website - Clickable */}
-                <button
-                  onClick={handleWebsiteClick}
-                  className="flex items-center text-gray-600 hover:text-gray-900 hover:bg-gray-50 p-4 rounded-xl transition-all duration-200 text-left group border border-transparent hover:border-gray-200 hover:shadow-sm"
-                >
-                  <Globe className="w-4 h-4 mr-4 text-gray-400 flex-shrink-0" />
-                  <span className="truncate flex-1">{website}</span>
-                  <ExternalLink className="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity ml-2 flex-shrink-0" />
-                </button>
-
-                {/* Phone - Non-clickable, but prevent flip */}
-                <div
-                  className="flex items-center text-gray-600 p-4 rounded-xl"
-                  onClick={(e) => e.stopPropagation()}
-                >
-                  <Phone className="w-4 h-4 mr-4 text-gray-400 flex-shrink-0" />
-                  <span className="truncate">{phone}</span>
+                  <span className="truncate">{email}</span>
                 </div>
 
-                {/* Location - Non-clickable, but prevent flip */}
-                <div
-                  className="flex items-center text-gray-600 p-4 rounded-xl"
-                  onClick={(e) => e.stopPropagation()}
-                >
+                {/* Website - Simple display */}
+                <div className="flex items-center text-gray-600">
+                  <Globe className="w-4 h-4 mr-4 text-gray-400 flex-shrink-0" />
+                  <span className="truncate">{website}</span>
+                </div>
+
+                {/* Location - Simple display */}
+                <div className="flex items-center text-gray-600">
                   <MapPin className="w-4 h-4 mr-4 text-gray-400 flex-shrink-0" />
                   <span className="truncate">{location}</span>
                 </div>
