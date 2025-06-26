@@ -3,29 +3,33 @@ import LinkButton from "@/components/LinkButton";
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-slate-950 flex items-center justify-center p-4">
-      {/* Background Effects */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute -inset-10 opacity-50">
-          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-pink-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-pulse"></div>
-          <div className="absolute top-3/4 right-1/4 w-96 h-96 bg-violet-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-pulse animation-delay-2000"></div>
-          <div className="absolute bottom-1/4 left-1/3 w-96 h-96 bg-blue-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-pulse animation-delay-4000"></div>
-        </div>
+    <div className="min-h-screen bg-[#1e293b] flex items-center justify-center p-4 relative overflow-hidden">
+      {/* Grid Background */}
+      <div className="absolute inset-0">
+        <div className="absolute inset-0 bg-[linear-gradient(rgba(142,213,149,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(142,213,149,0.05)_1px,transparent_1px)] bg-[size:40px_40px]"></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/5 via-transparent to-blue-500/5"></div>
       </div>
 
       {/* Main Content */}
-      <div className="relative z-10 w-full max-w-6xl mx-auto">
-        <div className="text-center mb-12">
-          <h1 className="text-4xl md:text-6xl font-bold text-white mb-4">
-            Digital
-            <span className="bg-gradient-to-r from-pink-500 to-violet-500 bg-clip-text text-transparent">
-              {" "}
-              Business Card
+      <div className="relative z-10 w-full max-w-4xl mx-auto">
+        <div className="text-center mb-16">
+          <div className="inline-flex items-center gap-2 mb-6 px-4 py-2 bg-emerald-500/10 border border-emerald-500/20 rounded-full">
+            <div className="w-2 h-2 bg-emerald-500 rounded-full animate-pulse"></div>
+            <span className="text-emerald-400 text-sm font-medium">
+              Available for projects
+            </span>
+          </div>
+
+          <h1 className="text-5xl md:text-7xl font-bold text-white mb-4 tracking-tight">
+            UI/UX
+            <span className="bg-gradient-to-r from-emerald-400 to-blue-400 bg-clip-text text-transparent block">
+              Designer
             </span>
           </h1>
-          <p className="text-slate-400 text-lg md:text-xl max-w-2xl mx-auto">
-            Share your professional identity with a sleek, interactive digital
-            card
+          <p className="text-slate-300 text-xl max-w-2xl mx-auto leading-relaxed">
+            Crafting digital experiences that blend beautiful design with
+            <br className="hidden md:block" />
+            seamless functionality
           </p>
         </div>
 
@@ -35,22 +39,43 @@ const Index = () => {
         </div>
 
         {/* Links Section */}
-        <div className="mt-16 max-w-lg mx-auto">
-          <h2 className="text-2xl font-bold text-white text-center mb-8">
-            Connect with me
-          </h2>
+        <div className="mt-20 max-w-lg mx-auto">
+          <div className="text-center mb-8">
+            <h2 className="text-2xl font-bold text-white mb-2">
+              Let's Connect
+            </h2>
+            <p className="text-slate-400 text-sm">
+              Find me across different platforms
+            </p>
+          </div>
+
           <div className="space-y-3">
             <LinkButton
-              href="https://github.com"
-              title="GitHub"
-              description="Check out my projects and contributions"
+              href="https://dribbble.com"
+              title="Dribbble"
+              description="Design shots and creative inspiration"
               icon={
                 <svg
                   className="w-4 h-4 text-white"
                   fill="currentColor"
                   viewBox="0 0 24 24"
                 >
-                  <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+                  <path d="M12 0C5.374 0 0 5.374 0 12s5.374 12 12 12 12-5.374 12-12S18.626 0 12 0zm7.568 5.302c1.4 1.5 2.252 3.5 2.252 5.7-.3-.1-3.3-.6-6.07-.3-.3-.7-.6-1.5-1-2.2 3-1.2 4.518-2.9 4.818-3.2zm-1.6-1.3c-.3.3-1.7 1.9-4.6 3-.9-1.7-1.9-3.1-2.1-3.3 2.3-.3 4.6 0 6.7.3zM7.818 1.802c.2.2 1.2 1.6 2.1 3.2-2.6.7-4.9.7-5.2.7.4-1.8 1.5-3.3 3.1-3.9zm-3.1 5.8s.1 0 .1 0c.3 0 3.1 0 5.9-.8.2.4.4.8.5 1.2l-.2.1c-2.9 1-4.4 3.6-4.6 3.8-.1-.8-.1-1.6 0-2.4.2-1.1.6-2 1.3-2.9zm1.4 6.7c.2-.3 1.4-2.4 4-3.3l.1-.1c.8 2.1 1.1 3.8 1.2 4.3-1.3.5-2.5.5-3.5.3-.8-.2-1.5-.7-1.8-1.2zm6.7 1.2c-.1-.6-.4-2.3-1.2-4.4 2.6-.4 4.9.2 5.2.3-.4 2-1.7 3.6-3.4 4.2-.2 0-.4-.1-.6-.1z" />
+                </svg>
+              }
+            />
+
+            <LinkButton
+              href="https://behance.net"
+              title="Behance"
+              description="Case studies and design process"
+              icon={
+                <svg
+                  className="w-4 h-4 text-white"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path d="M22 7h-7v-2h7v2zm1.726 10c-.442 1.297-2.029 2-5.101 2-3.074 0-5.564-1.729-5.564-5.675 0-3.91 2.325-5.92 5.466-5.92 3.082 0 4.964 1.782 5.375 4.426.078.506.109 1.188.095 2.14H15.97c.13 3.211 3.483 3.312 4.588 2.029h3.168zm-7.686-4h4.965c-.105-1.547-1.136-2.219-2.477-2.219-1.466 0-2.277.768-2.488 2.219zm-9.574 6.988h-6.466v-14.967h6.953c5.476.081 5.58 5.444 2.72 6.906 3.461 1.26 3.577 8.061-3.207 8.061zm-3.466-8.988h3.584c2.508 0 2.906-3-.312-3h-3.272v3zm3.391 3h-3.391v3.016h3.341c3.055 0 2.868-3.016.05-3.016z" />
                 </svg>
               }
             />
@@ -58,7 +83,7 @@ const Index = () => {
             <LinkButton
               href="https://linkedin.com"
               title="LinkedIn"
-              description="Professional network and experience"
+              description="Professional experience & recommendations"
               icon={
                 <svg
                   className="w-4 h-4 text-white"
@@ -71,58 +96,31 @@ const Index = () => {
             />
 
             <LinkButton
-              href="https://twitter.com"
-              title="Twitter"
-              description="Follow me for updates and thoughts"
+              href="https://medium.com"
+              title="Medium"
+              description="Design articles & thought leadership"
               icon={
                 <svg
                   className="w-4 h-4 text-white"
                   fill="currentColor"
                   viewBox="0 0 24 24"
                 >
-                  <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z" />
+                  <path d="M13.54 12a6.8 6.8 0 01-6.77 6.82A6.8 6.8 0 010 12a6.8 6.8 0 016.77-6.82A6.8 6.8 0 0113.54 12zM20.96 12c0 3.54-1.51 6.42-3.38 6.42-1.87 0-3.39-2.88-3.39-6.42s1.52-6.42 3.39-6.42 3.38 2.88 3.38 6.42M24 12c0 3.17-.53 5.75-1.19 5.75-.66 0-1.19-2.58-1.19-5.75s.53-5.75 1.19-5.75C23.47 6.25 24 8.83 24 12z" />
                 </svg>
               }
             />
 
             <LinkButton
-              href="https://portfolio.com"
-              title="Portfolio Website"
-              description="View my work and case studies"
+              href="https://figma.com/@alexjohnson"
+              title="Figma Community"
+              description="Design resources & UI kits"
               icon={
                 <svg
                   className="w-4 h-4 text-white"
-                  fill="none"
-                  stroke="currentColor"
+                  fill="currentColor"
                   viewBox="0 0 24 24"
                 >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9v-9m0-9v9m0 9c-5 0-9-4-9-9s4-9 9-9"
-                  />
-                </svg>
-              }
-            />
-
-            <LinkButton
-              href="mailto:alex@example.com"
-              title="Email"
-              description="Send me a direct message"
-              icon={
-                <svg
-                  className="w-4 h-4 text-white"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
-                  />
+                  <path d="M15.852 8.981h-4.588V0h4.588c2.476 0 4.49 2.014 4.49 4.49s-2.014 4.491-4.49 4.491zM12.735 7.51h3.117c1.665 0 3.019-1.355 3.019-3.019s-1.354-3.019-3.019-3.019h-3.117V7.51zm0 1.471H8.148c-2.476 0-4.49-2.015-4.49-4.491S5.672 0 8.148 0h4.588v8.981zm-4.587-7.51c-1.665 0-3.019 1.355-3.019 3.019s1.354 3.02 3.019 3.02h3.117V1.471H8.148zm4.587 15.019H8.148c-2.476 0-4.49-2.014-4.49-4.49s2.014-4.49 4.49-4.49h4.588v8.98zM8.148 8.981c-1.665 0-3.019 1.355-3.019 3.019s1.355 3.019 3.019 3.019h3.117v-6.038H8.148zm7.704 0c2.476 0 4.49 2.015 4.49 4.491s-2.014 4.49-4.49 4.49c-2.476 0-4.491-2.014-4.491-4.49s2.015-4.491 4.491-4.491zm0 7.51c1.665 0 3.019-1.355 3.019-3.019s-1.354-3.019-3.019-3.019-3.019 1.355-3.019 3.019 1.354 3.019 3.019 3.019zM8.148 24c-2.476 0-4.49-2.014-4.49-4.49s2.014-4.49 4.49-4.49 4.491 2.014 4.491 4.49S10.624 24 8.148 24zm0-7.51c-1.665 0-3.019 1.355-3.019 3.019s1.354 3.019 3.019 3.019 3.019-1.354 3.019-3.019-1.355-3.019-3.019-3.019z" />
                 </svg>
               }
             />

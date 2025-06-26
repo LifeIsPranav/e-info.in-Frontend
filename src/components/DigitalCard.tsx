@@ -1,5 +1,16 @@
 import { useState } from "react";
-import { Mail, MapPin, Phone, Globe, X, Send } from "lucide-react";
+import {
+  Mail,
+  MapPin,
+  Phone,
+  Globe,
+  X,
+  Send,
+  Figma,
+  Palette,
+  Monitor,
+  Users,
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -17,9 +28,9 @@ interface DigitalCardProps {
 
 export default function DigitalCard({
   name = "Alex Johnson",
-  jobTitle = "Senior Product Designer",
-  bio = "Passionate about creating beautiful, user-centered digital experiences that make a difference.",
-  email = "alex@example.com",
+  jobTitle = "Senior UI/UX Designer",
+  bio = "Passionate about creating intuitive, accessible, and beautiful digital experiences. 5+ years crafting user-centered designs.",
+  email = "alex@designstudio.com",
   phone = "+1 (555) 123-4567",
   location = "San Francisco, CA",
   website = "alexjohnson.design",
@@ -34,7 +45,6 @@ export default function DigitalCard({
   };
 
   const handleSendMessage = () => {
-    // In a real app, this would send the message
     console.log("Sending message:", {
       title: messageTitle,
       message: messageText,
@@ -46,7 +56,7 @@ export default function DigitalCard({
   };
 
   return (
-    <div className="perspective-1000 w-full max-w-md mx-auto">
+    <div className="perspective-1000 w-full max-w-lg mx-auto">
       <div
         className={`relative w-full h-80 transition-transform duration-700 preserve-3d cursor-pointer ${
           isFlipped ? "rotate-y-180" : ""
@@ -54,84 +64,99 @@ export default function DigitalCard({
         onClick={!isFlipped ? handleCardClick : undefined}
       >
         {/* Front of card */}
-        <div className="absolute inset-0 w-full h-full backface-hidden rounded-3xl bg-gradient-to-br from-slate-900/95 via-slate-800/95 to-slate-900/95 backdrop-blur-xl shadow-2xl border border-slate-700/50">
-          <div className="relative h-full p-8 overflow-hidden">
-            {/* Background Pattern */}
-            <div className="absolute inset-0 opacity-10">
-              <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-pink-500 to-violet-500 rounded-full blur-3xl"></div>
-              <div className="absolute bottom-0 left-0 w-24 h-24 bg-gradient-to-br from-violet-500 to-blue-500 rounded-full blur-2xl"></div>
-            </div>
-
-            <div className="relative z-10 flex h-full">
-              {/* Left Side - Profile */}
-              <div className="flex flex-col items-center justify-center w-1/2 pr-4">
-                {/* Profile Image */}
-                <div className="relative mb-4">
-                  <div className="w-24 h-24 rounded-2xl bg-gradient-to-r from-pink-500 to-violet-500 p-0.5">
-                    <div className="w-full h-full rounded-2xl bg-slate-900 flex items-center justify-center overflow-hidden">
-                      <img
-                        src={profileImage}
-                        alt={name}
-                        className="w-full h-full object-cover rounded-2xl"
-                        onError={(e) => {
-                          const target = e.target as HTMLImageElement;
-                          target.style.display = "none";
-                          target.nextElementSibling?.classList.remove("hidden");
-                        }}
-                      />
-                      <div className="hidden w-full h-full bg-gradient-to-br from-pink-500 to-violet-500 rounded-2xl flex items-center justify-center text-white font-bold text-xl">
-                        {name
-                          .split(" ")
-                          .map((n) => n[0])
-                          .join("")}
-                      </div>
-                    </div>
+        <div className="absolute inset-0 w-full h-full backface-hidden rounded-2xl bg-white shadow-2xl border border-slate-200 overflow-hidden">
+          {/* Header Section */}
+          <div className="bg-gradient-to-r from-emerald-500 to-blue-500 h-24 relative">
+            <div className="absolute inset-0 bg-black/10"></div>
+            <div className="absolute bottom-4 left-6 flex items-center gap-3">
+              <div className="w-16 h-16 rounded-xl bg-white p-0.5 shadow-lg">
+                <div className="w-full h-full rounded-xl bg-slate-100 overflow-hidden">
+                  <img
+                    src={profileImage}
+                    alt={name}
+                    className="w-full h-full object-cover"
+                    onError={(e) => {
+                      const target = e.target as HTMLImageElement;
+                      target.style.display = "none";
+                      target.nextElementSibling?.classList.remove("hidden");
+                    }}
+                  />
+                  <div className="hidden w-full h-full bg-gradient-to-br from-emerald-500 to-blue-500 flex items-center justify-center text-white font-bold text-lg">
+                    {name
+                      .split(" ")
+                      .map((n) => n[0])
+                      .join("")}
                   </div>
-                  <div className="absolute -inset-1 rounded-2xl bg-gradient-to-r from-pink-500 to-violet-500 opacity-30 blur"></div>
-                </div>
-
-                {/* Click hint */}
-                <div className="text-xs text-slate-500 bg-slate-800/50 px-3 py-1 rounded-full">
-                  Click to message
                 </div>
               </div>
+              <div>
+                <h1 className="text-white font-bold text-xl drop-shadow-sm">
+                  {name}
+                </h1>
+                <p className="text-white/90 font-medium text-sm">{jobTitle}</p>
+              </div>
+            </div>
 
-              {/* Right Side - Info */}
-              <div className="flex flex-col justify-center w-1/2 pl-4 space-y-3">
-                {/* Name and Title */}
-                <div className="mb-3">
-                  <h1 className="text-xl font-bold text-white mb-1 leading-tight">
-                    {name}
-                  </h1>
-                  <p className="text-pink-400 font-medium text-sm">
-                    {jobTitle}
-                  </p>
-                </div>
+            {/* Design Tools Icons */}
+            <div className="absolute top-4 right-6 flex gap-2">
+              <div className="w-8 h-8 bg-white/20 backdrop-blur-sm rounded-lg flex items-center justify-center">
+                <Figma className="w-4 h-4 text-white" />
+              </div>
+              <div className="w-8 h-8 bg-white/20 backdrop-blur-sm rounded-lg flex items-center justify-center">
+                <Palette className="w-4 h-4 text-white" />
+              </div>
+            </div>
+          </div>
 
-                {/* Bio */}
-                <p className="text-slate-300 text-xs leading-relaxed mb-4 line-clamp-3">
-                  {bio}
-                </p>
+          {/* Content Section */}
+          <div className="p-6 pt-8">
+            {/* Bio */}
+            <p className="text-slate-700 text-sm leading-relaxed mb-6">{bio}</p>
 
-                {/* Contact Info */}
-                <div className="space-y-2">
-                  <div className="flex items-center text-slate-400 text-xs">
-                    <Mail className="w-3 h-3 mr-2 text-pink-400" />
-                    <span className="truncate">{email}</span>
-                  </div>
-                  <div className="flex items-center text-slate-400 text-xs">
-                    <Phone className="w-3 h-3 mr-2 text-pink-400" />
-                    <span className="truncate">{phone}</span>
-                  </div>
-                  <div className="flex items-center text-slate-400 text-xs">
-                    <MapPin className="w-3 h-3 mr-2 text-pink-400" />
-                    <span className="truncate">{location}</span>
-                  </div>
-                  <div className="flex items-center text-slate-400 text-xs">
-                    <Globe className="w-3 h-3 mr-2 text-pink-400" />
-                    <span className="truncate">{website}</span>
-                  </div>
-                </div>
+            {/* Skills */}
+            <div className="mb-6">
+              <h3 className="text-slate-900 font-semibold text-xs uppercase tracking-wider mb-3">
+                Expertise
+              </h3>
+              <div className="flex flex-wrap gap-2">
+                <span className="px-3 py-1 bg-emerald-100 text-emerald-700 text-xs font-medium rounded-full">
+                  UI Design
+                </span>
+                <span className="px-3 py-1 bg-blue-100 text-blue-700 text-xs font-medium rounded-full">
+                  UX Research
+                </span>
+                <span className="px-3 py-1 bg-purple-100 text-purple-700 text-xs font-medium rounded-full">
+                  Prototyping
+                </span>
+                <span className="px-3 py-1 bg-orange-100 text-orange-700 text-xs font-medium rounded-full">
+                  Design Systems
+                </span>
+              </div>
+            </div>
+
+            {/* Contact */}
+            <div className="space-y-2">
+              <div className="flex items-center text-slate-600 text-xs">
+                <Mail className="w-3 h-3 mr-2 text-emerald-500" />
+                <span className="truncate">{email}</span>
+              </div>
+              <div className="flex items-center text-slate-600 text-xs">
+                <Globe className="w-3 h-3 mr-2 text-emerald-500" />
+                <span className="truncate">{website}</span>
+              </div>
+              <div className="flex items-center text-slate-600 text-xs">
+                <MapPin className="w-3 h-3 mr-2 text-emerald-500" />
+                <span className="truncate">{location}</span>
+              </div>
+            </div>
+
+            {/* CTA */}
+            <div className="mt-6 text-center">
+              <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-emerald-50 border border-emerald-200 rounded-full">
+                <div className="w-2 h-2 bg-emerald-500 rounded-full animate-pulse"></div>
+                <span className="text-emerald-700 text-xs font-medium">
+                  Tap to send message
+                </span>
               </div>
             </div>
           </div>
@@ -139,83 +164,90 @@ export default function DigitalCard({
 
         {/* Back of card */}
         <div
-          className="absolute inset-0 w-full h-full backface-hidden rotate-y-180 rounded-3xl bg-gradient-to-br from-slate-900/95 via-slate-800/95 to-slate-900/95 backdrop-blur-xl shadow-2xl border border-slate-700/50"
+          className="absolute inset-0 w-full h-full backface-hidden rotate-y-180 rounded-2xl bg-white shadow-2xl border border-slate-200 overflow-hidden"
           onClick={handleCardClick}
         >
-          <div className="relative h-full p-6 overflow-hidden">
-            {/* Background Pattern */}
-            <div className="absolute inset-0 opacity-10">
-              <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-pink-500 to-violet-500 rounded-full blur-3xl"></div>
-              <div className="absolute bottom-0 left-0 w-24 h-24 bg-gradient-to-br from-violet-500 to-blue-500 rounded-full blur-2xl"></div>
-            </div>
-
-            <div className="relative z-10 flex flex-col h-full">
-              {/* Header */}
-              <div className="flex items-center justify-between mb-4">
-                <h2 className="text-lg font-bold text-white">Send Message</h2>
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    setIsFlipped(false);
-                  }}
-                  className="text-slate-400 hover:text-white p-1 h-8 w-8"
-                >
-                  <X className="w-4 h-4" />
-                </Button>
-              </div>
-
-              {/* Message Form */}
-              <div className="flex-1 space-y-3">
+          <div className="h-full p-6 flex flex-col">
+            {/* Header */}
+            <div className="flex items-center justify-between mb-6">
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 bg-gradient-to-r from-emerald-500 to-blue-500 rounded-xl flex items-center justify-center">
+                  <Send className="w-5 h-5 text-white" />
+                </div>
                 <div>
-                  <label
-                    htmlFor="title"
-                    className="block text-xs font-medium text-slate-300 mb-1"
-                  >
-                    Title
-                  </label>
-                  <Input
-                    id="title"
-                    value={messageTitle}
-                    onChange={(e) => setMessageTitle(e.target.value)}
-                    placeholder="Message title..."
-                    className="bg-slate-800/80 border-slate-700/50 text-white placeholder-slate-500 focus:border-pink-500 h-9 text-sm"
-                    onClick={(e) => e.stopPropagation()}
-                  />
-                </div>
-
-                <div className="flex-1">
-                  <label
-                    htmlFor="message"
-                    className="block text-xs font-medium text-slate-300 mb-1"
-                  >
-                    Message
-                  </label>
-                  <Textarea
-                    id="message"
-                    value={messageText}
-                    onChange={(e) => setMessageText(e.target.value)}
-                    placeholder="Your message..."
-                    className="bg-slate-800/80 border-slate-700/50 text-white placeholder-slate-500 focus:border-pink-500 min-h-24 resize-none text-sm"
-                    onClick={(e) => e.stopPropagation()}
-                  />
+                  <h2 className="text-slate-900 font-bold text-lg">
+                    Let's Collaborate
+                  </h2>
+                  <p className="text-slate-600 text-xs">Send me a message</p>
                 </div>
               </div>
-
-              {/* Send Button */}
               <Button
+                variant="ghost"
+                size="sm"
                 onClick={(e) => {
                   e.stopPropagation();
-                  handleSendMessage();
+                  setIsFlipped(false);
                 }}
-                disabled={!messageTitle.trim() || !messageText.trim()}
-                className="w-full bg-gradient-to-r from-pink-500 to-violet-500 hover:from-pink-600 hover:to-violet-600 text-white border-0 mt-3 h-9"
+                className="text-slate-400 hover:text-slate-600 p-2 h-8 w-8"
               >
-                <Send className="w-4 h-4 mr-2" />
-                Send Message
+                <X className="w-4 h-4" />
               </Button>
             </div>
+
+            {/* Form */}
+            <div className="flex-1 space-y-4">
+              <div>
+                <label
+                  htmlFor="title"
+                  className="block text-sm font-semibold text-slate-700 mb-2"
+                >
+                  Project Title
+                </label>
+                <Input
+                  id="title"
+                  value={messageTitle}
+                  onChange={(e) => setMessageTitle(e.target.value)}
+                  placeholder="e.g., Mobile App Redesign"
+                  className="bg-slate-50 border-slate-200 text-slate-900 placeholder-slate-500 focus:border-emerald-500 focus:ring-emerald-500"
+                  onClick={(e) => e.stopPropagation()}
+                />
+              </div>
+
+              <div className="flex-1">
+                <label
+                  htmlFor="message"
+                  className="block text-sm font-semibold text-slate-700 mb-2"
+                >
+                  Message
+                </label>
+                <Textarea
+                  id="message"
+                  value={messageText}
+                  onChange={(e) => setMessageText(e.target.value)}
+                  placeholder="Tell me about your project and how I can help..."
+                  className="bg-slate-50 border-slate-200 text-slate-900 placeholder-slate-500 focus:border-emerald-500 focus:ring-emerald-500 min-h-20 resize-none"
+                  onClick={(e) => e.stopPropagation()}
+                />
+              </div>
+            </div>
+
+            {/* Send Button */}
+            <Button
+              onClick={(e) => {
+                e.stopPropagation();
+                handleSendMessage();
+              }}
+              disabled={!messageTitle.trim() || !messageText.trim()}
+              className="w-full bg-gradient-to-r from-emerald-500 to-blue-500 hover:from-emerald-600 hover:to-blue-600 text-white border-0 mt-4 h-12 font-medium"
+            >
+              <Send className="w-4 h-4 mr-2" />
+              Send Message
+            </Button>
+
+            {/* Response Time */}
+            <p className="text-center text-xs text-slate-500 mt-3">
+              ✨ Typically responds within 24 hours
+            </p>
           </div>
         </div>
       </div>
