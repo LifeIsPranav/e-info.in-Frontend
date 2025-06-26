@@ -372,6 +372,9 @@ const DigitalCard = forwardRef<DigitalCardRef, Partial<DigitalCardProps>>(
         if (isFlipped) {
           setIsFlipped(false);
         }
+        if (isAvatarZoomed) {
+          setIsAvatarZoomed(false);
+        }
       },
     }));
 
