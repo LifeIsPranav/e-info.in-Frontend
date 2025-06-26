@@ -109,6 +109,24 @@ const ResumeButton = ({
   </Button>
 );
 
+const SwitchButton = ({
+  onClick,
+}: {
+  onClick: (e: React.MouseEvent) => void;
+}) => (
+  <Button
+    variant="ghost"
+    size="sm"
+    onClick={onClick}
+    className="text-gray-400 hover:text-gray-600 p-2 h-9 w-9 rounded-full hover:bg-gray-50"
+  >
+    <div className="flex flex-col items-center justify-center">
+      <ArrowRight className="w-3 h-3 -mb-0.5" />
+      <ArrowLeft className="w-3 h-3" />
+    </div>
+  </Button>
+);
+
 const ConfigureButton = ({
   onClick,
   isVisible,
@@ -120,7 +138,7 @@ const ConfigureButton = ({
     onClick={onClick}
     variant="ghost"
     size="sm"
-    className={`absolute top-4 right-14 z-10 h-9 w-9 p-2 rounded-full bg-white/90 hover:bg-white border border-gray-200 shadow-sm backdrop-blur-sm transition-all duration-200 ${
+    className={`absolute top-3 right-3 z-10 h-8 w-8 p-1.5 rounded-full bg-white/90 hover:bg-white border border-gray-200 shadow-sm backdrop-blur-sm transition-all duration-200 ${
       isVisible
         ? "opacity-100 scale-100"
         : "opacity-0 scale-95 pointer-events-none"
