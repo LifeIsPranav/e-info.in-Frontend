@@ -243,7 +243,7 @@ const CardBack = ({
     <div className="h-full flex flex-col">
       {/* Header */}
       <div className="flex items-center justify-between p-4 border-b border-gray-100 flex-shrink-0">
-        <div>
+        <div className="flex-1 cursor-pointer" onClick={onCloseCard}>
           <h2 className="text-xl font-semibold text-gray-900">Send Message</h2>
           <p className="text-gray-500 text-sm mt-1">Let's connect</p>
         </div>
