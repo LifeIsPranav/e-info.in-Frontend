@@ -299,121 +299,127 @@ const CardBack = ({
 );
 
 // Main Component
-const DigitalCard = forwardRef<DigitalCardRef, Partial<DigitalCardProps>>((props = {}, ref) => {
-  // Merge props with defaults
-  const {
-    name,
-    jobTitle,
-    bio,
-    email,
-    website,
-    location,
-    profileImage,
-    resumeUrl,
-    onConfigureClick,
-  } = { ...DEFAULT_PROPS, ...props };
+const DigitalCard = forwardRef<DigitalCardRef, Partial<DigitalCardProps>>(
+  (props = {}, ref) => {
+    // Merge props with defaults
+    const {
+      name,
+      jobTitle,
+      bio,
+      email,
+      website,
+      location,
+      profileImage,
+      resumeUrl,
+      onConfigureClick,
+    } = { ...DEFAULT_PROPS, ...props };
 
-  // State Management
-  const [isFlipped, setIsFlipped] = useState(false);
-  const [messageTitle, setMessageTitle] = useState("");
-  const [messageText, setMessageText] = useState("");
+    // State Management
+    const [isFlipped, setIsFlipped] = useState(false);
+    const [messageTitle, setMessageTitle] = useState("");
+    const [messageText, setMessageText] = useState("");
 
-  // Derived State
-  const personalInfo: PersonalInfo = { name, jobTitle, bio, profileImage };
-  const contactInfo: ContactInfo = { email, website, location };
-  const isFormEmpty = !messageTitle.trim() && !messageText.trim();
+    // Derived State
+    const personalInfo: PersonalInfo = { name, jobTitle, bio, profileImage };
+    const contactInfo: ContactInfo = { email, website, location };
+    const isFormEmpty = !messageTitle.trim() && !messageText.trim();
 
-  // Expose outside click handler through ref
-  useImperativeHandle(ref, () => ({
-    handleOutsideClick: () => {
-      if (isFlipped) {
-        setIsFlipped(false);
+    // Expose outside click handler through ref
+    useImperativeHandle(ref, () => ({
+      handleOutsideClick: () => {
+        if (isFlipped) {
+          setIsFlipped(false);
+        }
+      },
+    }));
+
+    // Event Handlers
+    const handleCardClick = () => {
+      setIsFlipped(!isFlipped);
+    };
+
+    const handleCloseCard = (e: React.MouseEvent) => {
+      e.stopPropagation();
+      setIsFlipped(false);
+    };
+
+    const handleResumeClick = (e: React.MouseEvent) => {
+      e.stopPropagation();
+      if (resumeUrl) {
+        handleExternalLink(resumeUrl);
       }
-    }
-  }));
+    };
 
-  // Event Handlers
-  const handleCardClick = () => {
-    setIsFlipped(!isFlipped);
-  };
+    const handleSendMessage = (e: React.MouseEvent) => {
+      e.preventDefault();
+      e.stopPropagation();
 
-  const handleCloseCard = (e: React.MouseEvent) => {
-    e.stopPropagation();
-    setIsFlipped(false);
-  };
+      if (!messageTitle.trim() || !messageText.trim()) return;
 
-  const handleResumeClick = (e: React.MouseEvent) => {
-    e.stopPropagation();
-    if (resumeUrl) {
-      handleExternalLink(resumeUrl);
-    }
-  };
+      // Here you can integrate with your preferred messaging service
+      console.log("Sending message:", {
+        title: messageTitle,
+        message: messageText,
+        timestamp: new Date().toISOString(),
+      });
 
-  const handleSendMessage = (e: React.MouseEvent) => {
-    e.preventDefault();
-    e.stopPropagation();
+      // Show success feedback
+      alert("Message sent successfully!");
 
-    if (!messageTitle.trim() || !messageText.trim()) return;
+      // Reset form and close card
+      setMessageTitle("");
+      setMessageText("");
+      setIsFlipped(false);
+    };
 
-    // Here you can integrate with your preferred messaging service
-    console.log("Sending message:", {
-      title: messageTitle,
-      message: messageText,
-      timestamp: new Date().toISOString(),
-    });
+    const handleConfigureClick = () => {
+      // Auto-fill with predefined message
+      const predefinedSubject = "Let's Connect!";
+      const predefinedMessage =
+        "Hi! I'd love to connect and discuss potential opportunities. Looking forward to hearing from you!";
 
-    // Show success feedback
-    alert("Message sent successfully!");
+      setMessageTitle(predefinedSubject);
+      setMessageText(predefinedMessage);
 
-    // Reset form and close card
-    setMessageTitle("");
-    setMessageText("");
-    setIsFlipped(false);
-  };
+      if (onConfigureClick) {
+        onConfigureClick();
+      }
+    };
 
-  const handleConfigureClick = () => {
-    // Auto-fill with predefined message
-    const predefinedSubject = "Let's Connect!";
-    const predefinedMessage =
-      "Hi! I'd love to connect and discuss potential opportunities. Looking forward to hearing from you!";
+    // Render
+    return (
+      <div className="perspective-1000 w-full">
+        <div
+          className={`relative w-full h-80 transition-transform duration-700 preserve-3d ${
+            isFlipped ? "rotate-y-180" : ""
+          }`}
+        >
+          {/* Card Front */}
+          <CardFront
+            personalInfo={personalInfo}
+            contactInfo={contactInfo}
+            resumeUrl={resumeUrl}
+            onCardClick={!isFlipped ? handleCardClick : () => {}}
+            onResumeClick={handleResumeClick}
+          />
 
-    setMessageTitle(predefinedSubject);
-    setMessageText(predefinedMessage);
-
-    if (onConfigureClick) {
-      onConfigureClick();
-    }
-  };
-
-  // Render
-  return (
-    <div className="perspective-1000 w-full">
-      <div
-        className={`relative w-full h-80 transition-transform duration-700 preserve-3d ${
-          isFlipped ? "rotate-y-180" : ""
-        }`}
-      >
-        {/* Card Front */}
-        <CardFront
-          personalInfo={personalInfo}
-          contactInfo={contactInfo}
-          resumeUrl={resumeUrl}
-          onCardClick={!isFlipped ? handleCardClick : () => {}}
-          onResumeClick={handleResumeClick}
-        />
-
-        {/* Card Back */}
-        <CardBack
-          messageTitle={messageTitle}
-          messageText={messageText}
-          onMessageTitleChange={setMessageTitle}
-          onMessageTextChange={setMessageText}
-          onSendMessage={handleSendMessage}
-          onCloseCard={handleCloseCard}
-          onConfigureClick={handleConfigureClick}
-          isFormEmpty={isFormEmpty}
-        />
+          {/* Card Back */}
+          <CardBack
+            messageTitle={messageTitle}
+            messageText={messageText}
+            onMessageTitleChange={setMessageTitle}
+            onMessageTextChange={setMessageText}
+            onSendMessage={handleSendMessage}
+            onCloseCard={handleCloseCard}
+            onConfigureClick={handleConfigureClick}
+            isFormEmpty={isFormEmpty}
+          />
+        </div>
       </div>
-    </div>
-  );
-}
+    );
+  },
+);
+
+DigitalCard.displayName = "DigitalCard";
+
+export default DigitalCard;
