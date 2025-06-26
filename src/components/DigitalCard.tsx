@@ -244,29 +244,17 @@ const CardBack = ({
           <p className="text-gray-500 text-sm mt-1">Let's connect</p>
         </div>
 
-        <div className="flex items-center gap-2">
-          {/* Configure Button - only visible when form is empty */}
-          {onConfigureClick && (
-            <ConfigureButton
-              onClick={onConfigureClick}
-              isVisible={isFormEmpty}
-            />
-          )}
-
-          {/* Close Button */}
-          <Button
-            variant="ghost"
-            size="sm"
-            onClick={onCloseCard}
-            className="text-gray-400 hover:text-gray-600 p-2 h-9 w-9 rounded-full hover:bg-gray-50"
-          >
-            <X className="w-4 h-4" />
-          </Button>
-        </div>
+        {/* Switch Button (replacing X close button) */}
+        <SwitchButton onClick={onCloseCard} />
       </div>
 
       {/* Form Content */}
-      <div className="flex-1 p-4 min-h-0 flex flex-col">
+      <div className="flex-1 p-4 min-h-0 flex flex-col relative">
+        {/* Configure Button - positioned in message area */}
+        {onConfigureClick && (
+          <ConfigureButton onClick={onConfigureClick} isVisible={isFormEmpty} />
+        )}
+
         <div className="space-y-4 flex-1">
           <Input
             value={messageTitle}
