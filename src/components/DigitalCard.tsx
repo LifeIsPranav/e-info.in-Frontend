@@ -118,7 +118,10 @@ export default function DigitalCard({
         </div>
 
         {/* Back of card */}
-        <div className="absolute inset-0 w-full h-full backface-hidden rotate-y-180 rounded-2xl bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 p-6 shadow-2xl border border-slate-800">
+        <div
+          className="absolute inset-0 w-full h-full backface-hidden rotate-y-180 rounded-2xl bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 p-6 shadow-2xl border border-slate-800"
+          onClick={handleCardClick}
+        >
           <div className="flex flex-col h-full">
             {/* Header */}
             <div className="flex items-center justify-between mb-6">
