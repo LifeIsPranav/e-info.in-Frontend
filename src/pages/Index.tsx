@@ -2,10 +2,13 @@ import { useState, useEffect, useRef } from "react";
 import DigitalCard from "@/components/DigitalCard";
 import LinkButton from "@/components/LinkButton";
 import ExpandableCard from "@/components/ExpandableCard";
+import AuthButton from "@/components/AuthButton";
 
 const Index = () => {
   const [expandedCard, setExpandedCard] = useState<string | null>(null);
+  const [isCardFlipped, setIsCardFlipped] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
+  const digitalCardRef = useRef<{ handleOutsideClick: () => void }>(null);
 
   const handleLinkClick = (linkId: string, href: string) => {
     if (expandedCard === linkId) {
@@ -19,7 +22,7 @@ const Index = () => {
     window.open(href, "_blank", "noopener,noreferrer");
   };
 
-  // Close expandable cards when clicking outside
+  // Close expandable cards and flip digital card back when clicking outside
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (
@@ -27,6 +30,10 @@ const Index = () => {
         !containerRef.current.contains(event.target as Node)
       ) {
         setExpandedCard(null);
+        // Also flip the digital card back to front if it's currently flipped
+        if (digitalCardRef.current) {
+          digitalCardRef.current.handleOutsideClick();
+        }
       }
     };
 
