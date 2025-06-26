@@ -157,8 +157,8 @@ export default function DigitalCard({
             </div>
 
             {/* CTA - Fixed at bottom */}
-            <div className="p-5 border-t border-gray-100 bg-gray-50/50">
-              <div className="text-center py-3">
+            <div className="p-4 border-t border-gray-100 bg-gray-50/50">
+              <div className="text-center py-2">
                 <span className="text-gray-500 text-sm font-medium">
                   Tap card to send message
                 </span>
