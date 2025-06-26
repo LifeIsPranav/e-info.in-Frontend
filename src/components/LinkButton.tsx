@@ -6,6 +6,7 @@ interface LinkButtonProps {
   title: string;
   icon?: React.ReactNode;
   description?: string;
+  onClick?: () => void;
 }
 
 export default function LinkButton({
@@ -13,9 +14,14 @@ export default function LinkButton({
   title,
   icon,
   description,
+  onClick,
 }: LinkButtonProps) {
   const handleClick = () => {
-    window.open(href, "_blank", "noopener,noreferrer");
+    if (onClick) {
+      onClick();
+    } else {
+      window.open(href, "_blank", "noopener,noreferrer");
+    }
   };
 
   return (

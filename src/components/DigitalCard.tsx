@@ -133,17 +133,19 @@ export default function DigitalCard({
                   window.open(resumeUrl, "_blank", "noopener,noreferrer");
                 }}
                 variant="outline"
-                className="w-full h-10 bg-gray-50 hover:bg-gray-100 border-gray-200 text-gray-900"
+                className="w-full h-10 bg-gray-50 hover:bg-gray-100 border-gray-200 text-gray-900 mb-3"
               >
                 <FileText className="w-4 h-4 mr-2" />
                 View Resume
                 <ExternalLink className="w-3 h-3 ml-2" />
               </Button>
-            </div>
 
-            {/* CTA */}
-            <div className="mt-4 text-center">
-              <span className="text-gray-500 text-xs">Tap to send message</span>
+              {/* CTA */}
+              <div className="text-center">
+                <span className="text-gray-500 text-xs">
+                  Tap to send message
+                </span>
+              </div>
             </div>
           </div>
         </div>
