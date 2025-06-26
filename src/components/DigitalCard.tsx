@@ -58,11 +58,11 @@ export default function DigitalCard({
         onClick={!isFlipped ? handleCardClick : undefined}
       >
         {/* Front of card */}
-        <div className="absolute inset-0 w-full h-full backface-hidden rounded-lg bg-white shadow-[0_20px_40px_rgba(0,0,0,0.1)] border border-gray-100">
+        <div className="absolute inset-0 w-full h-full backface-hidden rounded-xl bg-white shadow-sm border border-gray-100">
           <div className="p-8 h-full flex flex-col">
             {/* Profile Section */}
             <div className="flex items-start gap-6 mb-8">
-              <div className="w-20 h-20 rounded-full bg-gray-900 overflow-hidden flex-shrink-0">
+              <div className="w-16 h-16 rounded-full bg-gray-100 overflow-hidden flex-shrink-0">
                 <img
                   src={profileImage}
                   alt={name}
@@ -73,7 +73,7 @@ export default function DigitalCard({
                     target.nextElementSibling?.classList.remove("hidden");
                   }}
                 />
-                <div className="hidden w-full h-full bg-gray-900 flex items-center justify-center text-white font-bold text-xl">
+                <div className="hidden w-full h-full bg-gray-800 flex items-center justify-center text-white font-medium text-lg">
                   {name
                     .split(" ")
                     .map((n) => n[0])
@@ -81,11 +81,13 @@ export default function DigitalCard({
                 </div>
               </div>
 
-              <div className="flex-1">
-                <h1 className="text-2xl font-semibold text-gray-900 mb-1">
+              <div className="flex-1 min-w-0">
+                <h1 className="text-xl font-medium text-gray-900 mb-1 leading-tight">
                   {name}
                 </h1>
-                <p className="text-gray-600 font-medium mb-3">{jobTitle}</p>
+                <p className="text-gray-600 text-sm mb-3 font-medium">
+                  {jobTitle}
+                </p>
                 <p className="text-gray-700 text-sm leading-relaxed">{bio}</p>
               </div>
             </div>
@@ -93,23 +95,31 @@ export default function DigitalCard({
             {/* Contact Info */}
             <div className="space-y-3 mt-auto">
               <div className="flex items-center text-gray-600 text-sm">
-                <Mail className="w-4 h-4 mr-3" />
-                <span>{email}</span>
+                <div className="w-8 flex justify-center">
+                  <Mail className="w-4 h-4" />
+                </div>
+                <span className="text-gray-900">{email}</span>
               </div>
               <div className="flex items-center text-gray-600 text-sm">
-                <Globe className="w-4 h-4 mr-3" />
-                <span>{website}</span>
+                <div className="w-8 flex justify-center">
+                  <Globe className="w-4 h-4" />
+                </div>
+                <span className="text-gray-900">{website}</span>
               </div>
               <div className="flex items-center text-gray-600 text-sm">
-                <MapPin className="w-4 h-4 mr-3" />
-                <span>{location}</span>
+                <div className="w-8 flex justify-center">
+                  <MapPin className="w-4 h-4" />
+                </div>
+                <span className="text-gray-900">{location}</span>
               </div>
             </div>
 
-            {/* Click hint */}
-            <div className="mt-6 text-center">
-              <div className="inline-block px-3 py-1 bg-gray-50 rounded-full">
-                <span className="text-gray-500 text-xs">Tap to message</span>
+            {/* CTA */}
+            <div className="mt-6 pt-4 border-t border-gray-100">
+              <div className="text-center">
+                <span className="text-gray-500 text-xs">
+                  Tap to send message
+                </span>
               </div>
             </div>
           </div>
@@ -117,15 +127,18 @@ export default function DigitalCard({
 
         {/* Back of card */}
         <div
-          className="absolute inset-0 w-full h-full backface-hidden rotate-y-180 rounded-lg bg-white shadow-[0_20px_40px_rgba(0,0,0,0.1)] border border-gray-100"
+          className="absolute inset-0 w-full h-full backface-hidden rotate-y-180 rounded-xl bg-white shadow-sm border border-gray-100"
           onClick={handleCardClick}
         >
           <div className="p-6 h-full flex flex-col">
             {/* Header */}
             <div className="flex items-center justify-between mb-6">
-              <h2 className="text-lg font-semibold text-gray-900">
-                Send Message
-              </h2>
+              <div>
+                <h2 className="text-lg font-medium text-gray-900">
+                  Send Message
+                </h2>
+                <p className="text-gray-500 text-xs mt-1">Let's connect</p>
+              </div>
               <Button
                 variant="ghost"
                 size="sm"
@@ -133,7 +146,7 @@ export default function DigitalCard({
                   e.stopPropagation();
                   setIsFlipped(false);
                 }}
-                className="text-gray-400 hover:text-gray-600 p-2 h-8 w-8"
+                className="text-gray-400 hover:text-gray-600 p-1 h-8 w-8 rounded-full"
               >
                 <X className="w-4 h-4" />
               </Button>
@@ -146,7 +159,7 @@ export default function DigitalCard({
                   value={messageTitle}
                   onChange={(e) => setMessageTitle(e.target.value)}
                   placeholder="Subject"
-                  className="bg-gray-50 border-gray-200 text-gray-900 placeholder-gray-500 focus:border-gray-400 focus:ring-0"
+                  className="bg-gray-50 border-gray-200 text-gray-900 placeholder-gray-400 focus:border-gray-400 focus:ring-0 h-11"
                   onClick={(e) => e.stopPropagation()}
                 />
               </div>
@@ -155,8 +168,8 @@ export default function DigitalCard({
                 <Textarea
                   value={messageText}
                   onChange={(e) => setMessageText(e.target.value)}
-                  placeholder="Message"
-                  className="bg-gray-50 border-gray-200 text-gray-900 placeholder-gray-500 focus:border-gray-400 focus:ring-0 min-h-24 resize-none"
+                  placeholder="Your message..."
+                  className="bg-gray-50 border-gray-200 text-gray-900 placeholder-gray-400 focus:border-gray-400 focus:ring-0 min-h-28 resize-none"
                   onClick={(e) => e.stopPropagation()}
                 />
               </div>
@@ -166,7 +179,7 @@ export default function DigitalCard({
             <Button
               onClick={handleSendMessage}
               disabled={!messageTitle.trim() || !messageText.trim()}
-              className="w-full bg-gray-900 hover:bg-gray-800 text-white border-0 mt-4 h-11 disabled:bg-gray-300 disabled:text-gray-500"
+              className="w-full bg-gray-900 hover:bg-gray-800 text-white border-0 mt-4 h-11 disabled:bg-gray-200 disabled:text-gray-400"
             >
               <Send className="w-4 h-4 mr-2" />
               Send

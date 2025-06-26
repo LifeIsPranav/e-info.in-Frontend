@@ -22,11 +22,11 @@ export default function LinkButton({
     <Button
       onClick={handleClick}
       variant="ghost"
-      className="w-full h-auto p-4 justify-start bg-white hover:bg-gray-50 border border-gray-200 rounded-lg transition-all duration-200 group"
+      className="w-full h-auto p-4 justify-start bg-white hover:bg-gray-50 border border-gray-100 rounded-xl transition-all duration-200 group shadow-sm"
     >
       <div className="flex items-center gap-4 w-full">
         {/* Icon */}
-        <div className="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center flex-shrink-0 group-hover:bg-gray-200 transition-colors duration-200">
+        <div className="w-10 h-10 rounded-lg bg-gray-50 flex items-center justify-center flex-shrink-0 group-hover:bg-gray-100 transition-colors duration-200">
           {icon || <ExternalLink className="w-4 h-4 text-gray-600" />}
         </div>
 
