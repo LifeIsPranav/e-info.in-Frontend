@@ -1,10 +1,11 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import DigitalCard from "@/components/DigitalCard";
 import LinkButton from "@/components/LinkButton";
 import ExpandableCard from "@/components/ExpandableCard";
 
 const Index = () => {
   const [expandedCard, setExpandedCard] = useState<string | null>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
 
   const handleLinkClick = (linkId: string, href: string) => {
     if (expandedCard === linkId) {
@@ -17,6 +18,23 @@ const Index = () => {
   const handleDirectLink = (href: string) => {
     window.open(href, "_blank", "noopener,noreferrer");
   };
+
+  // Close expandable cards when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        containerRef.current &&
+        !containerRef.current.contains(event.target as Node)
+      ) {
+        setExpandedCard(null);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
   const projects = {
     dribbble: {
@@ -63,8 +81,8 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 flex items-center justify-center p-8">
-      <div className="w-full max-w-lg mx-auto space-y-6">
+    <div className="min-h-screen bg-gray-50 flex items-center justify-center p-4 md:p-8">
+      <div ref={containerRef} className="w-full max-w-lg mx-auto space-y-6">
         {/* Digital Card */}
         <DigitalCard />
 
