@@ -91,8 +91,26 @@ const ProfileImage = ({
   </div>
 );
 
-const ContactInfoItem = ({ icon: Icon, text }: { icon: any; text: string }) => (
-  <div className="flex items-center text-gray-600 justify-center md:justify-start">
+const ContactInfoItem = ({
+  icon: Icon,
+  text,
+  isClickable = false,
+  onClick,
+}: {
+  icon: any;
+  text: string;
+  isClickable?: boolean;
+  onClick?: () => void;
+}) => (
+  <div
+    className={`flex items-center text-gray-600 justify-center md:justify-start ${
+      isClickable ? "cursor-pointer hover:text-gray-800 transition-colors" : ""
+    }`}
+    onClick={(e) => {
+      e.stopPropagation();
+      onClick?.();
+    }}
+  >
     <Icon className="w-4 h-4 mr-2 text-gray-400 flex-shrink-0" />
     <span className="truncate text-xs">{text}</span>
   </div>
