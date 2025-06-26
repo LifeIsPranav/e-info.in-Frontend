@@ -359,10 +359,16 @@ export default function DigitalCard(props: Partial<DigitalCardProps> = {}) {
   };
 
   const handleConfigureClick = () => {
+    // Auto-fill with predefined message
+    const predefinedSubject = "Let's Connect!";
+    const predefinedMessage =
+      "Hi! I'd love to connect and discuss potential opportunities. Looking forward to hearing from you!";
+
+    setMessageTitle(predefinedSubject);
+    setMessageText(predefinedMessage);
+
     if (onConfigureClick) {
       onConfigureClick();
-    } else {
-      console.log("Configure button clicked - implement your logic here");
     }
   };
 
