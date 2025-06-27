@@ -123,8 +123,6 @@ export const defaultWorkExperiences: WorkExperienceData[] = [
         description:
           "Contributed to responsive website design for regional restaurant chain, focusing on menu displays and location finder functionality.",
         technologies: ["Photoshop", "Illustrator", "HTML/CSS"],
-        imageUrl:
-          "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&h=600&fit=crop&crop=center",
       },
       {
         id: "mobile-ui",
@@ -132,8 +130,6 @@ export const defaultWorkExperiences: WorkExperienceData[] = [
         description:
           "Designed UI components and icon sets for fitness tracking mobile app, focusing on clean and motivational design language.",
         technologies: ["Sketch", "Zeplin", "Principle"],
-        imageUrl:
-          "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=800&h=600&fit=crop&crop=center",
       },
     ],
     achievements: [
