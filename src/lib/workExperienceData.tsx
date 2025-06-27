@@ -91,8 +91,6 @@ export const defaultWorkExperiences: WorkExperienceData[] = [
         description:
           "Led complete redesign of fashion e-commerce site, resulting in 60% increase in conversion rates and 30% boost in average order value.",
         technologies: ["Sketch", "InVision", "Hotjar", "Google Analytics"],
-        imageUrl:
-          "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&h=600&fit=crop&crop=center",
       },
       {
         id: "healthcare-app",
@@ -100,8 +98,6 @@ export const defaultWorkExperiences: WorkExperienceData[] = [
         description:
           "Designed HIPAA-compliant patient portal that improved appointment booking efficiency by 75% and patient satisfaction scores significantly.",
         technologies: ["Adobe XD", "Marvel", "UsabilityHub"],
-        imageUrl:
-          "https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?w=800&h=600&fit=crop&crop=center",
       },
     ],
     achievements: [
