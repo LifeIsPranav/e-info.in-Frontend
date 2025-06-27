@@ -17,23 +17,21 @@ const Index = () => {
       </div>
 
       {/* Main Content Container */}
-      <div className="w-full max-w-4xl mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
-          {/* Profile Section */}
-          <ProfileSection />
+      <div className="w-full max-w-lg mx-auto space-y-8">
+        {/* Profile Section */}
+        <ProfileSection />
 
-          {/* Portfolio Section */}
-          <div className="space-y-4">
-            <div className="text-center lg:text-left">
-              <h2 className="text-2xl font-semibold text-gray-900 mb-2">
-                Portfolio
-              </h2>
-              <p className="text-gray-600 text-sm">
-                Explore my latest projects and creative work
-              </p>
-            </div>
-            <PortfolioSection />
+        {/* Portfolio Section */}
+        <div className="space-y-4">
+          <div className="text-center">
+            <h2 className="text-2xl font-semibold text-gray-900 mb-2">
+              Portfolio
+            </h2>
+            <p className="text-gray-600 text-sm">
+              Explore my latest projects and creative work
+            </p>
           </div>
+          <PortfolioSection />
         </div>
       </div>
     </div>
