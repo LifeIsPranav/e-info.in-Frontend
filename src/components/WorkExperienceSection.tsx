@@ -1,0 +1,73 @@
+import { useState, useEffect, useRef } from "react";
+import WorkExperience, {
+  WorkExperienceData,
+} from "@/components/WorkExperience";
+import { defaultWorkExperiences } from "@/lib/workExperienceData";
+
+interface WorkExperienceSectionProps {
+  experiences?: WorkExperienceData[];
+  className?: string;
+  onExperienceClick?: (experienceId: string) => void;
+}
+
+export default function WorkExperienceSection({
+  experiences = defaultWorkExperiences,
+  className = "",
+  onExperienceClick,
+}: WorkExperienceSectionProps) {
+  const [expandedExperience, setExpandedExperience] = useState<string | null>(
+    null,
+  );
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  const handleExperienceExpand = (experienceId: string) => {
+    if (onExperienceClick) {
+      onExperienceClick(experienceId);
+    } else {
+      // Default behavior
+      if (expandedExperience === experienceId) {
+        setExpandedExperience(null);
+      } else {
+        setExpandedExperience(experienceId);
+      }
+    }
+  };
+
+  // Close expandable experiences when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      const target = event.target as Element;
+
+      // Always close expandable experiences when clicking outside the main container
+      if (containerRef.current && !containerRef.current.contains(target)) {
+        setExpandedExperience(null);
+        return;
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
+  return (
+    <div
+      ref={containerRef}
+      className={`w-full max-w-lg mx-auto space-y-2 ${className}`}
+    >
+      {experiences.map((experience) => (
+        <WorkExperience
+          key={experience.id}
+          experience={experience}
+          isOpen={expandedExperience === experience.id}
+          onClose={() => setExpandedExperience(null)}
+          onExpand={() => handleExperienceExpand(experience.id)}
+        />
+      ))}
+    </div>
+  );
+}
+
+// Export types for easy use
+export type { WorkExperienceData };
