@@ -77,13 +77,17 @@ export default function WorkExperienceSection({
       className={`w-full max-w-lg mx-auto space-y-2 ${className}`}
     >
       {experiences.map((experience) => (
-        <WorkExperience
+        <div
           key={experience.id}
-          experience={experience}
-          isOpen={expandedExperience === experience.id}
-          onClose={() => setExpandedExperience(null)}
-          onExpand={() => handleExperienceExpand(experience.id)}
-        />
+          ref={(el) => (experienceRefs.current[experience.id] = el)}
+        >
+          <WorkExperience
+            experience={experience}
+            isOpen={expandedExperience === experience.id}
+            onClose={() => setExpandedExperience(null)}
+            onExpand={() => handleExperienceExpand(experience.id)}
+          />
+        </div>
       ))}
     </div>
   );
