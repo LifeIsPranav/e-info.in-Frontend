@@ -19,8 +19,6 @@ export const defaultWorkExperiences: WorkExperienceData[] = [
         description:
           "Complete overhaul of the main analytics dashboard used by 10K+ users daily. Improved user engagement by 40% and reduced support tickets by 60%.",
         technologies: ["Figma", "React", "TypeScript", "Tailwind CSS"],
-        imageUrl:
-          "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop&crop=center",
       },
       {
         id: "mobile-app",
@@ -28,8 +26,6 @@ export const defaultWorkExperiences: WorkExperienceData[] = [
         description:
           "Created comprehensive design system for iOS and Android apps, ensuring consistency across 5 different product teams and reducing design debt by 70%.",
         technologies: ["Sketch", "Abstract", "Principle", "Zeplin"],
-        imageUrl:
-          "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=800&h=600&fit=crop&crop=center",
       },
       {
         id: "user-research",
@@ -37,8 +33,6 @@ export const defaultWorkExperiences: WorkExperienceData[] = [
         description:
           "Conducted extensive user research and A/B testing that led to a 25% increase in conversion rates and improved onboarding completion by 50%.",
         technologies: ["Hotjar", "Google Analytics", "Maze", "Miro"],
-        imageUrl:
-          "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=600&fit=crop&crop=center",
       },
     ],
     achievements: [
