@@ -94,11 +94,11 @@ export default function AuthButton() {
       <DropdownMenuTrigger asChild>
         <Button
           variant="ghost"
-          className="relative h-10 w-10 rounded-full p-0 hover:bg-gray-100"
+          className="relative h-10 w-10 rounded-full p-0 hover:bg-gray-100/80 transition-all duration-200 hover:shadow-md hover:shadow-gray-900/5 focus:ring-2 focus:ring-gray-300/50 focus:ring-offset-2"
         >
-          <Avatar className="h-10 w-10">
+          <Avatar className="h-10 w-10 ring-2 ring-white shadow-sm">
             <AvatarImage src={user?.avatar} alt={user?.name} />
-            <AvatarFallback className="bg-gray-200 text-gray-700 text-sm font-medium">
+            <AvatarFallback className="bg-gradient-to-br from-gray-100 to-gray-200 text-gray-700 text-sm font-medium">
               {user ? getUserInitials(user.name) : "U"}
             </AvatarFallback>
           </Avatar>
