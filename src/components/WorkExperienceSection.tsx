@@ -19,6 +19,7 @@ export default function WorkExperienceSection({
     null,
   );
   const containerRef = useRef<HTMLDivElement>(null);
+  const experienceRefs = useRef<{ [key: string]: HTMLDivElement | null }>({});
 
   const handleExperienceExpand = (experienceId: string) => {
     if (onExperienceClick) {
@@ -32,6 +33,25 @@ export default function WorkExperienceSection({
       }
     }
   };
+
+  // Auto-scroll when experience expands
+  useEffect(() => {
+    if (expandedExperience && experienceRefs.current[expandedExperience]) {
+      // Wait for the expansion animation to complete
+      const timer = setTimeout(() => {
+        const expandedElement = experienceRefs.current[expandedExperience];
+        if (expandedElement) {
+          expandedElement.scrollIntoView({
+            behavior: "smooth",
+            block: "center",
+            inline: "nearest",
+          });
+        }
+      }, 300); // Wait 300ms for the expansion animation
+
+      return () => clearTimeout(timer);
+    }
+  }, [expandedExperience]);
 
   // Close expandable experiences when clicking outside
   useEffect(() => {
