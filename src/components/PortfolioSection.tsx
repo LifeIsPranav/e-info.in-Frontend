@@ -86,14 +86,18 @@ export default function PortfolioSection({
       className={`w-full max-w-lg mx-auto space-y-2 ${className}`}
     >
       {projects.map((project) => (
-        <ProjectShowcase
+        <div
           key={project.id}
-          project={project}
-          isOpen={expandedProject === project.id}
-          onClose={() => setExpandedProject(null)}
-          onExpand={() => handleProjectExpand(project.id, project.href)}
-          onDirectLink={() => project.href && handleDirectLink(project.href)}
-        />
+          ref={(el) => (projectRefs.current[project.id] = el)}
+        >
+          <ProjectShowcase
+            project={project}
+            isOpen={expandedProject === project.id}
+            onClose={() => setExpandedProject(null)}
+            onExpand={() => handleProjectExpand(project.id, project.href)}
+            onDirectLink={() => project.href && handleDirectLink(project.href)}
+          />
+        </div>
       ))}
     </div>
   );
