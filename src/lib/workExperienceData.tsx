@@ -59,8 +59,6 @@ export const defaultWorkExperiences: WorkExperienceData[] = [
         description:
           "Designed secure and intuitive payment flows that processed $2M+ in transactions monthly. Focused on building trust and reducing abandonment rates.",
         technologies: ["Adobe XD", "InVision", "Framer", "Lottie"],
-        imageUrl:
-          "https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=800&h=600&fit=crop&crop=center",
       },
       {
         id: "onboarding",
@@ -68,8 +66,6 @@ export const defaultWorkExperiences: WorkExperienceData[] = [
         description:
           "Created seamless onboarding flow that reduced drop-off rates by 45% and helped acquire 50K+ new users in the first year.",
         technologies: ["Figma", "Principle", "After Effects"],
-        imageUrl:
-          "https://images.unsplash.com/photo-1551650975-87deedd944c3?w=800&h=600&fit=crop&crop=center",
       },
     ],
     achievements: [
