@@ -1,12 +1,4 @@
-import { useState } from "react";
-import {
-  X,
-  ChevronLeft,
-  ChevronRight,
-  Briefcase,
-  Calendar,
-  MapPin,
-} from "lucide-react";
+import { X, Briefcase, Calendar, MapPin } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 interface WorkProject {
