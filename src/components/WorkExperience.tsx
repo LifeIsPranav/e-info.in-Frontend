@@ -6,7 +6,6 @@ interface WorkProject {
   title: string;
   description: string;
   technologies?: string[];
-  imageUrl?: string;
 }
 
 interface WorkExperienceData {
