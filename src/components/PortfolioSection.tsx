@@ -19,6 +19,7 @@ export default function PortfolioSection({
 }: PortfolioSectionProps) {
   const [expandedProject, setExpandedProject] = useState<string | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
+  const projectRefs = useRef<{ [key: string]: HTMLDivElement | null }>({});
 
   const handleProjectExpand = (projectId: string, href?: string) => {
     if (onProjectClick) {
@@ -32,6 +33,25 @@ export default function PortfolioSection({
       }
     }
   };
+
+  // Auto-scroll when project expands
+  useEffect(() => {
+    if (expandedProject && projectRefs.current[expandedProject]) {
+      // Wait for the expansion animation to complete
+      const timer = setTimeout(() => {
+        const expandedElement = projectRefs.current[expandedProject];
+        if (expandedElement) {
+          expandedElement.scrollIntoView({
+            behavior: "smooth",
+            block: "center",
+            inline: "nearest",
+          });
+        }
+      }, 300); // Wait 300ms for the expansion animation
+
+      return () => clearTimeout(timer);
+    }
+  }, [expandedProject]);
 
   const handleDirectLink = (href: string) => {
     if (onDirectLink) {
