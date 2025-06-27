@@ -42,28 +42,8 @@ export default function WorkExperience({
   onClose,
   onExpand,
 }: WorkExperienceProps) {
-  const [currentProjectIndex, setCurrentProjectIndex] = useState(0);
-  const currentProject =
-    experience.projects[currentProjectIndex] || experience.projects[0];
-
   const handleMainClick = () => {
     onExpand();
-  };
-
-  const handlePrevProject = () => {
-    setCurrentProjectIndex((prev) =>
-      prev === 0 ? experience.projects.length - 1 : prev - 1,
-    );
-  };
-
-  const handleNextProject = () => {
-    setCurrentProjectIndex((prev) =>
-      prev === experience.projects.length - 1 ? 0 : prev + 1,
-    );
-  };
-
-  const handleProjectClick = (index: number) => {
-    setCurrentProjectIndex(index);
   };
 
   return (
