@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import {
   User,
   Settings,
@@ -16,36 +17,20 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-
-interface User {
-  id: string;
-  name: string;
-  email: string;
-  avatar?: string;
-}
+import { useAuth } from "@/contexts/AuthContext";
 
 export default function AuthButton() {
-  const [isSignedIn, setIsSignedIn] = useState(false);
-  const [user, setUser] = useState<User | null>(null);
+  const { user, isAuthenticated, signOut } = useAuth();
+  const navigate = useNavigate();
 
-  // Mock sign-in function
+  // Handle sign in - navigate to auth page
   const handleSignIn = () => {
-    // Simulate authentication
-    const mockUser: User = {
-      id: "1",
-      name: "John Doe",
-      email: "john@example.com",
-      avatar: "/placeholder.svg",
-    };
-
-    setUser(mockUser);
-    setIsSignedIn(true);
+    navigate("/auth");
   };
 
   // Sign out function
   const handleSignOut = () => {
-    setUser(null);
-    setIsSignedIn(false);
+    signOut();
   };
 
   // Get user initials for avatar fallback
@@ -78,7 +63,7 @@ export default function AuthButton() {
     // You can implement a modal or navigate to support page
   };
 
-  if (!isSignedIn) {
+  if (!isAuthenticated) {
     return (
       <Button
         onClick={handleSignIn}
