@@ -1,26 +1,15 @@
 import { Link } from "react-router-dom";
 import Logo from "@/components/Logo";
 import { Button } from "@/components/ui/button";
-import { useAuth } from "@/contexts/AuthContext";
-import UserDropdown from "@/components/UserDropdown";
+import AuthButton from "@/components/AuthButton";
 
 const Index = () => {
-  const { isAuthenticated } = useAuth();
-
   return (
     <div className="min-h-screen bg-white">
       {/* Navigation Bar */}
       <nav className="w-full px-6 py-4 flex justify-between items-center">
         <Logo />
-        {isAuthenticated ? (
-          <UserDropdown />
-        ) : (
-          <Link to="/auth">
-            <Button variant="outline" size="sm">
-              Sign In
-            </Button>
-          </Link>
-        )}
+        <AuthButton />
       </nav>
 
       {/* Main Content - Centered */}
