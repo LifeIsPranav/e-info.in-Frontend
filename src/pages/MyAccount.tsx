@@ -110,10 +110,10 @@ const MyAccount = () => {
           Demo
         </Link>
         <Link
-          to="/profile"
+          to="/mycard"
           className="text-gray-600 hover:text-gray-900 transition-colors"
         >
-          Profile
+          My Card
         </Link>
         <Link
           to="/"
