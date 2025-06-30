@@ -333,13 +333,13 @@ const EditableDigitalCard = forwardRef<
         className={`relative w-full transition-transform duration-700 preserve-3d ${
           isFlipped ? "rotate-y-180" : ""
         }`}
+        style={{ transformStyle: "preserve-3d" }}
       >
         {/* Card Front */}
         <div
-          className={`w-full backface-hidden rounded-2xl bg-white shadow-lg border border-gray-100/80 overflow-hidden ${
-            isFlipped ? "hidden" : "block"
-          }`}
+          className="absolute top-0 left-0 w-full backface-hidden rounded-2xl bg-white shadow-lg border border-gray-100/80 overflow-hidden"
           onClick={handleCardClick}
+          style={{ backfaceVisibility: "hidden" }}
         >
           <div className="flex flex-col relative min-h-80">
             {/* Action Buttons */}
@@ -511,9 +511,11 @@ const EditableDigitalCard = forwardRef<
 
         {/* Card Back - Message Form */}
         <div
-          className={`w-full backface-hidden rounded-2xl bg-white shadow-lg border border-gray-100/80 overflow-hidden ${
-            isFlipped ? "block" : "hidden"
-          }`}
+          className="absolute top-0 left-0 w-full backface-hidden rounded-2xl bg-white shadow-lg border border-gray-100/80 overflow-hidden"
+          style={{
+            backfaceVisibility: "hidden",
+            transform: "rotateY(180deg)",
+          }}
         >
           <div className="min-h-80 flex flex-col">
             {/* Header */}
