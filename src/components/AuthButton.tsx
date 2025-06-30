@@ -122,6 +122,14 @@ export default function AuthButton() {
         {/* Menu Items */}
         <div className="p-2 space-y-1">
           <DropdownMenuItem
+            onClick={handleMyAccountClick}
+            className="cursor-pointer rounded-lg px-3 py-2.5 text-sm font-medium text-gray-700 hover:bg-gray-50 hover:text-gray-900 transition-all duration-200 group"
+          >
+            <UserCog className="mr-3 h-4 w-4 text-gray-400 group-hover:text-gray-600 transition-colors" />
+            <span>My Account</span>
+          </DropdownMenuItem>
+
+          <DropdownMenuItem
             onClick={handleProfileClick}
             className="cursor-pointer rounded-lg px-3 py-2.5 text-sm font-medium text-gray-700 hover:bg-gray-50 hover:text-gray-900 transition-all duration-200 group"
           >
