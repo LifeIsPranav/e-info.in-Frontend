@@ -139,20 +139,6 @@ const MyAccount = () => {
 
         {/* Header Section */}
         <div className="text-center space-y-4">
-          <div className="flex justify-center">
-            <div className="relative">
-              <Avatar className="h-20 w-20 ring-4 ring-white shadow-lg">
-                <AvatarImage src={user?.avatar} alt={user?.name} />
-                <AvatarFallback className="bg-gradient-to-br from-gray-100 to-gray-200 text-gray-700 text-lg font-medium">
-                  {user ? (
-                    getUserInitials(user.name)
-                  ) : (
-                    <User className="w-8 h-8" />
-                  )}
-                </AvatarFallback>
-              </Avatar>
-            </div>
-          </div>
           <div>
             <h2 className="text-2xl font-semibold text-gray-900 mb-2">
               My Account
