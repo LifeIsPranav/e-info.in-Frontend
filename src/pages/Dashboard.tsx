@@ -142,12 +142,12 @@ const Dashboard = () => {
           {/* Quick Actions */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-20">
             <Button
-              onClick={() => navigate("/profile")}
+              onClick={() => navigate("/mycard")}
               variant="outline"
               size="lg"
               className="bg-white border-gray-200 text-gray-700 hover:bg-gray-50 font-medium px-8 py-3"
             >
-              Edit Profile
+              Edit My Card
             </Button>
             <Button
               onClick={() => navigate("/demo")}
