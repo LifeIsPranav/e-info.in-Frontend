@@ -8,6 +8,9 @@ import {
   Briefcase,
 } from "lucide-react";
 
+// Re-export types for easy import
+export type { PortfolioProject, ProjectImage };
+
 // Example portfolio projects with image galleries
 export const defaultPortfolioProjects: PortfolioProject[] = [
   {
