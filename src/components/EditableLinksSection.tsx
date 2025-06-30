@@ -79,9 +79,9 @@ const EditableLinkItem = ({
   if (isEditing) {
     return (
       <div
-        className={`bg-blue-50/50 border border-blue-200 rounded-xl transition-all duration-200 overflow-hidden ${
+        className={`bg-white border border-gray-100 rounded-xl transition-all duration-200 overflow-hidden shadow-sm ${
           isBeingDragged ? "opacity-50 scale-95" : ""
-        } ${isDraggedOver ? "border-blue-400 shadow-lg" : ""}`}
+        } ${isDraggedOver ? "border-gray-300 shadow-lg" : ""}`}
         draggable
         onDragStart={handleDragStart}
         onDragOver={handleDragOver}
@@ -103,7 +103,7 @@ const EditableLinkItem = ({
                 value={editingProject.title}
                 onChange={(e) => handleFieldChange("title", e.target.value)}
                 placeholder="e.g., LinkedIn"
-                className="text-sm bg-white border-gray-400 text-black placeholder-gray-400 focus:border-blue-500 focus:ring-2 focus:ring-blue-500 font-medium"
+                className="text-sm bg-gray-50 border-gray-200 text-gray-900 placeholder-gray-400 focus:border-gray-400 focus:ring-1 focus:ring-gray-400 font-medium"
               />
             </div>
             <div className="space-y-1">
@@ -114,7 +114,7 @@ const EditableLinkItem = ({
                 value={editingProject.href}
                 onChange={(e) => handleFieldChange("href", e.target.value)}
                 placeholder="https://linkedin.com/in/yourname"
-                className="text-sm bg-white border-gray-400 text-black placeholder-gray-400 focus:border-blue-500 focus:ring-2 focus:ring-blue-500 font-medium"
+                className="text-sm bg-gray-50 border-gray-200 text-gray-900 placeholder-gray-400 focus:border-gray-400 focus:ring-1 focus:ring-gray-400 font-medium"
               />
             </div>
           </div>
@@ -128,11 +128,11 @@ const EditableLinkItem = ({
               value={editingProject.description}
               onChange={(e) => handleFieldChange("description", e.target.value)}
               placeholder="Brief description of this link"
-              className="text-sm bg-white border-gray-400 text-black placeholder-gray-400 focus:border-blue-500 focus:ring-2 focus:ring-blue-500 font-medium"
+              className="text-sm bg-gray-50 border-gray-200 text-gray-900 placeholder-gray-400 focus:border-gray-400 focus:ring-1 focus:ring-gray-400 font-medium"
             />
           </div>
           {/* Actions */}
-          <div className="flex justify-end items-center pt-2 border-t border-gray-300">
+          <div className="flex justify-end items-center pt-2 border-t border-gray-100">
             <Button
               onClick={onDelete}
               variant="ghost"
@@ -322,7 +322,7 @@ export default function EditableLinksSection({
         {isEditing && (
           <button
             onClick={handleAddProject}
-            className="w-full p-4 border-2 border-dashed border-blue-200 rounded-xl text-blue-500 hover:text-blue-600 hover:border-blue-300 transition-colors duration-200 flex items-center justify-center gap-2"
+            className="w-full p-4 border-2 border-dashed border-gray-200 rounded-xl text-gray-500 hover:text-gray-600 hover:border-gray-300 transition-colors duration-200 flex items-center justify-center gap-2"
           >
             <Plus className="w-4 h-4" />
             <span className="text-sm font-medium">Add New Link</span>
