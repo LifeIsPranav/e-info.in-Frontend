@@ -206,7 +206,7 @@ const EditableExperienceItem = ({
               </Button>
             </div>
 
-            <div className="space-y-2 max-h-32 overflow-y-auto">
+            <div className="space-y-2">
               {editingExperience.achievements.map(
                 (achievement, achievementIndex) => (
                   <div
