@@ -30,6 +30,7 @@ interface PersonalInfo {
 
 interface DigitalCardProps extends PersonalInfo, ContactInfo {
   resumeUrl?: string;
+  skills?: string[];
   onConfigureClick?: () => void;
 }
 
@@ -47,6 +48,7 @@ const DEFAULT_PROPS: DigitalCardProps = {
   location: "San Francisco",
   profileImage: "/placeholder.svg",
   resumeUrl: "https://drive.google.com/file/d/example/view",
+  skills: ["UI Design", "Prototyping", "User Research", "Figma", "React"],
 };
 
 // Utility Functions
@@ -124,6 +126,25 @@ const ContactInfoItem = ({
   </div>
 );
 
+const Skills = ({ skills }: { skills?: string[] }) => {
+  if (!skills || skills.length === 0) return null;
+
+  return (
+    <div className="mt-4" onClick={(e) => e.stopPropagation()}>
+      <div className="flex flex-wrap gap-1.5 justify-center md:justify-start">
+        {skills.map((skill, index) => (
+          <span
+            key={index}
+            className="inline-flex items-center px-2 py-1 rounded-md bg-gray-100 text-gray-700 text-xs font-medium"
+          >
+            {skill}
+          </span>
+        ))}
+      </div>
+    </div>
+  );
+};
+
 const ResumeButton = ({
   onClick,
 }: {
@@ -181,6 +202,7 @@ const ConfigureButton = ({
 const CardFront = ({
   personalInfo,
   contactInfo,
+  skills,
   resumeUrl,
   onCardClick,
   onResumeClick,
@@ -188,6 +210,7 @@ const CardFront = ({
 }: {
   personalInfo: PersonalInfo;
   contactInfo: ContactInfo;
+  skills?: string[];
   resumeUrl?: string;
   onCardClick: () => void;
   onResumeClick: (e: React.MouseEvent) => void;
@@ -247,6 +270,9 @@ const CardFront = ({
           />
           <ContactInfoItem icon={MapPin} text={contactInfo.location} />
         </div>
+
+        {/* Skills */}
+        <Skills skills={skills} />
       </div>
 
       {/* Call to Action */}
@@ -352,6 +378,7 @@ const DigitalCard = forwardRef<DigitalCardRef, Partial<DigitalCardProps>>(
       location,
       profileImage,
       resumeUrl,
+      skills,
       onConfigureClick,
     } = { ...DEFAULT_PROPS, ...props };
 
@@ -451,6 +478,7 @@ const DigitalCard = forwardRef<DigitalCardRef, Partial<DigitalCardProps>>(
           <CardFront
             personalInfo={personalInfo}
             contactInfo={contactInfo}
+            skills={skills}
             resumeUrl={resumeUrl}
             onCardClick={!isFlipped ? handleCardClick : () => {}}
             onResumeClick={handleResumeClick}

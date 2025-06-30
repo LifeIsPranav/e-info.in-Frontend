@@ -8,6 +8,7 @@ export interface PersonProfile {
   location: string;
   profileImage: string;
   resumeUrl?: string;
+  skills?: string[];
 }
 
 export interface ProjectLink {
@@ -30,6 +31,7 @@ export const defaultProfile: PersonProfile = {
   location: "San Francisco",
   profileImage: "/placeholder.svg",
   resumeUrl: "https://drive.google.com/file/d/example/view",
+  skills: ["UI Design", "Prototyping", "User Research", "Figma", "React"],
 };
 
 // Icon components
