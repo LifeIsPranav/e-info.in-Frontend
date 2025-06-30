@@ -1,4 +1,10 @@
-import { useState, forwardRef, useImperativeHandle, useRef } from "react";
+import {
+  useState,
+  forwardRef,
+  useImperativeHandle,
+  useRef,
+  useEffect,
+} from "react";
 import {
   Mail,
   MapPin,
@@ -277,6 +283,9 @@ const EditableDigitalCard = forwardRef<
   const [isFlipped, setIsFlipped] = useState(false);
   const [messageTitle, setMessageTitle] = useState("");
   const [messageText, setMessageText] = useState("");
+  const [cardHeight, setCardHeight] = useState(320); // minimum height
+  const frontCardRef = useRef<HTMLDivElement>(null);
+  const backCardRef = useRef<HTMLDivElement>(null);
 
   // Expose outside click handler through ref
   useImperativeHandle(ref, () => ({
@@ -286,6 +295,21 @@ const EditableDigitalCard = forwardRef<
       }
     },
   }));
+
+  // Measure card height when content changes
+  useEffect(() => {
+    const measureHeight = () => {
+      const frontHeight = frontCardRef.current?.scrollHeight || 0;
+      const backHeight = backCardRef.current?.scrollHeight || 0;
+      const maxHeight = Math.max(frontHeight, backHeight, 320); // minimum 320px
+      setCardHeight(maxHeight);
+    };
+
+    measureHeight();
+    // Re-measure when editing state changes or profile changes
+    const timer = setTimeout(measureHeight, 100);
+    return () => clearTimeout(timer);
+  }, [isEditing, profile, isFlipped]);
 
   const handleProfileFieldChange = (field: keyof PersonProfile, value: any) => {
     onProfileChange({ ...profile, [field]: value });
@@ -330,16 +354,22 @@ const EditableDigitalCard = forwardRef<
   return (
     <div className="perspective-1000 w-full">
       <div
-        className={`relative w-full h-80 transition-transform duration-700 preserve-3d ${
+        className={`relative w-full transition-transform duration-700 preserve-3d ${
           isFlipped ? "rotate-y-180" : ""
         }`}
+        style={{
+          transformStyle: "preserve-3d",
+          height: `${cardHeight}px`,
+        }}
       >
         {/* Card Front */}
         <div
-          className="absolute inset-0 w-full h-full backface-hidden rounded-2xl bg-white shadow-lg border border-gray-100/80 overflow-hidden"
+          ref={frontCardRef}
+          className="absolute top-0 left-0 w-full backface-hidden rounded-2xl bg-white shadow-lg border border-gray-100/80 overflow-hidden"
           onClick={handleCardClick}
+          style={{ backfaceVisibility: "hidden" }}
         >
-          <div className="h-full flex flex-col relative">
+          <div className="flex flex-col relative min-h-80">
             {/* Action Buttons */}
             <div className="absolute top-4 right-4 z-10 flex gap-2">
               {isEditing ? (
@@ -447,6 +477,26 @@ const EditableDigitalCard = forwardRef<
                 />
               </div>
 
+              {/* Resume Upload Section */}
+              {isEditing && (
+                <div className="mb-4" onClick={(e) => e.stopPropagation()}>
+                  <label className="text-xs font-semibold text-gray-800 mb-2 block">
+                    Resume/CV Link
+                  </label>
+                  <Input
+                    value={profile.resumeUrl || ""}
+                    onChange={(e) =>
+                      handleProfileFieldChange("resumeUrl", e.target.value)
+                    }
+                    placeholder="https://your-resume-link.com"
+                    className="text-sm bg-blue-50/50 border-blue-200 focus:border-blue-400 focus:ring-1 focus:ring-blue-400"
+                  />
+                  <p className="text-xs text-gray-500 mt-1">
+                    Add a link to your resume, portfolio, or CV
+                  </p>
+                </div>
+              )}
+
               {/* Contact Information */}
               <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
                 <EditableContactInfo
@@ -508,8 +558,15 @@ const EditableDigitalCard = forwardRef<
         </div>
 
         {/* Card Back - Message Form */}
-        <div className="absolute inset-0 w-full h-full backface-hidden rotate-y-180 rounded-2xl bg-white shadow-lg border border-gray-100/80 overflow-hidden">
-          <div className="h-full flex flex-col">
+        <div
+          ref={backCardRef}
+          className="absolute top-0 left-0 w-full backface-hidden rounded-2xl bg-white shadow-lg border border-gray-100/80 overflow-hidden"
+          style={{
+            backfaceVisibility: "hidden",
+            transform: "rotateY(180deg)",
+          }}
+        >
+          <div className="min-h-80 flex flex-col">
             {/* Header */}
             <div className="flex items-center justify-between p-4 border-b border-gray-100 flex-shrink-0">
               <div className="flex-1 cursor-pointer" onClick={handleCloseCard}>

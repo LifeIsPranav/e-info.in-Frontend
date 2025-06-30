@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useAuth } from "@/contexts/AuthContext";
 import EditableProfileSection from "@/components/EditableProfileSection";
 import EditableLinksSection from "@/components/EditableLinksSection";
+import EditablePortfolioSection from "@/components/EditablePortfolioSection";
 import Logo from "@/components/Logo";
 import AuthButton from "@/components/AuthButton";
 import { Link } from "react-router-dom";
@@ -11,11 +12,18 @@ import {
   defaultProfile,
   defaultProjects,
 } from "@/lib/profileData";
+import {
+  PortfolioProject,
+  defaultPortfolioProjects,
+} from "@/lib/portfolioData";
 
 const EditProfile = () => {
   const { user } = useAuth();
   const [profile, setProfile] = useState<PersonProfile>(defaultProfile);
   const [projects, setProjects] = useState<ProjectLink[]>(defaultProjects);
+  const [portfolioProjects, setPortfolioProjects] = useState<
+    PortfolioProject[]
+  >(defaultPortfolioProjects);
 
   // Initialize profile with user data if available
   useEffect(() => {
@@ -39,6 +47,14 @@ const EditProfile = () => {
     setProjects(updatedProjects);
     // Here you would typically save to a backend
     console.log("Projects updated:", updatedProjects);
+  };
+
+  const handlePortfolioProjectsUpdate = (
+    updatedPortfolioProjects: PortfolioProject[],
+  ) => {
+    setPortfolioProjects(updatedPortfolioProjects);
+    // Here you would typically save to a backend
+    console.log("Portfolio projects updated:", updatedPortfolioProjects);
   };
 
   return (
@@ -87,6 +103,12 @@ const EditProfile = () => {
         <EditableLinksSection
           projects={projects}
           onProjectsUpdate={handleProjectsUpdate}
+        />
+
+        {/* Editable Portfolio Section */}
+        <EditablePortfolioSection
+          projects={portfolioProjects}
+          onProjectsUpdate={handlePortfolioProjectsUpdate}
         />
       </div>
     </div>
