@@ -70,7 +70,7 @@ const EditProfile = () => {
         {/* Info Section */}
         <div className="text-center">
           <h2 className="text-2xl font-semibold text-gray-900 mb-2">
-            Edit Your Profile
+            My Profile
           </h2>
           <p className="text-gray-600 text-sm">
             Customize your digital card and links below
