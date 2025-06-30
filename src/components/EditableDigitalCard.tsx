@@ -277,6 +277,9 @@ const EditableDigitalCard = forwardRef<
   const [isFlipped, setIsFlipped] = useState(false);
   const [messageTitle, setMessageTitle] = useState("");
   const [messageText, setMessageText] = useState("");
+  const [cardHeight, setCardHeight] = useState(320); // minimum height
+  const frontCardRef = useRef<HTMLDivElement>(null);
+  const backCardRef = useRef<HTMLDivElement>(null);
 
   // Expose outside click handler through ref
   useImperativeHandle(ref, () => ({
@@ -286,6 +289,21 @@ const EditableDigitalCard = forwardRef<
       }
     },
   }));
+
+  // Measure card height when content changes
+  useEffect(() => {
+    const measureHeight = () => {
+      const frontHeight = frontCardRef.current?.scrollHeight || 0;
+      const backHeight = backCardRef.current?.scrollHeight || 0;
+      const maxHeight = Math.max(frontHeight, backHeight, 320); // minimum 320px
+      setCardHeight(maxHeight);
+    };
+
+    measureHeight();
+    // Re-measure when editing state changes or profile changes
+    const timer = setTimeout(measureHeight, 100);
+    return () => clearTimeout(timer);
+  }, [isEditing, profile, isFlipped]);
 
   const handleProfileFieldChange = (field: keyof PersonProfile, value: any) => {
     onProfileChange({ ...profile, [field]: value });
@@ -333,10 +351,14 @@ const EditableDigitalCard = forwardRef<
         className={`relative w-full transition-transform duration-700 preserve-3d ${
           isFlipped ? "rotate-y-180" : ""
         }`}
-        style={{ transformStyle: "preserve-3d" }}
+        style={{
+          transformStyle: "preserve-3d",
+          height: `${cardHeight}px`,
+        }}
       >
         {/* Card Front */}
         <div
+          ref={frontCardRef}
           className="absolute top-0 left-0 w-full backface-hidden rounded-2xl bg-white shadow-lg border border-gray-100/80 overflow-hidden"
           onClick={handleCardClick}
           style={{ backfaceVisibility: "hidden" }}
@@ -531,6 +553,7 @@ const EditableDigitalCard = forwardRef<
 
         {/* Card Back - Message Form */}
         <div
+          ref={backCardRef}
           className="absolute top-0 left-0 w-full backface-hidden rounded-2xl bg-white shadow-lg border border-gray-100/80 overflow-hidden"
           style={{
             backfaceVisibility: "hidden",
