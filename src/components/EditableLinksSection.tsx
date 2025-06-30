@@ -45,47 +45,48 @@ const EditableLinkItem = ({
           {/* Title and URL Row */}
           <div className="grid grid-cols-2 gap-3">
             <div className="space-y-1">
-              <label className="text-xs font-medium text-gray-700">Name</label>
+              <label className="text-xs font-semibold text-gray-800">
+                Name
+              </label>
               <Input
                 value={editingProject.title}
                 onChange={(e) => handleFieldChange("title", e.target.value)}
                 placeholder="e.g., LinkedIn"
-                className="text-sm bg-white border-gray-300 text-gray-900 placeholder-gray-500 focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
+                className="text-sm bg-white border-gray-400 text-black placeholder-gray-400 focus:border-blue-500 focus:ring-2 focus:ring-blue-500 font-medium"
               />
             </div>
             <div className="space-y-1">
-              <label className="text-xs font-medium text-gray-700">
+              <label className="text-xs font-semibold text-gray-800">
                 Link URL
               </label>
               <Input
                 value={editingProject.href}
                 onChange={(e) => handleFieldChange("href", e.target.value)}
                 placeholder="https://linkedin.com/in/yourname"
-                className="text-sm bg-white border-gray-300 text-gray-900 placeholder-gray-500 focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
+                className="text-sm bg-white border-gray-400 text-black placeholder-gray-400 focus:border-blue-500 focus:ring-2 focus:ring-blue-500 font-medium"
               />
             </div>
           </div>
 
           {/* Description */}
           <div className="space-y-1">
-            <label className="text-xs font-medium text-gray-700">
+            <label className="text-xs font-semibold text-gray-800">
               Description
             </label>
             <Input
               value={editingProject.description}
               onChange={(e) => handleFieldChange("description", e.target.value)}
               placeholder="Brief description of this link"
-              className="text-sm bg-white border-gray-300 text-gray-900 placeholder-gray-500 focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
+              className="text-sm bg-white border-gray-400 text-black placeholder-gray-400 focus:border-blue-500 focus:ring-2 focus:ring-blue-500 font-medium"
             />
           </div>
-
           {/* Actions */}
-          <div className="flex justify-end items-center pt-2 border-t border-blue-200">
+          <div className="flex justify-end items-center pt-2 border-t border-gray-300">
             <Button
               onClick={onDelete}
               variant="ghost"
               size="sm"
-              className="text-red-600 hover:text-red-700 hover:bg-red-50 h-8 px-2"
+              className="text-red-600 hover:text-white hover:bg-red-600 h-8 px-3 font-medium border border-red-200 hover:border-red-600 transition-all"
             >
               <Trash2 className="w-3 h-3 mr-1" />
               Delete
