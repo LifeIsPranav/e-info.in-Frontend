@@ -449,6 +449,26 @@ const EditableDigitalCard = forwardRef<
                 />
               </div>
 
+              {/* Resume Upload Section */}
+              {isEditing && (
+                <div className="mb-4" onClick={(e) => e.stopPropagation()}>
+                  <label className="text-xs font-semibold text-gray-800 mb-2 block">
+                    Resume/CV Link
+                  </label>
+                  <Input
+                    value={profile.resumeUrl || ""}
+                    onChange={(e) =>
+                      handleProfileFieldChange("resumeUrl", e.target.value)
+                    }
+                    placeholder="https://your-resume-link.com"
+                    className="text-sm bg-blue-50/50 border-blue-200 focus:border-blue-400 focus:ring-1 focus:ring-blue-400"
+                  />
+                  <p className="text-xs text-gray-500 mt-1">
+                    Add a link to your resume, portfolio, or CV
+                  </p>
+                </div>
+              )}
+
               {/* Contact Information */}
               <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
                 <EditableContactInfo
