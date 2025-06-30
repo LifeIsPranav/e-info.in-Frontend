@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import {
   Edit3,
   Save,
@@ -13,6 +13,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import ProjectShowcase from "@/components/ProjectShowcase";
 import {
   PortfolioProject,
   defaultPortfolioProjects,
@@ -345,6 +346,9 @@ export default function EditablePortfolioSection({
     useState<PortfolioProject[]>(projects);
   const [draggedIndex, setDraggedIndex] = useState<number | null>(null);
   const [dragOverIndex, setDragOverIndex] = useState<number | null>(null);
+  const [expandedProject, setExpandedProject] = useState<string | null>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const projectRefs = useRef<{ [key: string]: HTMLDivElement | null }>({});
 
   const handleStartEdit = () => {
     setEditingProjects([...projects]);
@@ -420,6 +424,53 @@ export default function EditablePortfolioSection({
     setDragOverIndex(null);
   };
 
+  const handleProjectExpand = (projectId: string, href?: string) => {
+    if (expandedProject === projectId) {
+      setExpandedProject(null);
+    } else {
+      setExpandedProject(projectId);
+    }
+  };
+
+  const handleDirectLink = (href: string) => {
+    window.open(href, "_blank", "noopener,noreferrer");
+  };
+
+  // Auto-scroll when project expands
+  useEffect(() => {
+    if (expandedProject && projectRefs.current[expandedProject]) {
+      const timer = setTimeout(() => {
+        const expandedElement = projectRefs.current[expandedProject];
+        if (expandedElement) {
+          expandedElement.scrollIntoView({
+            behavior: "smooth",
+            block: "center",
+            inline: "nearest",
+          });
+        }
+      }, 300);
+
+      return () => clearTimeout(timer);
+    }
+  }, [expandedProject]);
+
+  // Close expandable projects when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      const target = event.target as Element;
+
+      if (containerRef.current && !containerRef.current.contains(target)) {
+        setExpandedProject(null);
+        return;
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
   const currentProjects = isEditing ? editingProjects : projects;
 
   return (
@@ -471,32 +522,55 @@ export default function EditablePortfolioSection({
       </div>
 
       {/* Portfolio List */}
-      <div className="space-y-2">
-        {currentProjects.map((project, index) => (
-          <EditablePortfolioItem
-            key={project.id}
-            project={project}
-            isEditing={isEditing}
-            index={index}
-            onUpdate={(updated) => handleProjectUpdate(index, updated)}
-            onDelete={() => handleProjectDelete(index)}
-            onDragStart={handleDragStart}
-            onDragOver={handleDragOver}
-            onDragEnd={handleDragEnd}
-            isDragging={draggedIndex === index}
-            dragOverIndex={dragOverIndex}
-          />
-        ))}
+      <div ref={containerRef} className="space-y-2">
+        {isEditing ? (
+          <>
+            {/* Editing Mode - Show editable items */}
+            {currentProjects.map((project, index) => (
+              <EditablePortfolioItem
+                key={project.id}
+                project={project}
+                isEditing={isEditing}
+                index={index}
+                onUpdate={(updated) => handleProjectUpdate(index, updated)}
+                onDelete={() => handleProjectDelete(index)}
+                onDragStart={handleDragStart}
+                onDragOver={handleDragOver}
+                onDragEnd={handleDragEnd}
+                isDragging={draggedIndex === index}
+                dragOverIndex={dragOverIndex}
+              />
+            ))}
 
-        {/* Add New Project Button */}
-        {isEditing && (
-          <button
-            onClick={handleAddProject}
-            className="w-full p-4 border-2 border-dashed border-gray-200 rounded-xl text-gray-500 hover:text-gray-600 hover:border-gray-300 transition-colors duration-200 flex items-center justify-center gap-2"
-          >
-            <Plus className="w-4 h-4" />
-            <span className="text-sm font-medium">Add New Project</span>
-          </button>
+            {/* Add New Project Button */}
+            <button
+              onClick={handleAddProject}
+              className="w-full p-4 border-2 border-dashed border-gray-200 rounded-xl text-gray-500 hover:text-gray-600 hover:border-gray-300 transition-colors duration-200 flex items-center justify-center gap-2"
+            >
+              <Plus className="w-4 h-4" />
+              <span className="text-sm font-medium">Add New Project</span>
+            </button>
+          </>
+        ) : (
+          <>
+            {/* View Mode - Show expandable showcases like in demo */}
+            {currentProjects.map((project) => (
+              <div
+                key={project.id}
+                ref={(el) => (projectRefs.current[project.id] = el)}
+              >
+                <ProjectShowcase
+                  project={project}
+                  isOpen={expandedProject === project.id}
+                  onClose={() => setExpandedProject(null)}
+                  onExpand={() => handleProjectExpand(project.id, project.href)}
+                  onDirectLink={() =>
+                    project.href && handleDirectLink(project.href)
+                  }
+                />
+              </div>
+            ))}
+          </>
         )}
       </div>
     </div>
