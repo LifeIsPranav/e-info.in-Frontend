@@ -44,6 +44,10 @@ export default function AuthButton() {
   };
 
   // Menu item click handlers
+  const handleDashboardClick = () => {
+    navigate("/dashboard");
+  };
+
   const handleMyAccountClick = () => {
     navigate("/account");
   };
