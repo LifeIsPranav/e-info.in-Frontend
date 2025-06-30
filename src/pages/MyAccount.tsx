@@ -165,6 +165,22 @@ const MyAccount = () => {
               />
             </div>
 
+            {/* Email Field (Read-only) */}
+            <div className="space-y-2">
+              <label className="text-sm font-semibold text-gray-800">
+                Email Address
+              </label>
+              <Input
+                value={user?.email || ""}
+                readOnly
+                className="bg-gray-100 border-gray-200 text-gray-600 cursor-not-allowed"
+              />
+              <p className="text-xs text-gray-500">
+                Email address is managed through your Google account and cannot
+                be changed here
+              </p>
+            </div>
+
             {/* Username Field */}
             <div className="space-y-2">
               <label className="text-sm font-semibold text-gray-800">
