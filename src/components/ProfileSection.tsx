@@ -101,6 +101,7 @@ export default function ProfileSection({
           location={finalProfile.location}
           profileImage={finalProfile.profileImage}
           resumeUrl={finalProfile.resumeUrl}
+          skills={finalProfile.skills}
         />
       </div>
 
