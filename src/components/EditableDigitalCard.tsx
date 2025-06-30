@@ -330,16 +330,18 @@ const EditableDigitalCard = forwardRef<
   return (
     <div className="perspective-1000 w-full">
       <div
-        className={`relative w-full min-h-80 transition-transform duration-700 preserve-3d ${
+        className={`relative w-full transition-transform duration-700 preserve-3d ${
           isFlipped ? "rotate-y-180" : ""
         }`}
       >
         {/* Card Front */}
         <div
-          className="absolute inset-0 w-full backface-hidden rounded-2xl bg-white shadow-lg border border-gray-100/80 overflow-hidden"
+          className={`w-full backface-hidden rounded-2xl bg-white shadow-lg border border-gray-100/80 overflow-hidden ${
+            isFlipped ? "hidden" : "block"
+          }`}
           onClick={handleCardClick}
         >
-          <div className="flex flex-col relative">
+          <div className="flex flex-col relative min-h-80">
             {/* Action Buttons */}
             <div className="absolute top-4 right-4 z-10 flex gap-2">
               {isEditing ? (
@@ -508,7 +510,11 @@ const EditableDigitalCard = forwardRef<
         </div>
 
         {/* Card Back - Message Form */}
-        <div className="absolute inset-0 w-full min-h-80 backface-hidden rotate-y-180 rounded-2xl bg-white shadow-lg border border-gray-100/80 overflow-hidden">
+        <div
+          className={`w-full backface-hidden rounded-2xl bg-white shadow-lg border border-gray-100/80 overflow-hidden ${
+            isFlipped ? "block" : "hidden"
+          }`}
+        >
           <div className="min-h-80 flex flex-col">
             {/* Header */}
             <div className="flex items-center justify-between p-4 border-b border-gray-100 flex-shrink-0">
