@@ -1,13 +1,5 @@
 import { useState } from "react";
-import {
-  Edit3,
-  Save,
-  X,
-  Plus,
-  Trash2,
-  GripVertical,
-  ExternalLink,
-} from "lucide-react";
+import { Edit3, Save, X, Plus, Trash2, ExternalLink } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -51,62 +43,53 @@ const EditableLinkItem = ({
       <div className="bg-blue-50/50 border border-blue-200 rounded-xl transition-all duration-200 overflow-hidden">
         <div className="p-4 space-y-3">
           {/* Title and URL Row */}
-          <div className="grid grid-cols-2 gap-2">
-            <Input
-              value={editingProject.title}
-              onChange={(e) => handleFieldChange("title", e.target.value)}
-              placeholder="Link title"
-              className="text-sm bg-white border-blue-200 focus:border-blue-400 focus:ring-1 focus:ring-blue-400"
-            />
-            <Input
-              value={editingProject.href}
-              onChange={(e) => handleFieldChange("href", e.target.value)}
-              placeholder="https://..."
-              className="text-sm bg-white border-blue-200 focus:border-blue-400 focus:ring-1 focus:ring-blue-400"
-            />
+          <div className="grid grid-cols-2 gap-3">
+            <div className="space-y-1">
+              <label className="text-xs font-medium text-gray-700">Name</label>
+              <Input
+                value={editingProject.title}
+                onChange={(e) => handleFieldChange("title", e.target.value)}
+                placeholder="e.g., LinkedIn"
+                className="text-sm bg-white border-gray-300 text-gray-900 placeholder-gray-500 focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
+              />
+            </div>
+            <div className="space-y-1">
+              <label className="text-xs font-medium text-gray-700">
+                Link URL
+              </label>
+              <Input
+                value={editingProject.href}
+                onChange={(e) => handleFieldChange("href", e.target.value)}
+                placeholder="https://linkedin.com/in/yourname"
+                className="text-sm bg-white border-gray-300 text-gray-900 placeholder-gray-500 focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
+              />
+            </div>
           </div>
 
           {/* Description */}
-          <Input
-            value={editingProject.description}
-            onChange={(e) => handleFieldChange("description", e.target.value)}
-            placeholder="Short description"
-            className="text-sm bg-white border-blue-200 focus:border-blue-400 focus:ring-1 focus:ring-blue-400"
-          />
-
-          {/* Project Details */}
-          <Textarea
-            value={editingProject.projectDetails}
-            onChange={(e) =>
-              handleFieldChange("projectDetails", e.target.value)
-            }
-            placeholder="Detailed description for expandable view"
-            className="text-sm bg-white border-blue-200 focus:border-blue-400 focus:ring-1 focus:ring-blue-400 min-h-[60px] resize-none"
-          />
-
-          {/* Image URL */}
-          <Input
-            value={editingProject.imageUrl || ""}
-            onChange={(e) => handleFieldChange("imageUrl", e.target.value)}
-            placeholder="Image URL (optional)"
-            className="text-sm bg-white border-blue-200 focus:border-blue-400 focus:ring-1 focus:ring-blue-400"
-          />
+          <div className="space-y-1">
+            <label className="text-xs font-medium text-gray-700">
+              Description
+            </label>
+            <Input
+              value={editingProject.description}
+              onChange={(e) => handleFieldChange("description", e.target.value)}
+              placeholder="Brief description of this link"
+              className="text-sm bg-white border-gray-300 text-gray-900 placeholder-gray-500 focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
+            />
+          </div>
 
           {/* Actions */}
-          <div className="flex justify-between items-center pt-2 border-t border-blue-200">
+          <div className="flex justify-end items-center pt-2 border-t border-blue-200">
             <Button
               onClick={onDelete}
               variant="ghost"
               size="sm"
-              className="text-red-500 hover:text-red-600 hover:bg-red-50 h-8 px-2"
+              className="text-red-600 hover:text-red-700 hover:bg-red-50 h-8 px-2"
             >
               <Trash2 className="w-3 h-3 mr-1" />
               Delete
             </Button>
-            <div className="flex items-center text-gray-400">
-              <GripVertical className="w-4 h-4" />
-              <span className="text-xs ml-1">Drag to reorder</span>
-            </div>
           </div>
         </div>
       </div>
@@ -182,9 +165,9 @@ export default function EditableLinksSection({
     const newProject: ProjectLink = {
       id: `custom-${Date.now()}`,
       title: "New Link",
-      description: "Description",
+      description: "Brief description",
       href: "https://example.com",
-      projectDetails: "Detailed description here...",
+      projectDetails: "Add your detailed description here...",
     };
     setEditingProjects([...editingProjects, newProject]);
   };
