@@ -1,4 +1,10 @@
-import { useState, forwardRef, useImperativeHandle, useRef } from "react";
+import {
+  useState,
+  forwardRef,
+  useImperativeHandle,
+  useRef,
+  useEffect,
+} from "react";
 import {
   Mail,
   MapPin,
