@@ -30,6 +30,7 @@ interface PersonalInfo {
 
 interface DigitalCardProps extends PersonalInfo, ContactInfo {
   resumeUrl?: string;
+  skills?: string[];
   onConfigureClick?: () => void;
 }
 
@@ -47,6 +48,7 @@ const DEFAULT_PROPS: DigitalCardProps = {
   location: "San Francisco",
   profileImage: "/placeholder.svg",
   resumeUrl: "https://drive.google.com/file/d/example/view",
+  skills: ["UI Design", "Prototyping", "User Research", "Figma", "React"],
 };
 
 // Utility Functions
