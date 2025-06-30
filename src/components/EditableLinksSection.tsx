@@ -7,14 +7,11 @@ import {
   Trash2,
   GripVertical,
   ExternalLink,
-  ChevronDown,
-  ChevronUp,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { ProjectLink, defaultProjects } from "@/lib/profileData";
-import ExpandableCard from "@/components/ExpandableCard";
 
 interface EditableLinksectionProps {
   projects?: ProjectLink[];
@@ -25,21 +22,15 @@ interface EditableLinksectionProps {
 interface EditableLinkItemProps {
   project: ProjectLink;
   isEditing: boolean;
-  isExpanded: boolean;
   onUpdate: (project: ProjectLink) => void;
   onDelete: () => void;
-  onToggleExpand: () => void;
-  onCloseExpand: () => void;
 }
 
 const EditableLinkItem = ({
   project,
   isEditing,
-  isExpanded,
   onUpdate,
   onDelete,
-  onToggleExpand,
-  onCloseExpand,
 }: EditableLinkItemProps) => {
   const [editingProject, setEditingProject] = useState<ProjectLink>(project);
 
@@ -49,14 +40,7 @@ const EditableLinkItem = ({
     onUpdate(updated);
   };
 
-  const handleMainClick = () => {
-    if (!isEditing) {
-      onToggleExpand();
-    }
-  };
-
-  const handleDirectLink = (e: React.MouseEvent) => {
-    e.stopPropagation();
+  const handleClick = () => {
     if (!isEditing && project.href) {
       window.open(project.href, "_blank", "noopener,noreferrer");
     }
@@ -130,64 +114,32 @@ const EditableLinkItem = ({
   }
 
   return (
-    <div>
-      <div className="bg-white hover:bg-gray-50 border border-gray-100 rounded-xl transition-all duration-200 group shadow-sm overflow-hidden">
-        <div className="flex">
-          {/* Main content area - clickable for expansion */}
-          <button
-            onClick={handleMainClick}
-            className="flex-1 p-4 flex items-center gap-4 text-left"
-          >
-            {/* Icon */}
-            <div className="w-10 h-10 rounded-lg bg-gray-50 flex items-center justify-center flex-shrink-0 group-hover:bg-gray-100 transition-colors duration-200">
-              {project.icon || (
-                <ExternalLink className="w-4 h-4 text-gray-600" />
-              )}
-            </div>
-
-            {/* Content */}
-            <div className="flex-1 min-w-0">
-              <div className="text-gray-900 font-medium text-sm">
-                {project.title}
-              </div>
-              {project.description && (
-                <div className="text-gray-500 text-xs mt-0.5 truncate">
-                  {project.description}
-                </div>
-              )}
-            </div>
-
-            {/* Expand indicator */}
-            <div className="flex items-center text-gray-400">
-              {isExpanded ? (
-                <ChevronUp className="w-4 h-4" />
-              ) : (
-                <ChevronDown className="w-4 h-4" />
-              )}
-            </div>
-          </button>
-
-          {/* Direct link button */}
-          <button
-            onClick={handleDirectLink}
-            className="p-4 border-l border-gray-100 hover:bg-gray-100 transition-colors duration-200 flex items-center justify-center"
-          >
-            <ExternalLink className="w-4 h-4 text-gray-400 hover:text-gray-600 transition-colors duration-200" />
-          </button>
+    <button
+      onClick={handleClick}
+      className="w-full bg-white hover:bg-gray-50 border border-gray-100 rounded-xl transition-all duration-200 group shadow-sm overflow-hidden"
+    >
+      <div className="p-4 flex items-center gap-4 text-left">
+        {/* Icon */}
+        <div className="w-10 h-10 rounded-lg bg-gray-50 flex items-center justify-center flex-shrink-0 group-hover:bg-gray-100 transition-colors duration-200">
+          {project.icon || <ExternalLink className="w-4 h-4 text-gray-600" />}
         </div>
-      </div>
 
-      {/* Expandable Section */}
-      <ExpandableCard
-        title={project.title}
-        description={project.description}
-        imageUrl={project.imageUrl}
-        projectDetails={project.projectDetails}
-        href={project.href}
-        isOpen={isExpanded}
-        onClose={onCloseExpand}
-      />
-    </div>
+        {/* Content */}
+        <div className="flex-1 min-w-0">
+          <div className="text-gray-900 font-medium text-sm">
+            {project.title}
+          </div>
+          {project.description && (
+            <div className="text-gray-500 text-xs mt-0.5 truncate">
+              {project.description}
+            </div>
+          )}
+        </div>
+
+        {/* Arrow indicator */}
+        <ExternalLink className="w-4 h-4 text-gray-400 group-hover:text-gray-600 transition-colors duration-200" />
+      </div>
+    </button>
   );
 };
 
@@ -199,7 +151,6 @@ export default function EditableLinksSection({
   const [isEditing, setIsEditing] = useState(false);
   const [editingProjects, setEditingProjects] =
     useState<ProjectLink[]>(projects);
-  const [expandedCard, setExpandedCard] = useState<string | null>(null);
 
   const handleStartEdit = () => {
     setEditingProjects([...projects]);
@@ -236,18 +187,6 @@ export default function EditableLinksSection({
       projectDetails: "Detailed description here...",
     };
     setEditingProjects([...editingProjects, newProject]);
-  };
-
-  const handleToggleExpand = (projectId: string) => {
-    if (expandedCard === projectId) {
-      setExpandedCard(null);
-    } else {
-      setExpandedCard(projectId);
-    }
-  };
-
-  const handleCloseExpand = () => {
-    setExpandedCard(null);
   };
 
   const currentProjects = isEditing ? editingProjects : projects;
@@ -305,11 +244,8 @@ export default function EditableLinksSection({
             key={project.id}
             project={project}
             isEditing={isEditing}
-            isExpanded={expandedCard === project.id}
             onUpdate={(updated) => handleProjectUpdate(index, updated)}
             onDelete={() => handleProjectDelete(index)}
-            onToggleExpand={() => handleToggleExpand(project.id)}
-            onCloseExpand={handleCloseExpand}
           />
         ))}
 
