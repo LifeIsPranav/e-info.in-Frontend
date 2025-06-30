@@ -378,6 +378,7 @@ const DigitalCard = forwardRef<DigitalCardRef, Partial<DigitalCardProps>>(
       location,
       profileImage,
       resumeUrl,
+      skills,
       onConfigureClick,
     } = { ...DEFAULT_PROPS, ...props };
 
@@ -477,6 +478,7 @@ const DigitalCard = forwardRef<DigitalCardRef, Partial<DigitalCardProps>>(
           <CardFront
             personalInfo={personalInfo}
             contactInfo={contactInfo}
+            skills={skills}
             resumeUrl={resumeUrl}
             onCardClick={!isFlipped ? handleCardClick : () => {}}
             onResumeClick={handleResumeClick}
