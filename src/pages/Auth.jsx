@@ -25,7 +25,7 @@ const Auth = () => {
 
       signIn(mockUser);
       setIsLoading(false);
-      navigate("/");
+      navigate("/dashboard");
     }, 1500);
   };
 
