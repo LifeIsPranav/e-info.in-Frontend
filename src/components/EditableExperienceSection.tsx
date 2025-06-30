@@ -334,7 +334,7 @@ export default function EditableExperienceSection({
       location: "City, State",
       description: "Add your role description here...",
       projects: [],
-      achievements: [],
+      achievements: ["New achievement..."],
     };
     setEditingExperiences([...editingExperiences, newExperience]);
   };
