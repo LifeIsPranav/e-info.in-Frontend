@@ -202,6 +202,7 @@ const ConfigureButton = ({
 const CardFront = ({
   personalInfo,
   contactInfo,
+  skills,
   resumeUrl,
   onCardClick,
   onResumeClick,
@@ -209,6 +210,7 @@ const CardFront = ({
 }: {
   personalInfo: PersonalInfo;
   contactInfo: ContactInfo;
+  skills?: string[];
   resumeUrl?: string;
   onCardClick: () => void;
   onResumeClick: (e: React.MouseEvent) => void;
@@ -268,6 +270,9 @@ const CardFront = ({
           />
           <ContactInfoItem icon={MapPin} text={contactInfo.location} />
         </div>
+
+        {/* Skills */}
+        <Skills skills={skills} />
       </div>
 
       {/* Call to Action */}
