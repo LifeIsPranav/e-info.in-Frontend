@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { useAuth } from "@/contexts/AuthContext";
-import { useNavigate } from "react-router-dom";
 import EditableProfileSection from "@/components/EditableProfileSection";
 import Logo from "@/components/Logo";
 import AuthButton from "@/components/AuthButton";
@@ -8,16 +7,8 @@ import { Link } from "react-router-dom";
 import { PersonProfile, defaultProfile } from "@/lib/profileData";
 
 const EditProfile = () => {
-  const { isAuthenticated, user } = useAuth();
-  const navigate = useNavigate();
+  const { user } = useAuth();
   const [profile, setProfile] = useState<PersonProfile>(defaultProfile);
-
-  // Redirect if not authenticated
-  useEffect(() => {
-    if (!isAuthenticated) {
-      navigate("/auth");
-    }
-  }, [isAuthenticated, navigate]);
 
   // Initialize profile with user data if available
   useEffect(() => {
@@ -36,10 +27,6 @@ const EditProfile = () => {
     // Here you would typically save to a backend
     console.log("Profile updated:", updatedProfile);
   };
-
-  if (!isAuthenticated) {
-    return null; // Will redirect via useEffect
-  }
 
   return (
     <div className="min-h-screen bg-gray-50 p-4 md:p-6 relative">
