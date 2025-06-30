@@ -44,6 +44,10 @@ export default function AuthButton() {
   };
 
   // Menu item click handlers
+  const handleMyAccountClick = () => {
+    navigate("/account");
+  };
+
   const handleProfileClick = () => {
     console.log("Opening profile settings...");
     // You can implement a modal or navigate to profile page
