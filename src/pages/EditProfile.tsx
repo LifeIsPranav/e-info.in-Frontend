@@ -29,6 +29,9 @@ const EditProfile = () => {
   const [portfolioProjects, setPortfolioProjects] = useState<
     PortfolioProject[]
   >(defaultPortfolioProjects);
+  const [workExperiences, setWorkExperiences] = useState<WorkExperienceData[]>(
+    defaultWorkExperiences,
+  );
 
   // Initialize profile with user data if available
   useEffect(() => {
