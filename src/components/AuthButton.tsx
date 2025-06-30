@@ -49,7 +49,7 @@ export default function AuthButton() {
   };
 
   const handleProfileClick = () => {
-    navigate("/profile");
+    navigate("/mycard");
   };
 
   const handleSettingsClick = () => {
