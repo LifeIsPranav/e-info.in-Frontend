@@ -74,7 +74,7 @@ const EditProfile = () => {
   };
 
   return (
-    <div className="bg-gray-50 p-4 md:p-6 relative">
+    <div className="min-h-screen bg-gray-50 p-4 md:p-6 relative">
       {/* Logo - Top Left */}
       <div className="absolute top-4 left-4 z-50">
         <Logo />
