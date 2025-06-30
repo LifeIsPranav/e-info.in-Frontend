@@ -104,12 +104,6 @@ const MyAccount = () => {
       {/* Navigation - Top Right */}
       <div className="absolute top-4 right-4 z-50 flex items-center gap-4">
         <Link
-          to="/demo"
-          className="text-gray-600 hover:text-gray-900 transition-colors"
-        >
-          Demo
-        </Link>
-        <Link
           to="/mycard"
           className="text-gray-600 hover:text-gray-900 transition-colors"
         >
