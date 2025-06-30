@@ -1,51 +1,42 @@
-import ProfileSection from "@/components/ProfileSection";
-import PortfolioSection from "@/components/PortfolioSection";
-import WorkExperienceSection from "@/components/WorkExperienceSection";
-import AuthButton from "@/components/AuthButton";
+import { Link } from "react-router-dom";
 import Logo from "@/components/Logo";
+import { Button } from "@/components/ui/button";
+import AuthButton from "@/components/AuthButton";
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-gray-50 p-4 md:p-6 relative">
-      {/* Logo - Top Left */}
-      <div className="absolute top-4 left-4 z-50">
+    <div className="min-h-screen bg-white">
+      {/* Navigation Bar */}
+      <nav className="w-full px-6 py-4 flex justify-between items-center">
         <Logo />
-      </div>
-
-      {/* Auth Button - Top Right */}
-      <div className="absolute top-4 right-4 z-50">
         <AuthButton />
-      </div>
+      </nav>
 
-      {/* Main Content Container */}
-      <div className="w-full max-w-lg mx-auto pt-16 pb-8 space-y-8">
-        {/* Profile Section */}
-        <ProfileSection />
+      {/* Main Content - Centered */}
+      <div className="min-h-[calc(100vh-80px)] flex items-center justify-center px-6">
+        <div className="max-w-2xl mx-auto text-center space-y-8">
+          {/* Headline */}
+          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 leading-tight">
+            Showcase Your Developer Identity in One Link
+          </h1>
 
-        {/* Portfolio Section */}
-        <div className="space-y-4">
-          <div className="text-center">
-            <h2 className="text-2xl font-semibold text-gray-900 mb-2">
-              Portfolio
-            </h2>
-            <p className="text-gray-600 text-sm">
-              Explore my latest projects and creative work
-            </p>
+          {/* Subtitle */}
+          <p className="text-xl text-gray-600 leading-relaxed max-w-xl mx-auto">
+            Create a beautiful, unified profile to share all your work and
+            links.
+          </p>
+
+          {/* Buttons */}
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-4">
+            <Button size="lg" className="w-full sm:w-auto">
+              Get Started
+            </Button>
+            <Link to="/demo" className="w-full sm:w-auto">
+              <Button variant="outline" size="lg" className="w-full">
+                View Demo
+              </Button>
+            </Link>
           </div>
-          <PortfolioSection />
-        </div>
-
-        {/* Work Experience Section */}
-        <div className="space-y-4">
-          <div className="text-center">
-            <h2 className="text-2xl font-semibold text-gray-900 mb-2">
-              Experience
-            </h2>
-            <p className="text-gray-600 text-sm">
-              My professional journey and key achievements
-            </p>
-          </div>
-          <WorkExperienceSection />
         </div>
       </div>
     </div>
