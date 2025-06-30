@@ -126,6 +126,12 @@ const EditProfile = () => {
           projects={portfolioProjects}
           onProjectsUpdate={handlePortfolioProjectsUpdate}
         />
+
+        {/* Editable Experience Section */}
+        <EditableExperienceSection
+          experiences={workExperiences}
+          onExperiencesUpdate={handleWorkExperiencesUpdate}
+        />
       </div>
     </div>
   );
