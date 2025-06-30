@@ -3,6 +3,7 @@ import { useAuth } from "@/contexts/AuthContext";
 import EditableProfileSection from "@/components/EditableProfileSection";
 import EditableLinksSection from "@/components/EditableLinksSection";
 import EditablePortfolioSection from "@/components/EditablePortfolioSection";
+import EditableExperienceSection from "@/components/EditableExperienceSection";
 import Logo from "@/components/Logo";
 import AuthButton from "@/components/AuthButton";
 import { Link } from "react-router-dom";
@@ -16,6 +17,10 @@ import {
   PortfolioProject,
   defaultPortfolioProjects,
 } from "@/lib/portfolioData";
+import {
+  WorkExperienceData,
+  defaultWorkExperiences,
+} from "@/lib/workExperienceData";
 
 const EditProfile = () => {
   const { user } = useAuth();
