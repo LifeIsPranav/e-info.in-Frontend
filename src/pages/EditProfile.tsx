@@ -3,6 +3,7 @@ import { useAuth } from "@/contexts/AuthContext";
 import EditableProfileSection from "@/components/EditableProfileSection";
 import EditableLinksSection from "@/components/EditableLinksSection";
 import EditablePortfolioSection from "@/components/EditablePortfolioSection";
+import EditableExperienceSection from "@/components/EditableExperienceSection";
 import Logo from "@/components/Logo";
 import AuthButton from "@/components/AuthButton";
 import { Link } from "react-router-dom";
@@ -16,6 +17,10 @@ import {
   PortfolioProject,
   defaultPortfolioProjects,
 } from "@/lib/portfolioData";
+import {
+  WorkExperienceData,
+  defaultWorkExperiences,
+} from "@/lib/workExperienceData";
 
 const EditProfile = () => {
   const { user } = useAuth();
@@ -24,6 +29,9 @@ const EditProfile = () => {
   const [portfolioProjects, setPortfolioProjects] = useState<
     PortfolioProject[]
   >(defaultPortfolioProjects);
+  const [workExperiences, setWorkExperiences] = useState<WorkExperienceData[]>(
+    defaultWorkExperiences,
+  );
 
   // Initialize profile with user data if available
   useEffect(() => {
@@ -57,6 +65,14 @@ const EditProfile = () => {
     console.log("Portfolio projects updated:", updatedPortfolioProjects);
   };
 
+  const handleWorkExperiencesUpdate = (
+    updatedWorkExperiences: WorkExperienceData[],
+  ) => {
+    setWorkExperiences(updatedWorkExperiences);
+    // Here you would typically save to a backend
+    console.log("Work experiences updated:", updatedWorkExperiences);
+  };
+
   return (
     <div className="min-h-screen bg-gray-50 p-4 md:p-6 relative">
       {/* Logo - Top Left */}
@@ -67,12 +83,6 @@ const EditProfile = () => {
       {/* Navigation - Top Right */}
       <div className="absolute top-4 right-4 z-50 flex items-center gap-4">
         <Link
-          to="/demo"
-          className="text-gray-600 hover:text-gray-900 transition-colors"
-        >
-          Demo
-        </Link>
-        <Link
           to="/"
           className="text-gray-600 hover:text-gray-900 transition-colors"
         >
@@ -82,7 +92,7 @@ const EditProfile = () => {
       </div>
 
       {/* Main Content Container */}
-      <div className="w-full max-w-lg mx-auto pt-16 pb-8 space-y-8">
+      <div className="w-full max-w-lg mx-auto pt-16 pb-24 space-y-8">
         {/* Info Section */}
         <div className="text-center">
           <h2 className="text-2xl font-semibold text-gray-900 mb-2">
@@ -103,6 +113,12 @@ const EditProfile = () => {
         <EditableLinksSection
           projects={projects}
           onProjectsUpdate={handleProjectsUpdate}
+        />
+
+        {/* Editable Experience Section */}
+        <EditableExperienceSection
+          experiences={workExperiences}
+          onExperiencesUpdate={handleWorkExperiencesUpdate}
         />
 
         {/* Editable Portfolio Section */}

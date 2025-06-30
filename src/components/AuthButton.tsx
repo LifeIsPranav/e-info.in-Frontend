@@ -7,6 +7,8 @@ import {
   Mail,
   CreditCard,
   HelpCircle,
+  UserCog,
+  LayoutDashboard,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -43,24 +45,21 @@ export default function AuthButton() {
   };
 
   // Menu item click handlers
+  const handleDashboardClick = () => {
+    navigate("/dashboard");
+  };
+
+  const handleMyAccountClick = () => {
+    navigate("/account");
+  };
+
   const handleProfileClick = () => {
-    console.log("Opening profile settings...");
-    // You can implement a modal or navigate to profile page
+    navigate("/mycard");
   };
 
   const handleSettingsClick = () => {
     console.log("Opening settings...");
     // You can implement a modal or navigate to settings page
-  };
-
-  const handleBillingClick = () => {
-    console.log("Opening billing...");
-    // You can implement a modal or navigate to billing page
-  };
-
-  const handleSupportClick = () => {
-    console.log("Opening support...");
-    // You can implement a modal or navigate to support page
   };
 
   if (!isAuthenticated) {
@@ -117,6 +116,22 @@ export default function AuthButton() {
         {/* Menu Items */}
         <div className="p-2 space-y-1">
           <DropdownMenuItem
+            onClick={handleDashboardClick}
+            className="cursor-pointer rounded-lg px-3 py-2.5 text-sm font-medium text-gray-700 hover:bg-gray-50 hover:text-gray-900 transition-all duration-200 group"
+          >
+            <LayoutDashboard className="mr-3 h-4 w-4 text-gray-400 group-hover:text-gray-600 transition-colors" />
+            <span>Dashboard</span>
+          </DropdownMenuItem>
+
+          <DropdownMenuItem
+            onClick={handleMyAccountClick}
+            className="cursor-pointer rounded-lg px-3 py-2.5 text-sm font-medium text-gray-700 hover:bg-gray-50 hover:text-gray-900 transition-all duration-200 group"
+          >
+            <UserCog className="mr-3 h-4 w-4 text-gray-400 group-hover:text-gray-600 transition-colors" />
+            <span>My Account</span>
+          </DropdownMenuItem>
+
+          <DropdownMenuItem
             onClick={handleProfileClick}
             className="cursor-pointer rounded-lg px-3 py-2.5 text-sm font-medium text-gray-700 hover:bg-gray-50 hover:text-gray-900 transition-all duration-200 group"
           >
@@ -130,22 +145,6 @@ export default function AuthButton() {
           >
             <Settings className="mr-3 h-4 w-4 text-gray-400 group-hover:text-gray-600 transition-colors" />
             <span>Settings</span>
-          </DropdownMenuItem>
-
-          <DropdownMenuItem
-            onClick={handleBillingClick}
-            className="cursor-pointer rounded-lg px-3 py-2.5 text-sm font-medium text-gray-700 hover:bg-gray-50 hover:text-gray-900 transition-all duration-200 group"
-          >
-            <CreditCard className="mr-3 h-4 w-4 text-gray-400 group-hover:text-gray-600 transition-colors" />
-            <span>Billing</span>
-          </DropdownMenuItem>
-
-          <DropdownMenuItem
-            onClick={handleSupportClick}
-            className="cursor-pointer rounded-lg px-3 py-2.5 text-sm font-medium text-gray-700 hover:bg-gray-50 hover:text-gray-900 transition-all duration-200 group"
-          >
-            <HelpCircle className="mr-3 h-4 w-4 text-gray-400 group-hover:text-gray-600 transition-colors" />
-            <span>Support</span>
           </DropdownMenuItem>
         </div>
 
