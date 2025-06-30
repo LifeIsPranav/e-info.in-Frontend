@@ -63,45 +63,6 @@ const EditableExperienceItem = ({
     onUpdate(updated);
   };
 
-  const handleProjectFieldChange = (
-    projectIndex: number,
-    field: keyof WorkProject,
-    value: string | string[],
-  ) => {
-    const updatedProjects = [...editingExperience.projects];
-    updatedProjects[projectIndex] = {
-      ...updatedProjects[projectIndex],
-      [field]: value,
-    };
-    const updated = { ...editingExperience, projects: updatedProjects };
-    setEditingExperience(updated);
-    onUpdate(updated);
-  };
-
-  const handleAddProject = () => {
-    const newProject: WorkProject = {
-      id: `project-${Date.now()}`,
-      title: "New Project",
-      description: "Project description...",
-      technologies: [],
-    };
-    const updated = {
-      ...editingExperience,
-      projects: [...editingExperience.projects, newProject],
-    };
-    setEditingExperience(updated);
-    onUpdate(updated);
-  };
-
-  const handleRemoveProject = (projectIndex: number) => {
-    const updatedProjects = editingExperience.projects.filter(
-      (_, i) => i !== projectIndex,
-    );
-    const updated = { ...editingExperience, projects: updatedProjects };
-    setEditingExperience(updated);
-    onUpdate(updated);
-  };
-
   const handleAchievementChange = (achievementIndex: number, value: string) => {
     const updatedAchievements = [...editingExperience.achievements];
     updatedAchievements[achievementIndex] = value;
