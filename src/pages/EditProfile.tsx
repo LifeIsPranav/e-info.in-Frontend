@@ -1,14 +1,21 @@
 import { useState, useEffect } from "react";
 import { useAuth } from "@/contexts/AuthContext";
 import EditableProfileSection from "@/components/EditableProfileSection";
+import EditableLinksSection from "@/components/EditableLinksSection";
 import Logo from "@/components/Logo";
 import AuthButton from "@/components/AuthButton";
 import { Link } from "react-router-dom";
-import { PersonProfile, defaultProfile } from "@/lib/profileData";
+import {
+  PersonProfile,
+  ProjectLink,
+  defaultProfile,
+  defaultProjects,
+} from "@/lib/profileData";
 
 const EditProfile = () => {
   const { user } = useAuth();
   const [profile, setProfile] = useState<PersonProfile>(defaultProfile);
+  const [projects, setProjects] = useState<ProjectLink[]>(defaultProjects);
 
   // Initialize profile with user data if available
   useEffect(() => {
@@ -26,6 +33,12 @@ const EditProfile = () => {
     setProfile(updatedProfile);
     // Here you would typically save to a backend
     console.log("Profile updated:", updatedProfile);
+  };
+
+  const handleProjectsUpdate = (updatedProjects: ProjectLink[]) => {
+    setProjects(updatedProjects);
+    // Here you would typically save to a backend
+    console.log("Projects updated:", updatedProjects);
   };
 
   return (
@@ -60,13 +73,19 @@ const EditProfile = () => {
           onProfileUpdate={handleProfileUpdate}
         />
 
+        {/* Editable Links Section */}
+        <EditableLinksSection
+          projects={projects}
+          onProjectsUpdate={handleProjectsUpdate}
+        />
+
         {/* Info Section */}
         <div className="text-center">
           <h2 className="text-2xl font-semibold text-gray-900 mb-2">
             Edit Your Profile
           </h2>
           <p className="text-gray-600 text-sm">
-            Customize your digital card by editing the fields above
+            Customize your digital card and links above
           </p>
         </div>
       </div>
