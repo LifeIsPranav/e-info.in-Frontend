@@ -49,23 +49,12 @@ export default function AuthButton() {
   };
 
   const handleProfileClick = () => {
-    console.log("Opening profile settings...");
-    // You can implement a modal or navigate to profile page
+    navigate("/profile");
   };
 
   const handleSettingsClick = () => {
     console.log("Opening settings...");
     // You can implement a modal or navigate to settings page
-  };
-
-  const handleBillingClick = () => {
-    console.log("Opening billing...");
-    // You can implement a modal or navigate to billing page
-  };
-
-  const handleSupportClick = () => {
-    console.log("Opening support...");
-    // You can implement a modal or navigate to support page
   };
 
   if (!isAuthenticated) {
