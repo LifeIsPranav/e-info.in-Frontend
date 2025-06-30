@@ -1,5 +1,13 @@
 import { useState } from "react";
-import { Edit3, Save, X, Plus, Trash2, ExternalLink } from "lucide-react";
+import {
+  Edit3,
+  Save,
+  X,
+  Plus,
+  Trash2,
+  GripVertical,
+  ExternalLink,
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -14,15 +22,27 @@ interface EditableLinksectionProps {
 interface EditableLinkItemProps {
   project: ProjectLink;
   isEditing: boolean;
+  index: number;
   onUpdate: (project: ProjectLink) => void;
   onDelete: () => void;
+  onDragStart: (index: number) => void;
+  onDragOver: (index: number) => void;
+  onDragEnd: () => void;
+  isDragging: boolean;
+  dragOverIndex: number | null;
 }
 
 const EditableLinkItem = ({
   project,
   isEditing,
+  index,
   onUpdate,
   onDelete,
+  onDragStart,
+  onDragOver,
+  onDragEnd,
+  isDragging,
+  dragOverIndex,
 }: EditableLinkItemProps) => {
   const [editingProject, setEditingProject] = useState<ProjectLink>(project);
 
@@ -38,10 +58,41 @@ const EditableLinkItem = ({
     }
   };
 
+  const handleDragStart = (e: React.DragEvent) => {
+    e.dataTransfer.effectAllowed = "move";
+    onDragStart(index);
+  };
+
+  const handleDragOver = (e: React.DragEvent) => {
+    e.preventDefault();
+    e.dataTransfer.dropEffect = "move";
+    onDragOver(index);
+  };
+
+  const handleDragEnd = () => {
+    onDragEnd();
+  };
+
+  const isDraggedOver = dragOverIndex === index;
+  const isBeingDragged = isDragging;
+
   if (isEditing) {
     return (
-      <div className="bg-blue-50/50 border border-blue-200 rounded-xl transition-all duration-200 overflow-hidden">
+      <div
+        className={`bg-blue-50/50 border border-blue-200 rounded-xl transition-all duration-200 overflow-hidden ${
+          isBeingDragged ? "opacity-50 scale-95" : ""
+        } ${isDraggedOver ? "border-blue-400 shadow-lg" : ""}`}
+        draggable
+        onDragStart={handleDragStart}
+        onDragOver={handleDragOver}
+        onDragEnd={handleDragEnd}
+      >
         <div className="p-4 space-y-3">
+          {/* Drag Handle */}
+          <div className="flex items-center gap-2 text-gray-500 -mt-1 mb-2">
+            <GripVertical className="w-4 h-4 cursor-grab active:cursor-grabbing" />
+            <span className="text-xs font-medium">Drag to reorder</span>
+          </div>
           {/* Title and URL Row */}
           <div className="grid grid-cols-2 gap-3">
             <div className="space-y-1">
@@ -135,6 +186,8 @@ export default function EditableLinksSection({
   const [isEditing, setIsEditing] = useState(false);
   const [editingProjects, setEditingProjects] =
     useState<ProjectLink[]>(projects);
+  const [draggedIndex, setDraggedIndex] = useState<number | null>(null);
+  const [dragOverIndex, setDragOverIndex] = useState<number | null>(null);
 
   const handleStartEdit = () => {
     setEditingProjects([...projects]);
@@ -171,6 +224,32 @@ export default function EditableLinksSection({
       projectDetails: "Add your detailed description here...",
     };
     setEditingProjects([...editingProjects, newProject]);
+  };
+
+  const handleDragStart = (index: number) => {
+    setDraggedIndex(index);
+  };
+
+  const handleDragOver = (index: number) => {
+    if (draggedIndex === null) return;
+
+    if (index !== draggedIndex) {
+      setDragOverIndex(index);
+
+      // Reorder the array
+      const newProjects = [...editingProjects];
+      const draggedItem = newProjects[draggedIndex];
+      newProjects.splice(draggedIndex, 1);
+      newProjects.splice(index, 0, draggedItem);
+
+      setEditingProjects(newProjects);
+      setDraggedIndex(index);
+    }
+  };
+
+  const handleDragEnd = () => {
+    setDraggedIndex(null);
+    setDragOverIndex(null);
   };
 
   const currentProjects = isEditing ? editingProjects : projects;
@@ -228,8 +307,14 @@ export default function EditableLinksSection({
             key={project.id}
             project={project}
             isEditing={isEditing}
+            index={index}
             onUpdate={(updated) => handleProjectUpdate(index, updated)}
             onDelete={() => handleProjectDelete(index)}
+            onDragStart={handleDragStart}
+            onDragOver={handleDragOver}
+            onDragEnd={handleDragEnd}
+            isDragging={draggedIndex === index}
+            dragOverIndex={dragOverIndex}
           />
         ))}
 
