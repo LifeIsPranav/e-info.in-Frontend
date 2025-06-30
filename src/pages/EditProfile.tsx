@@ -65,6 +65,14 @@ const EditProfile = () => {
     console.log("Portfolio projects updated:", updatedPortfolioProjects);
   };
 
+  const handleWorkExperiencesUpdate = (
+    updatedWorkExperiences: WorkExperienceData[],
+  ) => {
+    setWorkExperiences(updatedWorkExperiences);
+    // Here you would typically save to a backend
+    console.log("Work experiences updated:", updatedWorkExperiences);
+  };
+
   return (
     <div className="min-h-screen bg-gray-50 p-4 md:p-6 relative">
       {/* Logo - Top Left */}
