@@ -121,16 +121,16 @@ const EditProfile = () => {
           onProjectsUpdate={handleProjectsUpdate}
         />
 
-        {/* Editable Portfolio Section */}
-        <EditablePortfolioSection
-          projects={portfolioProjects}
-          onProjectsUpdate={handlePortfolioProjectsUpdate}
-        />
-
         {/* Editable Experience Section */}
         <EditableExperienceSection
           experiences={workExperiences}
           onExperiencesUpdate={handleWorkExperiencesUpdate}
+        />
+
+        {/* Editable Portfolio Section */}
+        <EditablePortfolioSection
+          projects={portfolioProjects}
+          onProjectsUpdate={handlePortfolioProjectsUpdate}
         />
       </div>
     </div>
