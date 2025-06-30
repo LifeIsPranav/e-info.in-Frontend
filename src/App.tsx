@@ -8,6 +8,7 @@ import Index from "./pages/Index";
 import Demo from "./pages/Demo";
 import Auth from "./pages/Auth";
 import EditProfile from "./pages/EditProfile";
+import MyAccount from "./pages/MyAccount";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
