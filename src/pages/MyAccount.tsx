@@ -8,7 +8,7 @@ import { useToast } from "@/hooks/use-toast";
 import Logo from "@/components/Logo";
 import AuthButton from "@/components/AuthButton";
 import { Link } from "react-router-dom";
-import { User, Save, ArrowLeft } from "lucide-react";
+import { User, Save, ArrowLeft, Home, CreditCard } from "lucide-react";
 
 interface UserAccountData {
   name: string;
@@ -102,19 +102,24 @@ const MyAccount = () => {
       </div>
 
       {/* Navigation - Top Right */}
-      <div className="absolute top-4 right-4 z-50 flex items-center gap-4">
-        <Link
-          to="/mycard"
-          className="text-gray-600 hover:text-gray-900 transition-colors"
+      <div className="absolute top-4 right-4 z-50 flex items-center gap-3">
+        <Button
+          onClick={() => (window.location.href = "/")}
+          variant="ghost"
+          size="sm"
+          className="text-gray-600 hover:text-gray-900 transition-colors font-medium"
         >
-          My Card
-        </Link>
-        <Link
-          to="/"
-          className="text-gray-600 hover:text-gray-900 transition-colors"
-        >
+          <Home className="w-4 h-4 mr-2" />
           Home
-        </Link>
+        </Button>
+        <Button
+          onClick={() => (window.location.href = "/mycard")}
+          className="bg-gray-900 hover:bg-gray-800 text-white font-medium"
+          size="sm"
+        >
+          <CreditCard className="w-4 h-4 mr-2" />
+          My Card
+        </Button>
         <AuthButton />
       </div>
 
