@@ -172,8 +172,8 @@ const Dashboard: React.FC = () => {
             {/* Card Views */}
             <div className="bg-white rounded-xl border border-gray-100 shadow-sm p-6 text-center hover:shadow-md transition-shadow duration-200">
               <div className="flex justify-center mb-4">
-                <div className="w-12 h-12 bg-blue-50 rounded-full flex items-center justify-center">
-                  <Eye className="w-6 h-6 text-blue-600" aria-hidden="true" />
+                <div className="w-12 h-12 bg-gray-50 rounded-full flex items-center justify-center">
+                  <Eye className="w-6 h-6 text-gray-600" aria-hidden="true" />
                 </div>
               </div>
               <div className="space-y-2">
@@ -198,11 +198,8 @@ const Dashboard: React.FC = () => {
             {/* Stars */}
             <div className="bg-white rounded-xl border border-gray-100 shadow-sm p-6 text-center hover:shadow-md transition-shadow duration-200">
               <div className="flex justify-center mb-4">
-                <div className="w-12 h-12 bg-yellow-50 rounded-full flex items-center justify-center">
-                  <Star
-                    className="w-6 h-6 text-yellow-600"
-                    aria-hidden="true"
-                  />
+                <div className="w-12 h-12 bg-gray-50 rounded-full flex items-center justify-center">
+                  <Star className="w-6 h-6 text-gray-600" aria-hidden="true" />
                 </div>
               </div>
               <div className="space-y-2">
@@ -227,9 +224,9 @@ const Dashboard: React.FC = () => {
             {/* Total Clicks */}
             <div className="bg-white rounded-xl border border-gray-100 shadow-sm p-6 text-center hover:shadow-md transition-shadow duration-200">
               <div className="flex justify-center mb-4">
-                <div className="w-12 h-12 bg-green-50 rounded-full flex items-center justify-center">
+                <div className="w-12 h-12 bg-gray-50 rounded-full flex items-center justify-center">
                   <MousePointer
-                    className="w-6 h-6 text-green-600"
+                    className="w-6 h-6 text-gray-600"
                     aria-hidden="true"
                   />
                 </div>
