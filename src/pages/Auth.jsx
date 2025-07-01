@@ -35,7 +35,7 @@ const Auth = () => {
       {/* Navigation Bar */}
       <nav className="w-full px-6 py-4 flex justify-between items-center">
         <Link to="/">
-          <Logo />
+          <Logo clickable={false} />
         </Link>
         <Link to="/">
           <Button variant="ghost" size="sm">
