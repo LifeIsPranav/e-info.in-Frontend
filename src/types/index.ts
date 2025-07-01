@@ -27,6 +27,7 @@ export interface PersonProfile extends PersonalInfo, ContactInfo {
 
 export interface DashboardStats {
   cardViews: number;
+  stars: number;
   totalClicks: number;
 }
 
