@@ -64,6 +64,7 @@ import {
   Wrench,
   Hammer,
   Scissors,
+  Ruler,
   Calculator,
   Book,
   FileText,
