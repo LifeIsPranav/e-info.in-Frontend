@@ -544,14 +544,17 @@ export function IconPicker({
           </div>
         </Button>
       </PopoverTrigger>
-      <PopoverContent className="w-80 p-0" align="start">
-        <div className="space-y-3 p-3">
+      <PopoverContent
+        className="w-80 p-0 bg-white border-gray-200 text-gray-900"
+        align="start"
+      >
+        <div className="space-y-3 p-3 bg-white">
           {/* Search */}
           <Input
             placeholder="Search icons..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="text-sm h-8"
+            className="text-sm h-8 bg-white border-gray-200 text-gray-900 placeholder-gray-500"
           />
 
           {/* Category Filter */}
@@ -562,7 +565,11 @@ export function IconPicker({
                 variant={selectedCategory === category ? "default" : "ghost"}
                 size="sm"
                 onClick={() => setSelectedCategory(category)}
-                className="h-6 px-2 text-xs"
+                className={`h-6 px-2 text-xs ${
+                  selectedCategory === category
+                    ? "bg-gray-900 text-white hover:bg-gray-800"
+                    : "text-gray-700 hover:bg-gray-100 hover:text-gray-900"
+                }`}
               >
                 {category}
               </Button>
