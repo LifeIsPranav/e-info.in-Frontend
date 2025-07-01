@@ -34,9 +34,7 @@ const Auth = () => {
     <div className="min-h-screen bg-white">
       {/* Navigation Bar */}
       <nav className="w-full px-6 py-4 flex justify-between items-center">
-        <Link to="/">
-          <Logo />
-        </Link>
+        <Logo />
         <Link to="/">
           <Button variant="ghost" size="sm">
             Back to Home
