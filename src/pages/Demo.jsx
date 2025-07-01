@@ -62,8 +62,8 @@ const Demo = () => {
       </div>
 
       {/* Footer with huge gap */}
-      <footer className="mt-64 mb-4 text-center">
-        <p className="text-lg font-medium tracking-wider">
+      <footer className="mt-0 mb-4 text-center">
+        <p className="text-md font-medium tracking-wider">
           <span className="text-gray-400">info</span>
           <span className="text-gray-900">.in</span>
         </p>
