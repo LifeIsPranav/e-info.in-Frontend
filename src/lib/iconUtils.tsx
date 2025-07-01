@@ -52,11 +52,9 @@ import {
   BarChart,
   PieChart,
   // Tools & Objects
-  Tool,
   Wrench,
   Hammer,
   Scissors,
-  Ruler,
   Calculator,
   Book,
   FileText,
@@ -138,11 +136,9 @@ export const iconMap: Record<string, React.ComponentType<any>> = {
   BarChart,
   PieChart,
   // Tools & Objects
-  Tool,
   Wrench,
   Hammer,
   Scissors,
-  Ruler,
   Calculator,
   Book,
   FileText,
