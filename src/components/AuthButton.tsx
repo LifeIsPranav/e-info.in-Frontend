@@ -1,6 +1,15 @@
-import React from "react";
+import { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { User, Settings, LogOut, UserCog, LayoutDashboard } from "lucide-react";
+import {
+  User,
+  Settings,
+  LogOut,
+  Mail,
+  CreditCard,
+  HelpCircle,
+  UserCog,
+  LayoutDashboard,
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {
@@ -11,10 +20,6 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { useAuth } from "@/contexts/AuthContext";
-import { createInitials } from "@/utils";
-import { ROUTES } from "@/constants";
-import LoadingSpinner from "@/components/common/LoadingSpinner";
-import ActionButton from "@/components/common/ActionButton";
 
 interface AuthButtonProps {
   /**
