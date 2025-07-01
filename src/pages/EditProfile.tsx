@@ -98,7 +98,7 @@ const EditProfile = () => {
       </div>
 
       {/* Main Content Container */}
-      <div className="w-full max-w-lg mx-auto pt-16 pb-24 space-y-8">
+      <div className="w-full max-w-lg mx-auto pt-16 pb-16 space-y-8">
         {/* Info Section */}
         <div className="text-center">
           <h2 className="text-2xl font-semibold text-gray-900 mb-2">
