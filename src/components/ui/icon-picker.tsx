@@ -578,15 +578,15 @@ export function IconPicker({
         </div>
 
         {/* Icons Grid */}
-        <ScrollArea className="h-48">
-          <div className="grid grid-cols-8 gap-1 p-3 pt-0">
+        <ScrollArea className="h-48 bg-white">
+          <div className="grid grid-cols-8 gap-1 p-3 pt-0 bg-white">
             {filteredIcons.map((iconOption) => (
               <Button
                 key={iconOption.name}
                 variant="ghost"
                 size="sm"
                 onClick={() => handleIconSelect(iconOption)}
-                className="h-8 w-8 p-1 hover:bg-gray-100 flex items-center justify-center"
+                className="h-8 w-8 p-1 hover:bg-gray-100 bg-white text-gray-700 flex items-center justify-center border-0"
                 title={iconOption.name}
               >
                 <div className="w-4 h-4 flex items-center justify-center">
@@ -596,7 +596,7 @@ export function IconPicker({
             ))}
           </div>
           {filteredIcons.length === 0 && (
-            <div className="text-center text-gray-500 text-sm py-4">
+            <div className="text-center text-gray-500 text-sm py-4 bg-white">
               No icons found
             </div>
           )}
