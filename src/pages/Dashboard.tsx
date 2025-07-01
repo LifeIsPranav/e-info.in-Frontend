@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useAuth } from "@/contexts/AuthContext";
 import { Button } from "@/components/ui/button";
 import Logo from "@/components/Logo";
+import Footer from "@/components/Footer";
 import { Link, useNavigate } from "react-router-dom";
 import { Eye, MousePointer, UserCog, CreditCard, Home } from "lucide-react";
 
@@ -159,15 +160,8 @@ const Dashboard = () => {
           </div>
         </div>
 
-        {/* Application Branding - Bottom Center */}
-        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2">
-          <div className="text-center">
-            <h2 className="text-3xl font-bold text-gray-900 mb-2">
-              info<span className="text-gray-600">.in</span>
-            </h2>
-            <p className="text-gray-500 text-sm">Connect & Share</p>
-          </div>
         </div>
+        <Footer />
       </div>
     </div>
   );

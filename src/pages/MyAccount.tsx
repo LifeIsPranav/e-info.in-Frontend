@@ -7,6 +7,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { useToast } from "@/hooks/use-toast";
 import Logo from "@/components/Logo";
 import AuthButton from "@/components/AuthButton";
+import Footer from "@/components/Footer";
 import { Link } from "react-router-dom";
 import { User, Save, ArrowLeft, Home, CreditCard } from "lucide-react";
 
@@ -258,6 +259,7 @@ const MyAccount = () => {
           </div>
         </div>
       </div>
+      <Footer />
     </div>
   );
 };

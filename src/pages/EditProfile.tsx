@@ -6,6 +6,7 @@ import EditablePortfolioSection from "@/components/EditablePortfolioSection";
 import EditableExperienceSection from "@/components/EditableExperienceSection";
 import Logo from "@/components/Logo";
 import AuthButton from "@/components/AuthButton";
+import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { Home } from "lucide-react";
@@ -132,6 +133,7 @@ const EditProfile = () => {
           onProjectsUpdate={handlePortfolioProjectsUpdate}
         />
       </div>
+      <Footer />
     </div>
   );
 };
