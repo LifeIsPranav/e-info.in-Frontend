@@ -191,6 +191,20 @@ const EditableExperienceItem = ({
             />
           </div>
 
+          {/* Icon Selection */}
+          <div className="space-y-1">
+            <label className="text-xs font-semibold text-gray-800">Icon</label>
+            <IconPicker
+              selectedIcon={editingExperience.icon}
+              onIconSelect={(icon, iconName) => {
+                const updated = { ...editingExperience, icon };
+                setEditingExperience(updated);
+                onUpdate(updated);
+              }}
+              placeholder="Choose an icon for this experience"
+            />
+          </div>
+
           {/* Achievements Section */}
           <div className="space-y-3">
             <div className="flex items-center justify-between">
