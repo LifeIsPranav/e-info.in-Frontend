@@ -13,6 +13,8 @@ import {
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import { IconPicker } from "@/components/ui/icon-picker";
+import { getIconFromName, getIconNameFromNode } from "@/lib/iconUtils";
 import ProjectShowcase from "@/components/ProjectShowcase";
 import {
   PortfolioProject,
