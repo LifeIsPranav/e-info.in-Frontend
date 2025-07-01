@@ -4,6 +4,7 @@ import WorkExperienceSection from "@/components/WorkExperienceSection";
 import AuthButton from "@/components/AuthButton";
 import Logo from "@/components/Logo";
 import Footer from "@/components/Footer";
+import StarButton from "@/components/StarButton";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { Home } from "lucide-react";
@@ -18,6 +19,7 @@ const Demo = () => {
 
       {/* Navigation - Top Right */}
       <div className="absolute top-4 right-4 z-50 flex items-center gap-3">
+        <StarButton />
         <AuthButton />
       </div>
 

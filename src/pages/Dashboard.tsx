@@ -1,7 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { useAuth } from "@/contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
-import { Eye, MousePointer, UserCog, CreditCard, Home } from "lucide-react";
+import {
+  Eye,
+  MousePointer,
+  UserCog,
+  CreditCard,
+  Home,
+  Star,
+} from "lucide-react";
 import Navigation from "@/components/navigation/Navigation";
 import Footer from "@/components/Footer";
 import BaseLayout from "@/components/layout/BaseLayout";
@@ -17,6 +24,7 @@ const Dashboard: React.FC = () => {
   const navigate = useNavigate();
   const [stats, setStats] = useState<DashboardStats>({
     cardViews: 0,
+    stars: 0,
     totalClicks: 0,
   });
   const [statsLoading, setStatsLoading] = useState(true);
@@ -37,8 +45,15 @@ const Dashboard: React.FC = () => {
         setStatsLoading(true);
         // Mock data - in real app, this would come from your backend
         await new Promise((resolve) => setTimeout(resolve, 1000));
+        // Get star count from localStorage
+        const starData = JSON.parse(
+          localStorage.getItem("profile_stars") || "{}",
+        );
+        const starCount = starData["demo-profile"] || 0;
+
         setStats({
           cardViews: 1247,
+          stars: starCount,
           totalClicks: 389,
         });
       } catch (error) {
@@ -126,7 +141,7 @@ const Dashboard: React.FC = () => {
 
           {/* Stats Section */}
           <section
-            className="grid md:grid-cols-2 gap-8 mb-16"
+            className="grid md:grid-cols-3 gap-8 mb-16"
             aria-labelledby="stats-heading"
           >
             <h2 id="stats-heading" className="sr-only">
@@ -162,6 +177,43 @@ const Dashboard: React.FC = () => {
                   )}
                   <p className="text-sm text-gray-500">
                     People who viewed your profile
+                  </p>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Stars */}
+            <Card
+              padding="lg"
+              shadow="sm"
+              hover
+              className="text-center transition-all duration-200"
+              rounded="2xl"
+            >
+              <CardContent padding="none">
+                <div className="flex justify-center mb-4">
+                  <div className="w-12 h-12 bg-yellow-50 rounded-full flex items-center justify-center">
+                    <Star
+                      className="w-6 h-6 text-yellow-600"
+                      aria-hidden="true"
+                    />
+                  </div>
+                </div>
+                <div className="space-y-2">
+                  <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wider">
+                    Stars
+                  </h3>
+                  {statsLoading ? (
+                    <div className="h-12 flex items-center justify-center">
+                      <LoadingSpinner size="md" />
+                    </div>
+                  ) : (
+                    <p className="text-4xl font-bold text-gray-900">
+                      {formatNumber(stats.stars)}
+                    </p>
+                  )}
+                  <p className="text-sm text-gray-500">
+                    People who starred your profile
                   </p>
                 </div>
               </CardContent>
