@@ -61,11 +61,9 @@ import {
   BarChart,
   PieChart,
   // Tools & Objects
-  Tool,
   Wrench,
   Hammer,
   Scissors,
-  Ruler,
   Calculator,
   Book,
   FileText,
