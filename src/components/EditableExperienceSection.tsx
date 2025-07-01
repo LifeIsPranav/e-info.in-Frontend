@@ -351,6 +351,7 @@ export default function EditableExperienceSection({
       description: "Add your role description here...",
       projects: [],
       achievements: ["New achievement..."],
+      icon: getIconFromName("Briefcase"),
     };
     setEditingExperiences([...editingExperiences, newExperience]);
   };
