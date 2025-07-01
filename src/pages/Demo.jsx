@@ -30,7 +30,7 @@ const Demo = () => {
       </div>
 
       {/* Main Content Container */}
-      <div className="w-full max-w-lg mx-auto pt-16 pb-8 space-y-8">
+      <div className="w-full max-w-lg mx-auto pt-16 space-y-8">
         {/* Profile Section */}
         <ProfileSection />
 
@@ -62,7 +62,7 @@ const Demo = () => {
       </div>
 
       {/* Footer with huge gap */}
-      <footer className="mt-40 mb-4 text-center">
+      <footer className="mt-48 mb-4 text-center">
         <p className="text-sm text-gray-400 font-light">info.in</p>
       </footer>
     </div>
