@@ -402,6 +402,7 @@ export default function EditablePortfolioSection({
       description: "Brief project description",
       category: "Design",
       href: "",
+      icon: getIconFromName("Folder"),
       images: [
         {
           id: `image-${Date.now()}`,
