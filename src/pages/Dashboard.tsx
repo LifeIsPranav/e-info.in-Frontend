@@ -159,8 +159,6 @@ const Dashboard = () => {
             </Button>
           </div>
         </div>
-
-        </div>
         <Footer />
       </div>
     </div>
