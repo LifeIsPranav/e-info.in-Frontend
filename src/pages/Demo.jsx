@@ -18,15 +18,6 @@ const Demo = () => {
 
       {/* Navigation - Top Right */}
       <div className="absolute top-4 right-4 z-50 flex items-center gap-3">
-        <Button
-          onClick={() => (window.location.href = "/")}
-          variant="outline"
-          size="sm"
-          className="bg-white border-gray-200 text-gray-700 hover:bg-gray-50 font-medium"
-        >
-          <Home className="w-4 h-4 mr-2" />
-          Home
-        </Button>
         <AuthButton />
       </div>
 

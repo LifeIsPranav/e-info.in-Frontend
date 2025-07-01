@@ -1,6 +1,8 @@
+import { Link } from "react-router-dom";
+
 export default function Logo() {
   return (
-    <div className="flex items-center group cursor-pointer">
+    <Link to="/" className="flex items-center group cursor-pointer">
       {/* Brand Text */}
       <div className="flex flex-col">
         <span className="text-gray-900 font-medium text-base leading-none tracking-normal group-hover:text-gray-700 transition-colors duration-200">
@@ -10,6 +12,6 @@ export default function Logo() {
           Connect & Share
         </span>
       </div>
-    </div>
+    </Link>
   );
 }

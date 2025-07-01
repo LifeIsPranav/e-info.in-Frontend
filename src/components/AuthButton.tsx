@@ -9,6 +9,7 @@ import {
   HelpCircle,
   UserCog,
   LayoutDashboard,
+  X,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -22,7 +23,8 @@ import {
 import { useAuth } from "@/contexts/AuthContext";
 
 export default function AuthButton() {
-  const { user, isAuthenticated, signOut } = useAuth();
+  const { user, isAuthenticated, isLoading, error, signOut, clearError } =
+    useAuth();
   const navigate = useNavigate();
 
   // Handle sign in - navigate to auth page
@@ -30,9 +32,13 @@ export default function AuthButton() {
     navigate("/auth");
   };
 
-  // Sign out function
-  const handleSignOut = () => {
-    signOut();
+  // Sign out function with error handling
+  const handleSignOut = async () => {
+    try {
+      await signOut();
+    } catch (error) {
+      console.error("Sign out failed:", error);
+    }
   };
 
   // Get user initials for avatar fallback
@@ -61,6 +67,15 @@ export default function AuthButton() {
     console.log("Opening settings...");
     // You can implement a modal or navigate to settings page
   };
+
+  // Show loading spinner during auth operations
+  if (isLoading) {
+    return (
+      <div className="h-10 w-10 flex items-center justify-center">
+        <div className="w-4 h-4 border-2 border-gray-300 border-t-gray-900 rounded-full animate-spin" />
+      </div>
+    );
+  }
 
   if (!isAuthenticated) {
     return (
@@ -111,6 +126,19 @@ export default function AuthButton() {
               <p className="text-xs text-gray-500 truncate">{user?.email}</p>
             </div>
           </div>
+          {error && (
+            <div className="mt-2 p-2 bg-red-50 border border-red-200 rounded-md">
+              <div className="flex items-center justify-between">
+                <p className="text-xs text-red-600">{error}</p>
+                <button
+                  onClick={clearError}
+                  className="text-red-400 hover:text-red-600"
+                >
+                  <X className="h-3 w-3" />
+                </button>
+              </div>
+            </div>
+          )}
         </div>
 
         {/* Menu Items */}
@@ -136,7 +164,7 @@ export default function AuthButton() {
             className="cursor-pointer rounded-lg px-3 py-2.5 text-sm font-medium text-gray-700 hover:bg-gray-50 hover:text-gray-900 transition-all duration-200 group"
           >
             <User className="mr-3 h-4 w-4 text-gray-400 group-hover:text-gray-600 transition-colors" />
-            <span>Profile</span>
+            <span>My Card</span>
           </DropdownMenuItem>
 
           <DropdownMenuItem

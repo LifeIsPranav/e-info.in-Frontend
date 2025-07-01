@@ -6,15 +6,14 @@ import { useAuth } from "@/contexts/AuthContext";
 import Footer from "@/components/Footer";
 
 const Auth = () => {
-  const [isLoading, setIsLoading] = useState(false);
-  const { signIn } = useAuth();
+  const { signIn, isLoading, error, clearError } = useAuth();
   const navigate = useNavigate();
 
   const handleGoogleSignIn = async () => {
-    setIsLoading(true);
+    try {
+      // Clear any previous errors
+      clearError();
 
-    // Simulate authentication process
-    setTimeout(() => {
       // Mock user data
       const mockUser = {
         id: "1",
@@ -24,19 +23,19 @@ const Auth = () => {
           "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=32&h=32&fit=crop&crop=face",
       };
 
-      signIn(mockUser);
-      setIsLoading(false);
+      await signIn(mockUser);
       navigate("/dashboard");
-    }, 1500);
+    } catch (error) {
+      // Error is handled by the context
+      console.error("Sign in failed:", error);
+    }
   };
 
   return (
     <div className="min-h-screen bg-white">
       {/* Navigation Bar */}
       <nav className="w-full px-6 py-4 flex justify-between items-center">
-        <Link to="/">
-          <Logo />
-        </Link>
+        <Logo />
         <Link to="/">
           <Button variant="ghost" size="sm">
             Back to Home
@@ -93,6 +92,39 @@ const Auth = () => {
                 "Continue with Google"
               )}
             </Button>
+
+            {error && (
+              <div className="mt-4 p-3 bg-red-50 border border-red-200 rounded-md">
+                <div className="flex items-center">
+                  <div className="w-5 h-5 text-red-400 mr-2">
+                    <svg fill="currentColor" viewBox="0 0 20 20">
+                      <path
+                        fillRule="evenodd"
+                        d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z"
+                        clipRule="evenodd"
+                      />
+                    </svg>
+                  </div>
+                  <p className="text-sm text-red-600">{error}</p>
+                  <button
+                    onClick={clearError}
+                    className="ml-auto text-red-400 hover:text-red-600"
+                  >
+                    <svg
+                      className="w-4 h-4"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                        clipRule="evenodd"
+                      />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+            )}
           </div>
         </div>
       </div>

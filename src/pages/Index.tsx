@@ -1,10 +1,11 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Logo from "@/components/Logo";
 import { Button } from "@/components/ui/button";
 import AuthButton from "@/components/AuthButton";
 import Footer from "@/components/Footer";
 
 const Index = () => {
+  const navigate = useNavigate();
   return (
     <div className="min-h-screen bg-white">
       {/* Navigation Bar */}
@@ -29,7 +30,11 @@ const Index = () => {
 
           {/* Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-4">
-            <Button size="lg" className="w-full sm:w-auto">
+            <Button
+              size="lg"
+              className="w-full sm:w-auto"
+              onClick={() => navigate("/dashboard")}
+            >
               Get Started
             </Button>
             <Link to="/demo" className="w-full sm:w-auto">
