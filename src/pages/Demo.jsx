@@ -3,7 +3,9 @@ import PortfolioSection from "@/components/PortfolioSection";
 import WorkExperienceSection from "@/components/WorkExperienceSection";
 import AuthButton from "@/components/AuthButton";
 import Logo from "@/components/Logo";
+import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
+import { Home } from "lucide-react";
 
 const Demo = () => {
   return (
@@ -14,13 +16,16 @@ const Demo = () => {
       </div>
 
       {/* Navigation - Top Right */}
-      <div className="absolute top-4 right-4 z-50 flex items-center gap-4">
-        <Link
-          to="/"
-          className="text-gray-600 hover:text-gray-900 transition-colors"
+      <div className="absolute top-4 right-4 z-50 flex items-center gap-3">
+        <Button
+          onClick={() => (window.location.href = "/")}
+          variant="ghost"
+          size="sm"
+          className="text-gray-600 hover:text-gray-900 transition-colors font-medium"
         >
+          <Home className="w-4 h-4 mr-2" />
           Home
-        </Link>
+        </Button>
         <AuthButton />
       </div>
 
