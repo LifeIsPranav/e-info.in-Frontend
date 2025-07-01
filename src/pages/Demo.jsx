@@ -31,7 +31,7 @@ const Demo = () => {
       </div>
 
       {/* Main Content Container */}
-      <div className="w-full max-w-lg mx-auto pt-16 space-y-8">
+      <div className="w-full max-w-lg mx-auto pt-16 pb-16 space-y-8">
         {/* Profile Section */}
         <ProfileSection />
 
