@@ -6,15 +6,14 @@ import { useAuth } from "@/contexts/AuthContext";
 import Footer from "@/components/Footer";
 
 const Auth = () => {
-  const [isLoading, setIsLoading] = useState(false);
-  const { signIn } = useAuth();
+  const { signIn, isLoading, error, clearError } = useAuth();
   const navigate = useNavigate();
 
   const handleGoogleSignIn = async () => {
-    setIsLoading(true);
+    try {
+      // Clear any previous errors
+      clearError();
 
-    // Simulate authentication process
-    setTimeout(() => {
       // Mock user data
       const mockUser = {
         id: "1",
@@ -24,10 +23,12 @@ const Auth = () => {
           "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=32&h=32&fit=crop&crop=face",
       };
 
-      signIn(mockUser);
-      setIsLoading(false);
+      await signIn(mockUser);
       navigate("/dashboard");
-    }, 1500);
+    } catch (error) {
+      // Error is handled by the context
+      console.error("Sign in failed:", error);
+    }
   };
 
   return (
