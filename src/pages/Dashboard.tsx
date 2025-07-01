@@ -163,7 +163,7 @@ const Dashboard = () => {
         <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2">
           <div className="text-center">
             <h2 className="text-3xl font-bold text-gray-900 mb-2">
-              myone<span className="text-gray-600">Social</span>
+              info<span className="text-gray-600">.in</span>
             </h2>
             <p className="text-gray-500 text-sm">Connect & Share</p>
           </div>

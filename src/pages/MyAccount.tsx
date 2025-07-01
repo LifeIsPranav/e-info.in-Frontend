@@ -23,7 +23,7 @@ const MyAccount = () => {
   const [accountData, setAccountData] = useState<UserAccountData>({
     name: user?.name || "",
     username: user?.email?.split("@")[0] || "",
-    instantMessage: "Hey there! I'm using myoneSocial to connect and share.",
+    instantMessage: "Hey there! I'm using info.in to connect and share.",
   });
 
   // Initialize with user data if available
