@@ -60,6 +60,11 @@ const Demo = () => {
           <PortfolioSection />
         </div>
       </div>
+
+      {/* Footer with huge gap */}
+      <footer className="mt-32 mb-8 text-center">
+        <p className="text-sm text-gray-400 font-light">info.in</p>
+      </footer>
     </div>
   );
 };
