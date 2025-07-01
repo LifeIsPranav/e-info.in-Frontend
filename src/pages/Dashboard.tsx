@@ -66,6 +66,30 @@ const Dashboard: React.FC = () => {
     fetchStats();
   }, [isAuthenticated]);
 
+  // Refresh stats when user returns to dashboard (to show updated star count)
+  useEffect(() => {
+    const handleVisibilityChange = () => {
+      if (!document.hidden && isAuthenticated) {
+        // Refresh star count when page becomes visible
+        const starData = JSON.parse(
+          localStorage.getItem("profile_stars") || "{}",
+        );
+        const starCount = starData["demo-profile"] || 0;
+
+        setStats((prevStats) => ({
+          ...prevStats,
+          stars: starCount,
+        }));
+      }
+    };
+
+    document.addEventListener("visibilitychange", handleVisibilityChange);
+
+    return () => {
+      document.removeEventListener("visibilitychange", handleVisibilityChange);
+    };
+  }, [isAuthenticated]);
+
   // Show loading while checking auth
   if (authLoading) {
     return (
