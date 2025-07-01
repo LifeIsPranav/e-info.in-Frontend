@@ -238,6 +238,7 @@ export default function EditableLinksSection({
       description: "Brief description",
       href: "https://example.com",
       projectDetails: "Add your detailed description here...",
+      icon: getIconFromName("ExternalLink"),
     };
     setEditingProjects([...editingProjects, newProject]);
   };
