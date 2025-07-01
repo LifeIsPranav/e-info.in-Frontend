@@ -30,15 +30,7 @@ const queryClient = new QueryClient({
   },
 });
 
-// Loading fallback component
-const PageLoader = () => (
-  <div className="min-h-screen bg-gray-50 flex items-center justify-center">
-    <div className="text-center space-y-4">
-      <div className="w-8 h-8 border-2 border-blue-600 border-t-transparent rounded-full animate-spin mx-auto" />
-      <p className="text-gray-600 font-medium">Loading...</p>
-    </div>
-  </div>
-);
+import PageLoader from "@/components/common/PageLoader";
 
 const App = () => (
   <ErrorBoundary
@@ -50,7 +42,7 @@ const App = () => (
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
         <AuthProvider>
-          <Suspense fallback={<PageLoader />}>
+          <Suspense fallback={<PageLoader message="Loading page..." />}>
             <BrowserRouter>
               <Routes>
                 <Route path="/" element={<Index />} />
