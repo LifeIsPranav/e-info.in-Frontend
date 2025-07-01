@@ -3,6 +3,7 @@ import PortfolioSection from "@/components/PortfolioSection";
 import WorkExperienceSection from "@/components/WorkExperienceSection";
 import AuthButton from "@/components/AuthButton";
 import Logo from "@/components/Logo";
+import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { Home } from "lucide-react";
@@ -61,13 +62,7 @@ const Demo = () => {
         </div>
       </div>
 
-      {/* Footer with huge gap */}
-      <footer className="text-center">
-        <p className="text-md font-medium tracking-wider">
-          <span className="text-gray-400">info</span>
-          <span className="text-gray-900">.in</span>
-        </p>
-      </footer>
+      <Footer />
     </div>
   );
 };
