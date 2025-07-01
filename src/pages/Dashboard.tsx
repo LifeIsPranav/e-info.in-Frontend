@@ -219,7 +219,7 @@ const Dashboard: React.FC = () => {
               variant="outline"
               size="lg"
               fullWidth={false}
-              className="bg-white border-gray-200 text-gray-700 hover:bg-gray-50 font-medium px-8 py-3"
+              className="bg-white border-gray-200 text-gray-700 hover:bg-gray-50 font-medium px-8 py-3 transition-all duration-200 hover:scale-105 hover:shadow-lg active:scale-95"
               aria-describedby="edit-card-description"
             >
               Edit My Card
@@ -232,7 +232,7 @@ const Dashboard: React.FC = () => {
               onClick={() => navigate(ROUTES.DEMO)}
               size="lg"
               fullWidth={false}
-              className="bg-gray-900 hover:bg-gray-800 text-white font-medium px-8 py-3"
+              className="bg-gray-900 hover:bg-gray-800 text-white font-medium px-8 py-3 transition-all duration-200 hover:scale-105 hover:shadow-lg active:scale-95"
               aria-describedby="view-card-description"
             >
               View My Card
