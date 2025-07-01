@@ -181,30 +181,34 @@ export const iconOptions: IconOption[] = [
   },
 
   // Social & Platform
-  { name: "Github", icon: <Github className="w-4 h-4" />, category: "Social" },
+  {
+    name: "Github",
+    icon: <Github className="w-4 h-4 text-gray-700" />,
+    category: "Social",
+  },
   {
     name: "Twitter",
-    icon: <Twitter className="w-4 h-4" />,
+    icon: <Twitter className="w-4 h-4 text-gray-700" />,
     category: "Social",
   },
   {
     name: "Linkedin",
-    icon: <Linkedin className="w-4 h-4" />,
+    icon: <Linkedin className="w-4 h-4 text-gray-700" />,
     category: "Social",
   },
   {
     name: "Instagram",
-    icon: <Instagram className="w-4 h-4" />,
+    icon: <Instagram className="w-4 h-4 text-gray-700" />,
     category: "Social",
   },
   {
     name: "Facebook",
-    icon: <Facebook className="w-4 h-4" />,
+    icon: <Facebook className="w-4 h-4 text-gray-700" />,
     category: "Social",
   },
   {
     name: "Youtube",
-    icon: <Youtube className="w-4 h-4" />,
+    icon: <Youtube className="w-4 h-4 text-gray-700" />,
     category: "Social",
   },
 
