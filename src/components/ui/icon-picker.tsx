@@ -243,7 +243,6 @@ export const iconOptions: IconOption[] = [
   },
 
   // Tools & Objects
-  { name: "Tool", icon: <Tool className="w-4 h-4" />, category: "Tools" },
   { name: "Wrench", icon: <Wrench className="w-4 h-4" />, category: "Tools" },
   { name: "Hammer", icon: <Hammer className="w-4 h-4" />, category: "Tools" },
   {
@@ -251,7 +250,6 @@ export const iconOptions: IconOption[] = [
     icon: <Scissors className="w-4 h-4" />,
     category: "Tools",
   },
-  { name: "Ruler", icon: <Ruler className="w-4 h-4" />, category: "Tools" },
   {
     name: "Calculator",
     icon: <Calculator className="w-4 h-4" />,
