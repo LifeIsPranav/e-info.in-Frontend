@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import Logo from "@/components/Logo";
 import { Button } from "@/components/ui/button";
 import { useAuth } from "@/contexts/AuthContext";
+import Footer from "@/components/Footer";
 
 const Auth = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -95,6 +96,7 @@ const Auth = () => {
           </div>
         </div>
       </div>
+      <Footer />
     </div>
   );
 };

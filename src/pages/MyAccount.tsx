@@ -7,6 +7,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { useToast } from "@/hooks/use-toast";
 import Logo from "@/components/Logo";
 import AuthButton from "@/components/AuthButton";
+import Footer from "@/components/Footer";
 import { Link } from "react-router-dom";
 import { User, Save, ArrowLeft, Home, CreditCard } from "lucide-react";
 
@@ -105,9 +106,9 @@ const MyAccount = () => {
       <div className="absolute top-4 right-4 z-50 flex items-center gap-3">
         <Button
           onClick={() => (window.location.href = "/")}
-          variant="ghost"
+          variant="outline"
           size="sm"
-          className="text-gray-600 hover:text-gray-900 transition-colors font-medium"
+          className="bg-white border-gray-200 text-gray-700 hover:bg-gray-50 font-medium"
         >
           <Home className="w-4 h-4 mr-2" />
           Home
@@ -124,7 +125,7 @@ const MyAccount = () => {
       </div>
 
       {/* Main Content Container */}
-      <div className="w-full max-w-md mx-auto pt-16 pb-24 space-y-8">
+      <div className="w-full max-w-md mx-auto pt-16 pb-16 space-y-8">
         {/* Back Button */}
         <div className="flex items-center gap-3 mb-6">
           <Link
@@ -258,6 +259,7 @@ const MyAccount = () => {
           </div>
         </div>
       </div>
+      <Footer />
     </div>
   );
 };

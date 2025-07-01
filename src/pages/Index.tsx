@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import Logo from "@/components/Logo";
 import { Button } from "@/components/ui/button";
 import AuthButton from "@/components/AuthButton";
+import Footer from "@/components/Footer";
 
 const Index = () => {
   return (
@@ -39,6 +40,7 @@ const Index = () => {
           </div>
         </div>
       </div>
+      <Footer />
     </div>
   );
 };
