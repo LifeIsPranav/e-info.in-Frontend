@@ -215,21 +215,37 @@ export const iconOptions: IconOption[] = [
   // Design & Creative
   {
     name: "Palette",
-    icon: <Palette className="w-4 h-4" />,
+    icon: <Palette className="w-4 h-4 text-gray-700" />,
     category: "Design",
   },
   {
     name: "Paintbrush",
-    icon: <Paintbrush className="w-4 h-4" />,
+    icon: <Paintbrush className="w-4 h-4 text-gray-700" />,
     category: "Design",
   },
-  { name: "Camera", icon: <Camera className="w-4 h-4" />, category: "Design" },
-  { name: "Film", icon: <Film className="w-4 h-4" />, category: "Design" },
-  { name: "Image", icon: <Image className="w-4 h-4" />, category: "Design" },
-  { name: "Pen", icon: <Pen className="w-4 h-4" />, category: "Design" },
+  {
+    name: "Camera",
+    icon: <Camera className="w-4 h-4 text-gray-700" />,
+    category: "Design",
+  },
+  {
+    name: "Film",
+    icon: <Film className="w-4 h-4 text-gray-700" />,
+    category: "Design",
+  },
+  {
+    name: "Image",
+    icon: <Image className="w-4 h-4 text-gray-700" />,
+    category: "Design",
+  },
+  {
+    name: "Pen",
+    icon: <Pen className="w-4 h-4 text-gray-700" />,
+    category: "Design",
+  },
   {
     name: "PenTool",
-    icon: <PenTool className="w-4 h-4" />,
+    icon: <PenTool className="w-4 h-4 text-gray-700" />,
     category: "Design",
   },
 
