@@ -32,7 +32,7 @@ const Index = () => {
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-4">
             <Button
               size="lg"
-              className="w-full sm:w-auto transition-all duration-200 hover:scale-105 hover:shadow-lg active:scale-95"
+              className="w-full sm:w-auto"
               onClick={() => navigate("/dashboard")}
             >
               Get Started
