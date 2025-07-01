@@ -524,23 +524,23 @@ export function IconPicker({
           variant="outline"
           role="combobox"
           aria-expanded={open}
-          className="w-full justify-between bg-gray-50 border-gray-200 hover:bg-gray-100"
+          className="w-full justify-between bg-gray-50 border-gray-200 hover:bg-gray-100 text-gray-900"
           disabled={disabled}
         >
           <div className="flex items-center gap-2">
             {selectedIcon ? (
               <>
-                <div className="w-4 h-4 flex items-center justify-center text-gray-600">
+                <div className="w-4 h-4 flex items-center justify-center text-gray-700">
                   {selectedIcon}
                 </div>
                 <span className="text-sm text-gray-900">Selected Icon</span>
               </>
             ) : (
-              <span className="text-sm text-gray-400">{placeholder}</span>
+              <span className="text-sm text-gray-500">{placeholder}</span>
             )}
           </div>
           <div className="w-4 h-4 flex items-center justify-center">
-            <Search className="w-3 h-3 text-gray-400" />
+            <Search className="w-3 h-3 text-gray-500" />
           </div>
         </Button>
       </PopoverTrigger>
