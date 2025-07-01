@@ -1,20 +1,20 @@
-import { useState, useCallback } from 'react';
+import { useState, useCallback } from "react";
 
-type ValidationRule<T> = (value: T) => string | null;
+type ValidationRule = (value: any) => string | null;
 
-interface ValidationRules<T> {
-  [K in keyof T]?: ValidationRule<T[K]>[];
+interface ValidationRules {
+  [field: string]: ValidationRule[];
 }
 
-interface ValidationErrors<T> {
-  [K in keyof T]?: string;
+interface ValidationErrors {
+  [field: string]: string;
 }
 
-interface UseFormValidationReturn<T> {
-  errors: ValidationErrors<T>;
-  validate: (field?: keyof T) => boolean;
-  validateField: (field: keyof T, value: T[keyof T]) => string | null;
-  clearError: (field: keyof T) => void;
+interface UseFormValidationReturn {
+  errors: ValidationErrors;
+  validate: (field?: string) => boolean;
+  validateField: (field: string, value: any) => string | null;
+  clearError: (field: string) => void;
   clearAllErrors: () => void;
   hasErrors: boolean;
   isValid: boolean;
@@ -23,14 +23,14 @@ interface UseFormValidationReturn<T> {
 /**
  * Hook for form validation with field-level and form-level validation
  */
-export function useFormValidation<T extends Record<string, any>>(
-  data: T,
-  rules: ValidationRules<T>,
-): UseFormValidationReturn<T> {
-  const [errors, setErrors] = useState<ValidationErrors<T>>({});
+export function useFormValidation(
+  data: Record<string, any>,
+  rules: ValidationRules,
+): UseFormValidationReturn {
+  const [errors, setErrors] = useState<ValidationErrors>({});
 
   const validateField = useCallback(
-    (field: keyof T, value: T[keyof T]): string | null => {
+    (field: string, value: any): string | null => {
       const fieldRules = rules[field];
       if (!fieldRules) return null;
 
@@ -45,19 +45,19 @@ export function useFormValidation<T extends Record<string, any>>(
   );
 
   const validate = useCallback(
-    (field?: keyof T): boolean => {
+    (field?: string): boolean => {
       if (field) {
         // Validate single field
         const error = validateField(field, data[field]);
-        setErrors(prev => ({
+        setErrors((prev) => ({
           ...prev,
-          [field]: error,
+          [field]: error || undefined,
         }));
         return !error;
       }
 
       // Validate all fields
-      const newErrors: ValidationErrors<T> = {};
+      const newErrors: ValidationErrors = {};
       let isValid = true;
 
       for (const key in data) {
@@ -74,8 +74,8 @@ export function useFormValidation<T extends Record<string, any>>(
     [data, validateField],
   );
 
-  const clearError = useCallback((field: keyof T) => {
-    setErrors(prev => {
+  const clearError = useCallback((field: string) => {
+    setErrors((prev) => {
       const newErrors = { ...prev };
       delete newErrors[field];
       return newErrors;
@@ -102,9 +102,9 @@ export function useFormValidation<T extends Record<string, any>>(
 
 // Common validation rules
 export const validationRules = {
-  required: <T>(value: T): string | null => {
-    if (value === null || value === undefined || value === '') {
-      return 'This field is required';
+  required: (value: any): string | null => {
+    if (value === null || value === undefined || value === "") {
+      return "This field is required";
     }
     return null;
   },
@@ -112,26 +112,32 @@ export const validationRules = {
   email: (value: string): string | null => {
     if (!value) return null;
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailRegex.test(value) ? null : 'Please enter a valid email address';
+    return emailRegex.test(value) ? null : "Please enter a valid email address";
   },
 
-  minLength: (min: number) => (value: string): string | null => {
-    if (!value) return null;
-    return value.length >= min ? null : `Must be at least ${min} characters`;
-  },
+  minLength:
+    (min: number) =>
+    (value: string): string | null => {
+      if (!value) return null;
+      return value.length >= min ? null : `Must be at least ${min} characters`;
+    },
 
-  maxLength: (max: number) => (value: string): string | null => {
-    if (!value) return null;
-    return value.length <= max ? null : `Must be no more than ${max} characters`;
-  },
+  maxLength:
+    (max: number) =>
+    (value: string): string | null => {
+      if (!value) return null;
+      return value.length <= max
+        ? null
+        : `Must be no more than ${max} characters`;
+    },
 
   url: (value: string): string | null => {
     if (!value) return null;
     try {
-      new URL(value.startsWith('http') ? value : `https://${value}`);
+      new URL(value.startsWith("http") ? value : `https://${value}`);
       return null;
     } catch {
-      return 'Please enter a valid URL';
+      return "Please enter a valid URL";
     }
   },
 };
