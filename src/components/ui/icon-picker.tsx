@@ -101,34 +101,82 @@ export const iconOptions: IconOption[] = [
   // Common
   {
     name: "ExternalLink",
-    icon: <ExternalLink className="w-4 h-4" />,
+    icon: <ExternalLink className="w-4 h-4 text-gray-700" />,
     category: "Common",
   },
   {
     name: "Briefcase",
-    icon: <Briefcase className="w-4 h-4" />,
+    icon: <Briefcase className="w-4 h-4 text-gray-700" />,
     category: "Common",
   },
-  { name: "Folder", icon: <Folder className="w-4 h-4" />, category: "Common" },
-  { name: "Home", icon: <Home className="w-4 h-4" />, category: "Common" },
-  { name: "User", icon: <User className="w-4 h-4" />, category: "Common" },
-  { name: "Mail", icon: <Mail className="w-4 h-4" />, category: "Common" },
-  { name: "Phone", icon: <Phone className="w-4 h-4" />, category: "Common" },
-  { name: "Globe", icon: <Globe className="w-4 h-4" />, category: "Common" },
-  { name: "MapPin", icon: <MapPin className="w-4 h-4" />, category: "Common" },
+  {
+    name: "Folder",
+    icon: <Folder className="w-4 h-4 text-gray-700" />,
+    category: "Common",
+  },
+  {
+    name: "Home",
+    icon: <Home className="w-4 h-4 text-gray-700" />,
+    category: "Common",
+  },
+  {
+    name: "User",
+    icon: <User className="w-4 h-4 text-gray-700" />,
+    category: "Common",
+  },
+  {
+    name: "Mail",
+    icon: <Mail className="w-4 h-4 text-gray-700" />,
+    category: "Common",
+  },
+  {
+    name: "Phone",
+    icon: <Phone className="w-4 h-4 text-gray-700" />,
+    category: "Common",
+  },
+  {
+    name: "Globe",
+    icon: <Globe className="w-4 h-4 text-gray-700" />,
+    category: "Common",
+  },
+  {
+    name: "MapPin",
+    icon: <MapPin className="w-4 h-4 text-gray-700" />,
+    category: "Common",
+  },
   {
     name: "Calendar",
-    icon: <Calendar className="w-4 h-4" />,
+    icon: <Calendar className="w-4 h-4 text-gray-700" />,
     category: "Common",
   },
-  { name: "Clock", icon: <Clock className="w-4 h-4" />, category: "Common" },
-  { name: "Star", icon: <Star className="w-4 h-4" />, category: "Common" },
-  { name: "Heart", icon: <Heart className="w-4 h-4" />, category: "Common" },
-  { name: "Eye", icon: <Eye className="w-4 h-4" />, category: "Common" },
-  { name: "Search", icon: <Search className="w-4 h-4" />, category: "Common" },
+  {
+    name: "Clock",
+    icon: <Clock className="w-4 h-4 text-gray-700" />,
+    category: "Common",
+  },
+  {
+    name: "Star",
+    icon: <Star className="w-4 h-4 text-gray-700" />,
+    category: "Common",
+  },
+  {
+    name: "Heart",
+    icon: <Heart className="w-4 h-4 text-gray-700" />,
+    category: "Common",
+  },
+  {
+    name: "Eye",
+    icon: <Eye className="w-4 h-4 text-gray-700" />,
+    category: "Common",
+  },
+  {
+    name: "Search",
+    icon: <Search className="w-4 h-4 text-gray-700" />,
+    category: "Common",
+  },
   {
     name: "Settings",
-    icon: <Settings className="w-4 h-4" />,
+    icon: <Settings className="w-4 h-4 text-gray-700" />,
     category: "Common",
   },
 
