@@ -111,199 +111,187 @@ const Dashboard: React.FC = () => {
   const firstName = user?.name?.split(" ")[0] || "User";
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-50">
-      {/* Modern Navigation */}
-      <nav className="sticky top-0 z-50 backdrop-blur-xl bg-white/80 border-b border-slate-200/60">
-        <div className="max-w-6xl mx-auto px-6 py-4">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-3">
-              <div className="w-8 h-8 bg-gradient-to-tr from-blue-600 to-purple-600 rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-sm">D</span>
-              </div>
-              <span className="font-semibold text-gray-900">Dashboard</span>
-            </div>
+    <BaseLayout background="gray" noPadding>
+      {/* Navigation */}
+      <Navigation
+        background="blur"
+        rightContent={
+          <div className="flex items-center gap-3">
+            <button
+              onClick={() => navigate(ROUTES.HOME)}
+              className="flex items-center gap-2 px-3 py-2 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-lg transition-colors bg-white border border-gray-200 font-medium"
+              aria-label="Go to homepage"
+            >
+              <Home className="w-4 h-4" />
+              <span className="hidden sm:inline">Home</span>
+            </button>
 
-            <div className="flex items-center gap-2">
-              <button
-                onClick={() => navigate(ROUTES.HOME)}
-                className="px-3 py-2 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-lg transition-all duration-200"
-                aria-label="Go to homepage"
-              >
-                <Home className="w-4 h-4" />
-              </button>
+            <button
+              onClick={() => navigate(ROUTES.ACCOUNT)}
+              className="flex items-center gap-2 px-3 py-2 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-lg transition-colors bg-white border border-gray-200 font-medium"
+              aria-label="Manage account settings"
+            >
+              <UserCog className="w-4 h-4" />
+              <span className="hidden sm:inline">Account</span>
+            </button>
 
-              <button
-                onClick={() => navigate(ROUTES.ACCOUNT)}
-                className="px-3 py-2 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-lg transition-all duration-200"
-                aria-label="Manage account"
-              >
-                <UserCog className="w-4 h-4" />
-              </button>
-
-              <button
-                onClick={() => navigate(ROUTES.DEMO)}
-                className="px-4 py-2 text-sm bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-lg hover:from-blue-700 hover:to-blue-800 transition-all duration-200 font-medium shadow-sm"
-                aria-label="View profile card"
-              >
-                View Card
-              </button>
-            </div>
+            <button
+              onClick={() => navigate(ROUTES.DEMO)}
+              className="flex items-center gap-2 px-3 py-2 text-sm bg-gray-900 hover:bg-gray-800 text-white rounded-lg transition-colors font-medium"
+              aria-label="View your profile card"
+            >
+              <CreditCard className="w-4 h-4" />
+              <span className="hidden sm:inline">My Card</span>
+            </button>
           </div>
-        </div>
-      </nav>
+        }
+      />
 
       {/* Main Content */}
-      <main className="max-w-6xl mx-auto px-6 py-12">
-        {/* Header Section */}
-        <div className="mb-12">
-          <div className="flex items-center gap-3 mb-4">
-            <div className="w-12 h-12 bg-gradient-to-tr from-blue-600 to-purple-600 rounded-xl flex items-center justify-center">
-              <TrendingUp className="w-6 h-6 text-white" />
-            </div>
-            <div>
-              <h1 className="text-3xl font-bold text-gray-900">
-                Welcome back, {firstName}
-              </h1>
-              <p className="text-gray-600 mt-1">
-                Track your profile performance and engagement
-              </p>
-            </div>
-          </div>
-        </div>
+      <main className="min-h-[calc(100vh-80px)] flex flex-col items-center justify-center px-6 py-8">
+        <div className="w-full max-w-5xl mx-auto">
+          {/* Welcome Section */}
+          <header className="text-center mb-12">
+            <h1 className="text-4xl font-bold text-gray-900 mb-4">
+              Welcome back, {firstName}!
+            </h1>
+            <p className="text-gray-600 text-lg">
+              Here's how your profile is performing
+            </p>
+          </header>
 
-        {/* Stats Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
-          {/* Card Views */}
-          <div className="group relative overflow-hidden rounded-2xl bg-white p-6 shadow-sm border border-slate-200/60 hover:shadow-lg transition-all duration-300">
-            <div className="absolute inset-0 bg-gradient-to-br from-blue-50/50 to-transparent" />
-            <div className="relative">
-              <div className="flex items-center justify-between mb-4">
-                <div className="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center">
-                  <Eye className="w-6 h-6 text-blue-600" />
-                </div>
-                <span className="text-xs font-medium text-blue-600 bg-blue-50 px-2 py-1 rounded-full">
-                  Views
-                </span>
-              </div>
-
-              <div className="space-y-1">
-                {statsLoading ? (
-                  <div className="h-8 w-24 bg-gray-200 animate-pulse rounded" />
-                ) : (
-                  <div className="text-3xl font-bold text-gray-900">
-                    {formatNumber(stats.cardViews)}
-                  </div>
-                )}
-                <p className="text-sm text-gray-600">Profile views</p>
-              </div>
-            </div>
-          </div>
-
-          {/* Stars */}
-          <div className="group relative overflow-hidden rounded-2xl bg-white p-6 shadow-sm border border-slate-200/60 hover:shadow-lg transition-all duration-300">
-            <div className="absolute inset-0 bg-gradient-to-br from-yellow-50/50 to-transparent" />
-            <div className="relative">
-              <div className="flex items-center justify-between mb-4">
-                <div className="w-12 h-12 bg-yellow-100 rounded-xl flex items-center justify-center">
-                  <Star className="w-6 h-6 text-yellow-600" />
-                </div>
-                <span className="text-xs font-medium text-yellow-600 bg-yellow-50 px-2 py-1 rounded-full">
-                  Stars
-                </span>
-              </div>
-
-              <div className="space-y-1">
-                {statsLoading ? (
-                  <div className="h-8 w-16 bg-gray-200 animate-pulse rounded" />
-                ) : (
-                  <div className="text-3xl font-bold text-gray-900">
-                    {formatNumber(stats.stars)}
-                  </div>
-                )}
-                <p className="text-sm text-gray-600">Profile stars</p>
-              </div>
-            </div>
-          </div>
-
-          {/* Total Clicks */}
-          <div className="group relative overflow-hidden rounded-2xl bg-white p-6 shadow-sm border border-slate-200/60 hover:shadow-lg transition-all duration-300">
-            <div className="absolute inset-0 bg-gradient-to-br from-green-50/50 to-transparent" />
-            <div className="relative">
-              <div className="flex items-center justify-between mb-4">
-                <div className="w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center">
-                  <MousePointer className="w-6 h-6 text-green-600" />
-                </div>
-                <span className="text-xs font-medium text-green-600 bg-green-50 px-2 py-1 rounded-full">
-                  Clicks
-                </span>
-              </div>
-
-              <div className="space-y-1">
-                {statsLoading ? (
-                  <div className="h-8 w-20 bg-gray-200 animate-pulse rounded" />
-                ) : (
-                  <div className="text-3xl font-bold text-gray-900">
-                    {formatNumber(stats.totalClicks)}
-                  </div>
-                )}
-                <p className="text-sm text-gray-600">Link clicks</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Quick Actions */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {/* Edit Card Action */}
-          <button
-            onClick={() => navigate(ROUTES.EDIT_PROFILE)}
-            className="group relative overflow-hidden rounded-2xl bg-white p-6 border border-slate-200/60 hover:shadow-lg transition-all duration-300 text-left"
+          {/* Stats Section */}
+          <section
+            className="grid md:grid-cols-3 gap-6 mb-16"
+            aria-labelledby="stats-heading"
           >
-            <div className="absolute inset-0 bg-gradient-to-br from-purple-50/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-            <div className="relative">
-              <div className="flex items-center justify-between mb-4">
-                <div className="w-12 h-12 bg-purple-100 rounded-xl flex items-center justify-center">
-                  <Edit3 className="w-6 h-6 text-purple-600" />
-                </div>
-                <ArrowRight className="w-5 h-5 text-gray-400 group-hover:text-purple-600 transition-colors duration-300" />
-              </div>
+            <h2 id="stats-heading" className="sr-only">
+              Profile Statistics
+            </h2>
 
+            {/* Card Views */}
+            <div className="bg-white rounded-xl border border-gray-100 shadow-sm p-6 text-center hover:shadow-md transition-shadow duration-200">
+              <div className="flex justify-center mb-4">
+                <div className="w-12 h-12 bg-blue-50 rounded-full flex items-center justify-center">
+                  <Eye className="w-6 h-6 text-blue-600" aria-hidden="true" />
+                </div>
+              </div>
               <div className="space-y-2">
-                <h3 className="text-lg font-semibold text-gray-900">
-                  Edit Profile
+                <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wider">
+                  Card Views
                 </h3>
-                <p className="text-sm text-gray-600">
-                  Update your information and customize your card
+                {statsLoading ? (
+                  <div className="h-12 flex items-center justify-center">
+                    <LoadingSpinner size="md" />
+                  </div>
+                ) : (
+                  <p className="text-4xl font-bold text-gray-900">
+                    {formatNumber(stats.cardViews)}
+                  </p>
+                )}
+                <p className="text-sm text-gray-500">
+                  People who viewed your profile
                 </p>
               </div>
             </div>
-          </button>
 
-          {/* View Card Action */}
-          <button
-            onClick={() => navigate(ROUTES.DEMO)}
-            className="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-blue-600 to-blue-700 p-6 text-white hover:from-blue-700 hover:to-blue-800 transition-all duration-300 text-left shadow-lg hover:shadow-xl"
-          >
-            <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-            <div className="relative">
-              <div className="flex items-center justify-between mb-4">
-                <div className="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center">
-                  <ExternalLink className="w-6 h-6 text-white" />
+            {/* Stars */}
+            <div className="bg-white rounded-xl border border-gray-100 shadow-sm p-6 text-center hover:shadow-md transition-shadow duration-200">
+              <div className="flex justify-center mb-4">
+                <div className="w-12 h-12 bg-yellow-50 rounded-full flex items-center justify-center">
+                  <Star
+                    className="w-6 h-6 text-yellow-600"
+                    aria-hidden="true"
+                  />
                 </div>
-                <ArrowRight className="w-5 h-5 text-white/70 group-hover:text-white transition-colors duration-300" />
               </div>
-
               <div className="space-y-2">
-                <h3 className="text-lg font-semibold">View Your Card</h3>
-                <p className="text-sm text-blue-100">
-                  See how your profile appears to visitors
+                <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wider">
+                  Stars
+                </h3>
+                {statsLoading ? (
+                  <div className="h-12 flex items-center justify-center">
+                    <LoadingSpinner size="md" />
+                  </div>
+                ) : (
+                  <p className="text-4xl font-bold text-gray-900">
+                    {formatNumber(stats.stars)}
+                  </p>
+                )}
+                <p className="text-sm text-gray-500">
+                  People who starred your profile
                 </p>
               </div>
             </div>
-          </button>
+
+            {/* Total Clicks */}
+            <div className="bg-white rounded-xl border border-gray-100 shadow-sm p-6 text-center hover:shadow-md transition-shadow duration-200">
+              <div className="flex justify-center mb-4">
+                <div className="w-12 h-12 bg-green-50 rounded-full flex items-center justify-center">
+                  <MousePointer
+                    className="w-6 h-6 text-green-600"
+                    aria-hidden="true"
+                  />
+                </div>
+              </div>
+              <div className="space-y-2">
+                <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wider">
+                  Total Clicks
+                </h3>
+                {statsLoading ? (
+                  <div className="h-12 flex items-center justify-center">
+                    <LoadingSpinner size="md" />
+                  </div>
+                ) : (
+                  <p className="text-4xl font-bold text-gray-900">
+                    {formatNumber(stats.totalClicks)}
+                  </p>
+                )}
+                <p className="text-sm text-gray-500">
+                  Clicks on all your links
+                </p>
+              </div>
+            </div>
+          </section>
+
+          {/* Quick Actions */}
+          <section
+            className="flex flex-col sm:flex-row gap-4 justify-center"
+            aria-labelledby="actions-heading"
+          >
+            <h2 id="actions-heading" className="sr-only">
+              Quick Actions
+            </h2>
+
+            <button
+              onClick={() => navigate(ROUTES.EDIT_PROFILE)}
+              className="flex items-center gap-2 px-6 py-3 bg-white border border-gray-200 text-gray-700 hover:bg-gray-50 font-medium rounded-lg transition-colors"
+              aria-describedby="edit-card-description"
+            >
+              <Edit3 className="w-4 h-4" />
+              Edit My Card
+            </button>
+            <div id="edit-card-description" className="sr-only">
+              Modify your profile information and customize your card
+            </div>
+
+            <button
+              onClick={() => navigate(ROUTES.DEMO)}
+              className="flex items-center gap-2 px-6 py-3 bg-gray-900 hover:bg-gray-800 text-white font-medium rounded-lg transition-colors"
+              aria-describedby="view-card-description"
+            >
+              <ExternalLink className="w-4 h-4" />
+              View My Card
+            </button>
+            <div id="view-card-description" className="sr-only">
+              See how your profile card appears to others
+            </div>
+          </section>
         </div>
       </main>
-    </div>
+
+      <Footer />
+    </BaseLayout>
   );
 };
 
