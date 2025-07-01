@@ -13,6 +13,8 @@ import {
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import { IconPicker } from "@/components/ui/icon-picker";
+import { getIconFromName, getIconNameFromNode } from "@/lib/iconUtils";
 import ProjectShowcase from "@/components/ProjectShowcase";
 import {
   PortfolioProject,
@@ -189,6 +191,20 @@ const EditablePortfolioItem = ({
               onChange={(e) => handleFieldChange("href", e.target.value)}
               placeholder="https://github.com/username/project"
               className="text-sm bg-gray-50 border-gray-200 text-gray-900 placeholder-gray-400 focus:border-gray-400 focus:ring-1 focus:ring-gray-400 font-medium"
+            />
+          </div>
+
+          {/* Icon Selection */}
+          <div className="space-y-1">
+            <label className="text-xs font-semibold text-gray-800">Icon</label>
+            <IconPicker
+              selectedIcon={editingProject.icon}
+              onIconSelect={(icon, iconName) => {
+                const updated = { ...editingProject, icon };
+                setEditingProject(updated);
+                onUpdate(updated);
+              }}
+              placeholder="Choose an icon for this project"
             />
           </div>
 
@@ -386,6 +402,7 @@ export default function EditablePortfolioSection({
       description: "Brief project description",
       category: "Design",
       href: "",
+      icon: getIconFromName("Folder"),
       images: [
         {
           id: `image-${Date.now()}`,

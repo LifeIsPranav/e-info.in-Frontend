@@ -11,6 +11,8 @@ import {
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import { IconPicker } from "@/components/ui/icon-picker";
+import { getIconFromName, getIconNameFromNode } from "@/lib/iconUtils";
 import { ProjectLink, defaultProjects } from "@/lib/profileData";
 
 interface EditableLinksectionProps {
@@ -131,6 +133,20 @@ const EditableLinkItem = ({
               className="text-sm bg-gray-50 border-gray-200 text-gray-900 placeholder-gray-400 focus:border-gray-400 focus:ring-1 focus:ring-gray-400 font-medium"
             />
           </div>
+
+          {/* Icon Selection */}
+          <div className="space-y-1">
+            <label className="text-xs font-semibold text-gray-800">Icon</label>
+            <IconPicker
+              selectedIcon={editingProject.icon}
+              onIconSelect={(icon, iconName) => {
+                const updated = { ...editingProject, icon };
+                setEditingProject(updated);
+                onUpdate(updated);
+              }}
+              placeholder="Choose an icon for this link"
+            />
+          </div>
           {/* Actions */}
           <div className="flex justify-end items-center pt-2 border-t border-gray-100">
             <Button
@@ -222,6 +238,7 @@ export default function EditableLinksSection({
       description: "Brief description",
       href: "https://example.com",
       projectDetails: "Add your detailed description here...",
+      icon: getIconFromName("ExternalLink"),
     };
     setEditingProjects([...editingProjects, newProject]);
   };
