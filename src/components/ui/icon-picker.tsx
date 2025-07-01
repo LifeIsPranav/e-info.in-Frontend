@@ -250,130 +250,234 @@ export const iconOptions: IconOption[] = [
   },
 
   // Tech & Development
-  { name: "Code", icon: <Code className="w-4 h-4" />, category: "Tech" },
+  {
+    name: "Code",
+    icon: <Code className="w-4 h-4 text-gray-700" />,
+    category: "Tech",
+  },
   {
     name: "Database",
-    icon: <Database className="w-4 h-4" />,
+    icon: <Database className="w-4 h-4 text-gray-700" />,
     category: "Tech",
   },
-  { name: "Monitor", icon: <Monitor className="w-4 h-4" />, category: "Tech" },
+  {
+    name: "Monitor",
+    icon: <Monitor className="w-4 h-4 text-gray-700" />,
+    category: "Tech",
+  },
   {
     name: "Smartphone",
-    icon: <Smartphone className="w-4 h-4" />,
+    icon: <Smartphone className="w-4 h-4 text-gray-700" />,
     category: "Tech",
   },
-  { name: "Tablet", icon: <Tablet className="w-4 h-4" />, category: "Tech" },
-  { name: "Laptop", icon: <Laptop className="w-4 h-4" />, category: "Tech" },
-  { name: "Server", icon: <Server className="w-4 h-4" />, category: "Tech" },
-  { name: "Cloud", icon: <Cloud className="w-4 h-4" />, category: "Tech" },
+  {
+    name: "Tablet",
+    icon: <Tablet className="w-4 h-4 text-gray-700" />,
+    category: "Tech",
+  },
+  {
+    name: "Laptop",
+    icon: <Laptop className="w-4 h-4 text-gray-700" />,
+    category: "Tech",
+  },
+  {
+    name: "Server",
+    icon: <Server className="w-4 h-4 text-gray-700" />,
+    category: "Tech",
+  },
+  {
+    name: "Cloud",
+    icon: <Cloud className="w-4 h-4 text-gray-700" />,
+    category: "Tech",
+  },
 
   // Business & Work
   {
     name: "Building",
-    icon: <Building className="w-4 h-4" />,
+    icon: <Building className="w-4 h-4 text-gray-700" />,
     category: "Business",
   },
   {
     name: "Building2",
-    icon: <Building2 className="w-4 h-4" />,
+    icon: <Building2 className="w-4 h-4 text-gray-700" />,
     category: "Business",
   },
-  { name: "Users", icon: <Users className="w-4 h-4" />, category: "Business" },
+  {
+    name: "Users",
+    icon: <Users className="w-4 h-4 text-gray-700" />,
+    category: "Business",
+  },
   {
     name: "UserCheck",
-    icon: <UserCheck className="w-4 h-4" />,
+    icon: <UserCheck className="w-4 h-4 text-gray-700" />,
     category: "Business",
   },
   {
     name: "Trophy",
-    icon: <Trophy className="w-4 h-4" />,
+    icon: <Trophy className="w-4 h-4 text-gray-700" />,
     category: "Business",
   },
-  { name: "Award", icon: <Award className="w-4 h-4" />, category: "Business" },
+  {
+    name: "Award",
+    icon: <Award className="w-4 h-4 text-gray-700" />,
+    category: "Business",
+  },
   {
     name: "Target",
-    icon: <Target className="w-4 h-4" />,
+    icon: <Target className="w-4 h-4 text-gray-700" />,
     category: "Business",
   },
   {
     name: "TrendingUp",
-    icon: <TrendingUp className="w-4 h-4" />,
+    icon: <TrendingUp className="w-4 h-4 text-gray-700" />,
     category: "Business",
   },
   {
     name: "BarChart",
-    icon: <BarChart className="w-4 h-4" />,
+    icon: <BarChart className="w-4 h-4 text-gray-700" />,
     category: "Business",
   },
   {
     name: "PieChart",
-    icon: <PieChart className="w-4 h-4" />,
+    icon: <PieChart className="w-4 h-4 text-gray-700" />,
     category: "Business",
   },
 
   // Tools & Objects
-  { name: "Wrench", icon: <Wrench className="w-4 h-4" />, category: "Tools" },
-  { name: "Hammer", icon: <Hammer className="w-4 h-4" />, category: "Tools" },
+  {
+    name: "Wrench",
+    icon: <Wrench className="w-4 h-4 text-gray-700" />,
+    category: "Tools",
+  },
+  {
+    name: "Hammer",
+    icon: <Hammer className="w-4 h-4 text-gray-700" />,
+    category: "Tools",
+  },
   {
     name: "Scissors",
-    icon: <Scissors className="w-4 h-4" />,
+    icon: <Scissors className="w-4 h-4 text-gray-700" />,
     category: "Tools",
   },
-  { name: "Ruler", icon: <Ruler className="w-4 h-4" />, category: "Tools" },
+  {
+    name: "Ruler",
+    icon: <Ruler className="w-4 h-4 text-gray-700" />,
+    category: "Tools",
+  },
   {
     name: "Calculator",
-    icon: <Calculator className="w-4 h-4" />,
+    icon: <Calculator className="w-4 h-4 text-gray-700" />,
     category: "Tools",
   },
-  { name: "Book", icon: <Book className="w-4 h-4" />, category: "Tools" },
+  {
+    name: "Book",
+    icon: <Book className="w-4 h-4 text-gray-700" />,
+    category: "Tools",
+  },
   {
     name: "FileText",
-    icon: <FileText className="w-4 h-4" />,
+    icon: <FileText className="w-4 h-4 text-gray-700" />,
     category: "Tools",
   },
 
   // Actions & Arrows
-  { name: "Play", icon: <Play className="w-4 h-4" />, category: "Actions" },
-  { name: "Pause", icon: <Pause className="w-4 h-4" />, category: "Actions" },
   {
-    name: "Download",
-    icon: <Download className="w-4 h-4" />,
+    name: "Play",
+    icon: <Play className="w-4 h-4 text-gray-700" />,
     category: "Actions",
   },
-  { name: "Upload", icon: <Upload className="w-4 h-4" />, category: "Actions" },
-  { name: "Share", icon: <Share className="w-4 h-4" />, category: "Actions" },
-  { name: "Send", icon: <Send className="w-4 h-4" />, category: "Actions" },
+  {
+    name: "Pause",
+    icon: <Pause className="w-4 h-4 text-gray-700" />,
+    category: "Actions",
+  },
+  {
+    name: "Download",
+    icon: <Download className="w-4 h-4 text-gray-700" />,
+    category: "Actions",
+  },
+  {
+    name: "Upload",
+    icon: <Upload className="w-4 h-4 text-gray-700" />,
+    category: "Actions",
+  },
+  {
+    name: "Share",
+    icon: <Share className="w-4 h-4 text-gray-700" />,
+    category: "Actions",
+  },
+  {
+    name: "Send",
+    icon: <Send className="w-4 h-4 text-gray-700" />,
+    category: "Actions",
+  },
   {
     name: "ArrowRight",
-    icon: <ArrowRight className="w-4 h-4" />,
+    icon: <ArrowRight className="w-4 h-4 text-gray-700" />,
     category: "Actions",
   },
   {
     name: "ArrowLeft",
-    icon: <ArrowLeft className="w-4 h-4" />,
+    icon: <ArrowLeft className="w-4 h-4 text-gray-700" />,
     category: "Actions",
   },
   {
     name: "ArrowUp",
-    icon: <ArrowUp className="w-4 h-4" />,
+    icon: <ArrowUp className="w-4 h-4 text-gray-700" />,
     category: "Actions",
   },
   {
     name: "ArrowDown",
-    icon: <ArrowDown className="w-4 h-4" />,
+    icon: <ArrowDown className="w-4 h-4 text-gray-700" />,
     category: "Actions",
   },
 
   // Misc
-  { name: "Zap", icon: <Zap className="w-4 h-4" />, category: "Misc" },
-  { name: "Rocket", icon: <Rocket className="w-4 h-4" />, category: "Misc" },
-  { name: "Shield", icon: <Shield className="w-4 h-4" />, category: "Misc" },
-  { name: "Lock", icon: <Lock className="w-4 h-4" />, category: "Misc" },
-  { name: "Unlock", icon: <Unlock className="w-4 h-4" />, category: "Misc" },
-  { name: "Check", icon: <Check className="w-4 h-4" />, category: "Misc" },
-  { name: "X", icon: <X className="w-4 h-4" />, category: "Misc" },
-  { name: "Plus", icon: <Plus className="w-4 h-4" />, category: "Misc" },
-  { name: "Minus", icon: <Minus className="w-4 h-4" />, category: "Misc" },
+  {
+    name: "Zap",
+    icon: <Zap className="w-4 h-4 text-gray-700" />,
+    category: "Misc",
+  },
+  {
+    name: "Rocket",
+    icon: <Rocket className="w-4 h-4 text-gray-700" />,
+    category: "Misc",
+  },
+  {
+    name: "Shield",
+    icon: <Shield className="w-4 h-4 text-gray-700" />,
+    category: "Misc",
+  },
+  {
+    name: "Lock",
+    icon: <Lock className="w-4 h-4 text-gray-700" />,
+    category: "Misc",
+  },
+  {
+    name: "Unlock",
+    icon: <Unlock className="w-4 h-4 text-gray-700" />,
+    category: "Misc",
+  },
+  {
+    name: "Check",
+    icon: <Check className="w-4 h-4 text-gray-700" />,
+    category: "Misc",
+  },
+  {
+    name: "X",
+    icon: <X className="w-4 h-4 text-gray-700" />,
+    category: "Misc",
+  },
+  {
+    name: "Plus",
+    icon: <Plus className="w-4 h-4 text-gray-700" />,
+    category: "Misc",
+  },
+  {
+    name: "Minus",
+    icon: <Minus className="w-4 h-4 text-gray-700" />,
+    category: "Misc",
+  },
 ];
 
 interface IconPickerProps {
