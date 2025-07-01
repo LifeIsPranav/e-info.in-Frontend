@@ -582,7 +582,7 @@ export function IconPicker({
                 className="h-8 w-8 p-1 hover:bg-gray-100 flex items-center justify-center"
                 title={iconOption.name}
               >
-                <div className="w-4 h-4 flex items-center justify-center text-gray-600">
+                <div className="w-4 h-4 flex items-center justify-center">
                   {iconOption.icon}
                 </div>
               </Button>
