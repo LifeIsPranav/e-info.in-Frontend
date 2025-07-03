@@ -13,6 +13,8 @@ import {
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import { useAuth } from "@/contexts/AuthContext";
+import { toast } from "sonner";
 
 // Types
 interface ContactInfo {
@@ -368,6 +370,9 @@ const CardBack = ({
 // Main Component
 const DigitalCard = forwardRef<DigitalCardRef, Partial<DigitalCardProps>>(
   (props = {}, ref) => {
+    // Authentication
+    const { isAuthenticated, user } = useAuth();
+
     // Merge props with defaults
     const {
       name,
@@ -430,26 +435,42 @@ const DigitalCard = forwardRef<DigitalCardRef, Partial<DigitalCardProps>>(
       setIsAvatarZoomed(true);
     };
 
-    const handleSendMessage = (e: React.MouseEvent) => {
+    const handleSendMessage = async (e: React.MouseEvent) => {
       e.preventDefault();
       e.stopPropagation();
 
+      if (!isAuthenticated) {
+        toast.error("Please sign in to send messages");
+        return;
+      }
+
+      if (!user) return;
+
       if (!messageTitle.trim() || !messageText.trim()) return;
 
-      // Here you can integrate with your preferred messaging service
-      console.log("Sending message:", {
-        title: messageTitle,
-        message: messageText,
-        timestamp: new Date().toISOString(),
-      });
+      try {
+        // Simulate API delay
+        await new Promise((resolve) => setTimeout(resolve, 500));
 
-      // Show success feedback
-      alert("Message sent successfully!");
+        // Here you can integrate with your preferred messaging service
+        console.log("Sending message:", {
+          title: messageTitle,
+          message: messageText,
+          from: user.name,
+          timestamp: new Date().toISOString(),
+        });
 
-      // Reset form and close card
-      setMessageTitle("");
-      setMessageText("");
-      setIsFlipped(false);
+        // Show success feedback
+        toast.success("Message sent! They'll get back to you soon.");
+
+        // Reset form and close card
+        setMessageTitle("");
+        setMessageText("");
+        setIsFlipped(false);
+      } catch (error) {
+        console.error("Failed to send message:", error);
+        toast.error("Failed to send message. Please try again.");
+      }
     };
 
     const handleConfigureClick = () => {

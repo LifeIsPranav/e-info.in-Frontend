@@ -1,6 +1,6 @@
 // Application-wide constants
 export const APP_CONFIG = {
-  name: "info.in",
+  name: "e-info.me",
   tagline: "Connect & Share",
   description: "Showcase Your Developer Identity in One Link",
   subtitle:

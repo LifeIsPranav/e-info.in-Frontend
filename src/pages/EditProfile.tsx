@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useAuth } from "@/contexts/AuthContext";
+import { useNavigate } from "react-router-dom";
 import EditableProfileSection from "@/components/EditableProfileSection";
 import EditableLinksSection from "@/components/EditableLinksSection";
 import EditablePortfolioSection from "@/components/EditablePortfolioSection";
@@ -7,6 +8,7 @@ import EditableExperienceSection from "@/components/EditableExperienceSection";
 import Logo from "@/components/Logo";
 import AuthButton from "@/components/AuthButton";
 import Footer from "@/components/Footer";
+import LoadingSpinner from "@/components/common/LoadingSpinner";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { Home } from "lucide-react";
@@ -26,7 +28,8 @@ import {
 } from "@/lib/workExperienceData";
 
 const EditProfile = () => {
-  const { user } = useAuth();
+  const { user, isAuthenticated, isLoading: authLoading } = useAuth();
+  const navigate = useNavigate();
   const [profile, setProfile] = useState<PersonProfile>(defaultProfile);
   const [projects, setProjects] = useState<ProjectLink[]>(defaultProjects);
   const [portfolioProjects, setPortfolioProjects] = useState<
@@ -35,6 +38,13 @@ const EditProfile = () => {
   const [workExperiences, setWorkExperiences] = useState<WorkExperienceData[]>(
     defaultWorkExperiences,
   );
+
+  // Redirect to auth if not authenticated
+  useEffect(() => {
+    if (!authLoading && !isAuthenticated) {
+      navigate("/auth");
+    }
+  }, [isAuthenticated, authLoading, navigate]);
 
   // Initialize profile with user data if available
   useEffect(() => {
@@ -75,6 +85,20 @@ const EditProfile = () => {
     // Here you would typically save to a backend
     console.log("Work experiences updated:", updatedWorkExperiences);
   };
+
+  // Show loading while checking auth
+  if (authLoading) {
+    return (
+      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+        <LoadingSpinner size="lg" label="Loading..." />
+      </div>
+    );
+  }
+
+  // Redirect will handle navigation for unauthenticated users
+  if (!isAuthenticated) {
+    return null;
+  }
 
   return (
     <div className="min-h-screen bg-gray-50 p-4 md:p-6 relative">

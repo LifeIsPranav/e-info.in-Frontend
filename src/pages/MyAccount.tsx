@@ -1,10 +1,12 @@
 import { useState, useEffect } from "react";
 import { useAuth } from "@/contexts/AuthContext";
+import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { useToast } from "@/hooks/use-toast";
+import LoadingSpinner from "@/components/common/LoadingSpinner";
 import Logo from "@/components/Logo";
 import AuthButton from "@/components/AuthButton";
 import Footer from "@/components/Footer";
@@ -18,14 +20,22 @@ interface UserAccountData {
 }
 
 const MyAccount = () => {
-  const { user, signIn } = useAuth();
+  const { user, signIn, isAuthenticated, isLoading: authLoading } = useAuth();
+  const navigate = useNavigate();
   const { toast } = useToast();
   const [isLoading, setIsLoading] = useState(false);
   const [accountData, setAccountData] = useState<UserAccountData>({
     name: user?.name || "",
     username: user?.email?.split("@")[0] || "",
-    instantMessage: "Hey there! I'm using info.in to connect and share.",
+    instantMessage: "Hey there! I'm using e-info.me to connect and share.",
   });
+
+  // Redirect to auth if not authenticated
+  useEffect(() => {
+    if (!authLoading && !isAuthenticated) {
+      navigate("/auth");
+    }
+  }, [isAuthenticated, authLoading, navigate]);
 
   // Initialize with user data if available
   useEffect(() => {
@@ -94,6 +104,20 @@ const MyAccount = () => {
       .join("")
       .toUpperCase();
   };
+
+  // Show loading while checking auth
+  if (authLoading) {
+    return (
+      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+        <LoadingSpinner size="lg" label="Loading..." />
+      </div>
+    );
+  }
+
+  // Redirect will handle navigation for unauthenticated users
+  if (!isAuthenticated) {
+    return null;
+  }
 
   return (
     <div className="min-h-screen bg-gray-50 p-4 md:p-6 relative">
