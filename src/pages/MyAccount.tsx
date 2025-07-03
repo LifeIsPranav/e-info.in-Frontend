@@ -27,7 +27,7 @@ const MyAccount = () => {
   const [accountData, setAccountData] = useState<UserAccountData>({
     name: user?.name || "",
     username: user?.email?.split("@")[0] || "",
-    instantMessage: "Hey there! I'm using info.in to connect and share.",
+    instantMessage: "Hey there! I'm using e-info.me to connect and share.",
   });
 
   // Redirect to auth if not authenticated
