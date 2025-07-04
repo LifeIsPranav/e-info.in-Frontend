@@ -24,7 +24,8 @@ const Auth = () => {
       };
 
       await signIn(mockUser);
-      navigate("/dashboard");
+      const redirectTo = getRedirectPath();
+      navigate(redirectTo);
     } catch (error) {
       // Error is handled by the context
       console.error("Sign in failed:", error);
