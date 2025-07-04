@@ -357,6 +357,25 @@ const UnifiedDigitalCard = forwardRef<
       }
     };
 
+    const handleInstantMessage = (e: React.MouseEvent) => {
+      e.preventDefault();
+      e.stopPropagation();
+
+      // Pre-filled message content
+      const instantSubject = "Let's Connect!";
+      const instantMessage = `Hi ${profile.name || "there"}!
+
+I came across your profile and I'm really impressed by your work. I'd love to connect and discuss potential collaboration opportunities.
+
+Looking forward to hearing from you!
+
+Best regards`;
+
+      setMessageTitle(instantSubject);
+      setMessageText(instantMessage);
+      toast.success("Quick message template loaded!");
+    };
+
     const handleSendMessage = (e: React.MouseEvent) => {
       e.preventDefault();
       e.stopPropagation();
