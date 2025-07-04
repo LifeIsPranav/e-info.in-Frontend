@@ -380,7 +380,7 @@ const MyAccount = () => {
                 Delete Account
               </Button>
             </AlertDialogTrigger>
-            <AlertDialogContent className="max-w-lg">
+            <AlertDialogContent className="max-w-lg bg-white border-gray-200">
               <AlertDialogHeader className="text-center">
                 <div className="mx-auto mb-4 w-12 h-12 bg-red-100 rounded-full flex items-center justify-center">
                   <AlertTriangle className="w-6 h-6 text-red-600" />
@@ -388,7 +388,7 @@ const MyAccount = () => {
                 <AlertDialogTitle className="text-xl font-semibold text-gray-900">
                   Delete Account
                 </AlertDialogTitle>
-                <AlertDialogDescription className="text-gray-600 text-base leading-relaxed">
+                <AlertDialogDescription className="text-gray-700 text-base leading-relaxed">
                   This action cannot be undone. This will permanently delete
                   your account and remove all your data from our servers.
                 </AlertDialogDescription>
