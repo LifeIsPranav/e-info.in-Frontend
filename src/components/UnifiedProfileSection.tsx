@@ -114,4 +114,4 @@ export default function UnifiedProfileSection({
 }
 
 // Export types for easy use
-export type { PersonProfile, ProjectLink };
+export type { PersonProfile };
