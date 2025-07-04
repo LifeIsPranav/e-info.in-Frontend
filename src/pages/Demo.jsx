@@ -31,11 +31,25 @@ const Demo = () => {
       {/* Main Content Container */}
       <div className="w-full max-w-lg mx-auto pt-16 pb-16 space-y-8">
         {/* Profile Section */}
-        <UnifiedProfileSection
-          profile={profile}
-          projects={projects}
-          canEdit={false}
-        />
+        <UnifiedProfileSection profile={profile} canEdit={false} />
+
+        {/* Links Section */}
+        {projects.length > 0 && (
+          <div className="space-y-2">
+            {projects.map((project) => (
+              <LinkButton
+                key={project.id}
+                href={project.href}
+                title={project.title}
+                description={project.description}
+                icon={project.icon}
+                onDirectLink={(href) =>
+                  window.open(href, "_blank", "noopener,noreferrer")
+                }
+              />
+            ))}
+          </div>
+        )}
 
         {/* Work Experience Section */}
         {workExperiences.length > 0 && (
