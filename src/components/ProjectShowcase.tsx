@@ -34,9 +34,7 @@ export default function ProjectShowcase({
   onExpand,
   onDirectLink,
 }: ProjectShowcaseProps) {
-  const { isAuthenticated, user } = useAuth();
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  const [isMessageLoading, setIsMessageLoading] = useState(false);
   const currentImage = project.images[currentImageIndex] || project.images[0];
 
   const handleMainClick = () => {
