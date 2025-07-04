@@ -344,6 +344,11 @@ const UnifiedDigitalCard = forwardRef<
     const [cardHeight, setCardHeight] = useState(320); // minimum height
     const frontCardRef = useRef<HTMLDivElement>(null);
     const backCardRef = useRef<HTMLDivElement>(null);
+    const [copyStates, setCopyStates] = useState({
+      email: false,
+      website: false,
+      location: false,
+    });
 
     // Expose outside click handler through ref
     useImperativeHandle(ref, () => ({
