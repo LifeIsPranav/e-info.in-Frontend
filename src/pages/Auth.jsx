@@ -6,7 +6,7 @@ import { useAuth } from "@/contexts/AuthContext";
 import Footer from "@/components/Footer";
 
 const Auth = () => {
-  const { signIn, isLoading, error, clearError } = useAuth();
+  const { signIn, isLoading, error, clearError, getRedirectPath } = useAuth();
   const navigate = useNavigate();
 
   const handleGoogleSignIn = async () => {
