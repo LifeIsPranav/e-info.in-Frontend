@@ -1,12 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import UnifiedDigitalCard from "@/components/UnifiedDigitalCard";
-import LinkButton from "@/components/LinkButton";
-import {
-  PersonProfile,
-  ProjectLink,
-  defaultProfile,
-  defaultProjects,
-} from "@/lib/profileData";
+import { PersonProfile, defaultProfile } from "@/lib/profileData";
 
 interface UnifiedProfileSectionProps {
   profile?: Partial<PersonProfile>;
