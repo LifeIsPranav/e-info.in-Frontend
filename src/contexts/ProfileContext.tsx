@@ -68,18 +68,10 @@ export function ProfileProvider({ children }: { children: React.ReactNode }) {
   );
   const [education, setEducation] = useState<EducationData[]>(defaultEducation);
 
-  // Load data from localStorage on mount
+  // Clear localStorage once on mount to avoid React element issues
   useEffect(() => {
-    // Always clear localStorage on mount to avoid React element issues
-    console.log("Clearing localStorage to prevent React element errors");
     localStorage.removeItem(STORAGE_KEY);
-
-    // Use default data, cleaned of any React elements
-    setProfile(cleanReactElements(defaultProfile));
-    setProjects(cleanReactElements(defaultProjects));
-    setPortfolioProjects(cleanReactElements(defaultPortfolioProjects));
-    setWorkExperiences(cleanReactElements(defaultWorkExperiences));
-    setEducation(cleanReactElements(defaultEducation));
+    console.log("Cleared localStorage to prevent React element errors");
   }, []);
 
   // Save data to localStorage whenever state changes
