@@ -96,10 +96,8 @@ const EditProfile = () => {
         {/* Editable Profile Section */}
         <UnifiedProfileSection
           profile={profile}
-          projects={projects}
           canEdit={true}
           onProfileUpdate={updateProfile}
-          onProjectsUpdate={updateProjects}
         />
 
         {/* Editable Links Section */}
