@@ -74,12 +74,12 @@ export function ProfileProvider({ children }: { children: React.ReactNode }) {
     console.log("Clearing localStorage to prevent React element errors");
     localStorage.removeItem(STORAGE_KEY);
 
-    // Use default data
-    setProfile(defaultProfile);
-    setProjects(defaultProjects);
-    setPortfolioProjects(defaultPortfolioProjects);
-    setWorkExperiences(defaultWorkExperiences);
-    setEducation(defaultEducation);
+    // Use default data, cleaned of any React elements
+    setProfile(cleanReactElements(defaultProfile));
+    setProjects(cleanReactElements(defaultProjects));
+    setPortfolioProjects(cleanReactElements(defaultPortfolioProjects));
+    setWorkExperiences(cleanReactElements(defaultWorkExperiences));
+    setEducation(cleanReactElements(defaultEducation));
   }, []);
 
   // Save data to localStorage whenever state changes
