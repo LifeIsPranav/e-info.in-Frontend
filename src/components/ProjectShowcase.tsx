@@ -83,32 +83,6 @@ export default function ProjectShowcase({
     }
   };
 
-  const handleConnect = async () => {
-    if (!isAuthenticated) {
-      toast.error("Please sign in to send messages");
-      return;
-    }
-
-    if (!user) return;
-
-    setIsMessageLoading(true);
-
-    try {
-      // Simulate API delay for messaging
-      await new Promise((resolve) => setTimeout(resolve, 500));
-
-      // In a real app, you would send the message to a backend
-      toast.success(
-        `Message sent! The project owner will get back to you soon.`,
-      );
-    } catch (error) {
-      console.error("Failed to send message:", error);
-      toast.error("Failed to send message. Please try again.");
-    } finally {
-      setIsMessageLoading(false);
-    }
-  };
-
   return (
     <div>
       {/* Compact Link Button */}
