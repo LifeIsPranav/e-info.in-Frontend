@@ -19,7 +19,7 @@ export const defaultPortfolioProjects: PortfolioProject[] = [
     description: "E-commerce iOS App",
     category: "UI/UX Design",
     href: "https://dribbble.com/shots/mobile-app",
-    icon: <Smartphone className="w-4 h-4 text-gray-600" />,
+    icon: null,
     images: [
       {
         id: "mobile-1",
