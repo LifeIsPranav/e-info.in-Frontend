@@ -611,6 +611,11 @@ Best regards`;
                       profile.email &&
                       handleExternalLink(profile.email, true)
                     }
+                    onIconClick={() =>
+                      !isEditing &&
+                      profile.email &&
+                      copyToClipboard(profile.email, "Email")
+                    }
                   />
                   <EditableContactInfo
                     icon={Globe}
@@ -628,6 +633,11 @@ Best regards`;
                       profile.website &&
                       handleExternalLink(profile.website)
                     }
+                    onIconClick={() =>
+                      !isEditing &&
+                      profile.website &&
+                      copyToClipboard(profile.website, "Website")
+                    }
                   />
                   <EditableContactInfo
                     icon={MapPin}
@@ -639,6 +649,11 @@ Best regards`;
                         : undefined
                     }
                     placeholder="Your location"
+                    onIconClick={() =>
+                      !isEditing &&
+                      profile.location &&
+                      copyToClipboard(profile.location, "Location")
+                    }
                   />
                 </div>
 
