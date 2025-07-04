@@ -79,30 +79,36 @@ export function ProfileProvider({ children }: { children: React.ReactNode }) {
   //   }
   // }, [profile, projects, portfolioProjects, workExperiences, education]);
 
-  const updateProfile = (newProfile: PersonProfile) => {
+  const updateProfile = useCallback((newProfile: PersonProfile) => {
     setProfile(newProfile);
     console.log("Profile updated:", newProfile);
-  };
+  }, []);
 
-  const updateProjects = (newProjects: ProjectLink[]) => {
+  const updateProjects = useCallback((newProjects: ProjectLink[]) => {
     setProjects(newProjects);
     console.log("Projects updated:", newProjects);
-  };
+  }, []);
 
-  const updatePortfolioProjects = (newProjects: PortfolioProject[]) => {
-    setPortfolioProjects(newProjects);
-    console.log("Portfolio projects updated:", newProjects);
-  };
+  const updatePortfolioProjects = useCallback(
+    (newProjects: PortfolioProject[]) => {
+      setPortfolioProjects(newProjects);
+      console.log("Portfolio projects updated:", newProjects);
+    },
+    [],
+  );
 
-  const updateWorkExperiences = (newExperiences: WorkExperienceData[]) => {
-    setWorkExperiences(newExperiences);
-    console.log("Work experiences updated:", newExperiences);
-  };
+  const updateWorkExperiences = useCallback(
+    (newExperiences: WorkExperienceData[]) => {
+      setWorkExperiences(newExperiences);
+      console.log("Work experiences updated:", newExperiences);
+    },
+    [],
+  );
 
-  const updateEducation = (newEducation: EducationData[]) => {
+  const updateEducation = useCallback((newEducation: EducationData[]) => {
     setEducation(newEducation);
     console.log("Education updated:", newEducation);
-  };
+  }, []);
 
   const initializeWithUserData = useCallback((userData: any) => {
     if (userData) {
