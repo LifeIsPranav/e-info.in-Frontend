@@ -174,6 +174,7 @@ const EditableContactInfo = ({
   placeholder,
   isClickable = false,
   onClick,
+  onIconClick,
 }: {
   icon: any;
   value: string;
@@ -182,9 +183,16 @@ const EditableContactInfo = ({
   placeholder?: string;
   isClickable?: boolean;
   onClick?: () => void;
+  onIconClick?: () => void;
 }) => (
   <div className="flex items-center text-gray-600 justify-center md:justify-start">
-    <Icon className="w-4 h-4 mr-2 text-gray-400 flex-shrink-0" />
+    <Icon
+      className="w-4 h-4 mr-2 text-gray-400 flex-shrink-0 cursor-pointer hover:text-gray-600 transition-colors"
+      onClick={(e: any) => {
+        e.stopPropagation();
+        onIconClick?.();
+      }}
+    />
     {isEditing ? (
       <Input
         value={value}
