@@ -1,6 +1,7 @@
 import ProfileSection from "@/components/ProfileSection";
 import PortfolioSection from "@/components/PortfolioSection";
 import WorkExperienceSection from "@/components/WorkExperienceSection";
+import EducationSection from "@/components/EducationSection";
 import AuthButton from "@/components/AuthButton";
 import Logo from "@/components/Logo";
 import Footer from "@/components/Footer";
