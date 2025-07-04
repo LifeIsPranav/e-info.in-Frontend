@@ -12,6 +12,9 @@ import { Link } from "react-router-dom";
 import { Home } from "lucide-react";
 
 const Demo = () => {
+  const { profile, projects, portfolioProjects, workExperiences, education } =
+    useProfile();
+
   return (
     <div className="min-h-screen bg-gray-50 p-4 md:p-6 relative">
       {/* Logo - Top Left */}
@@ -28,7 +31,11 @@ const Demo = () => {
       {/* Main Content Container */}
       <div className="w-full max-w-lg mx-auto pt-16 pb-16 space-y-8">
         {/* Profile Section */}
-        <ProfileSection />
+        <UnifiedProfileSection
+          profile={profile}
+          projects={projects}
+          canEdit={false}
+        />
 
         {/* Work Experience Section */}
         <div className="space-y-4">
