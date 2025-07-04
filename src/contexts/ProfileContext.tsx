@@ -53,35 +53,16 @@ export function ProfileProvider({ children }: { children: React.ReactNode }) {
 
   // Load data from localStorage on mount
   useEffect(() => {
-    try {
-      const savedData = localStorage.getItem(STORAGE_KEY);
-      if (savedData) {
-        const parsed = JSON.parse(savedData);
+    // Always clear localStorage on mount to avoid React element issues
+    console.log("Clearing localStorage to prevent React element errors");
+    localStorage.removeItem(STORAGE_KEY);
 
-        // Check if data contains React elements and clear if so
-        const hasReactElements = JSON.stringify(parsed).includes('"$$typeof"');
-        if (hasReactElements) {
-          console.warn(
-            "Clearing localStorage due to invalid React elements in saved data",
-          );
-          localStorage.removeItem(STORAGE_KEY);
-          return;
-        }
-
-        // Always merge with defaults to ensure all fields exist
-        if (parsed.profile)
-          setProfile({ ...defaultProfile, ...parsed.profile });
-        if (parsed.projects) setProjects(parsed.projects);
-        if (parsed.portfolioProjects)
-          setPortfolioProjects(parsed.portfolioProjects);
-        if (parsed.workExperiences) setWorkExperiences(parsed.workExperiences);
-        if (parsed.education) setEducation(parsed.education);
-      }
-    } catch (error) {
-      console.warn("Failed to load profile data from localStorage:", error);
-      // Clear corrupted data
-      localStorage.removeItem(STORAGE_KEY);
-    }
+    // Use default data
+    setProfile(defaultProfile);
+    setProjects(defaultProjects);
+    setPortfolioProjects(defaultPortfolioProjects);
+    setWorkExperiences(defaultWorkExperiences);
+    setEducation(defaultEducation);
   }, []);
 
   // Save data to localStorage whenever state changes
