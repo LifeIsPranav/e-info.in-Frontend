@@ -57,6 +57,30 @@ const handleExternalLink = (url: string, useMailto = false): void => {
   window.open(finalUrl, target, useMailto ? "" : "noopener,noreferrer");
 };
 
+const copyToClipboard = async (text: string, type: string): Promise<void> => {
+  try {
+    await navigator.clipboard.writeText(text);
+    toast.success(`${type} copied to clipboard!`);
+  } catch (err) {
+    // Fallback for older browsers
+    const textArea = document.createElement("textarea");
+    textArea.value = text;
+    textArea.style.position = "fixed";
+    textArea.style.left = "-999999px";
+    textArea.style.top = "-999999px";
+    document.body.appendChild(textArea);
+    textArea.focus();
+    textArea.select();
+    try {
+      document.execCommand("copy");
+      toast.success(`${type} copied to clipboard!`);
+    } catch (err) {
+      toast.error("Failed to copy to clipboard");
+    }
+    document.body.removeChild(textArea);
+  }
+};
+
 // Sub-components
 const EditableProfileImage = ({
   src,
