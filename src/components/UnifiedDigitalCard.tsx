@@ -401,6 +401,50 @@ const UnifiedDigitalCard = forwardRef<
       }
     };
 
+    const handleCopyWithAnimation = async (
+      text: string,
+      type: string,
+      field: keyof typeof copyStates,
+    ) => {
+      try {
+        await navigator.clipboard.writeText(text);
+        toast.success(`${type} copied to clipboard!`);
+
+        // Show tick animation
+        setCopyStates((prev) => ({ ...prev, [field]: true }));
+
+        // Reset after 2 seconds
+        setTimeout(() => {
+          setCopyStates((prev) => ({ ...prev, [field]: false }));
+        }, 2000);
+      } catch (err) {
+        // Fallback for older browsers
+        const textArea = document.createElement("textarea");
+        textArea.value = text;
+        textArea.style.position = "fixed";
+        textArea.style.left = "-999999px";
+        textArea.style.top = "-999999px";
+        document.body.appendChild(textArea);
+        textArea.focus();
+        textArea.select();
+        try {
+          document.execCommand("copy");
+          toast.success(`${type} copied to clipboard!`);
+
+          // Show tick animation
+          setCopyStates((prev) => ({ ...prev, [field]: true }));
+
+          // Reset after 2 seconds
+          setTimeout(() => {
+            setCopyStates((prev) => ({ ...prev, [field]: false }));
+          }, 2000);
+        } catch (err) {
+          toast.error("Failed to copy to clipboard");
+        }
+        document.body.removeChild(textArea);
+      }
+    };
+
     const handleInstantMessage = (e: React.MouseEvent) => {
       e.preventDefault();
       e.stopPropagation();
