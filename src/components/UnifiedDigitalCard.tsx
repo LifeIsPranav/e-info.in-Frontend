@@ -615,9 +615,8 @@ const UnifiedDigitalCard = forwardRef<
             </div>
           </div>
 
-          {/* Card Back - Message Form (only show if can't edit) */}
-          {!canEdit && (
-            <div
+          {/* Card Back - Message Form */}
+          <div
               ref={backCardRef}
               className="absolute top-0 left-0 w-full backface-hidden rounded-2xl bg-white shadow-lg border border-gray-100/80 overflow-hidden"
               style={{
