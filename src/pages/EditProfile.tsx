@@ -94,33 +94,36 @@ const EditProfile = () => {
         </div>
 
         {/* Editable Profile Section */}
-        <EditableProfileSection
+        <UnifiedProfileSection
           profile={profile}
-          onProfileUpdate={handleProfileUpdate}
+          projects={projects}
+          canEdit={true}
+          onProfileUpdate={updateProfile}
+          onProjectsUpdate={updateProjects}
         />
 
         {/* Editable Links Section */}
         <EditableLinksSection
           projects={projects}
-          onProjectsUpdate={handleProjectsUpdate}
+          onProjectsUpdate={updateProjects}
         />
 
         {/* Editable Experience Section */}
         <EditableExperienceSection
           experiences={workExperiences}
-          onExperiencesUpdate={handleWorkExperiencesUpdate}
+          onExperiencesUpdate={updateWorkExperiences}
         />
 
         {/* Editable Portfolio Section */}
         <EditablePortfolioSection
           projects={portfolioProjects}
-          onProjectsUpdate={handlePortfolioProjectsUpdate}
+          onProjectsUpdate={updatePortfolioProjects}
         />
 
         {/* Editable Education Section */}
         <EditableEducationSection
           education={education}
-          onEducationUpdate={handleEducationUpdate}
+          onEducationUpdate={updateEducation}
         />
       </div>
       <Footer />
