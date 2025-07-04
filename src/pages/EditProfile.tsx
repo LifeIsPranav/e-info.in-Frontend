@@ -44,7 +44,7 @@ const EditProfile = () => {
     if (user) {
       initializeWithUserData(user);
     }
-  }, [user, initializeWithUserData]);
+  }, [user]); // Remove initializeWithUserData from deps to prevent infinite loop
 
   // Show loading while checking auth
   if (authLoading) {
