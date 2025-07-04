@@ -54,7 +54,7 @@ const Demo = () => {
 
         {/* Work Experience Section */}
         {workExperiences.length > 0 && (
-          <div className="space-y-4">
+          <div className="space-y-4 -mt-8">
             <div className="text-center">
               <h2 className="text-2xl font-semibold text-gray-900 mb-2">
                 Experience
@@ -69,7 +69,7 @@ const Demo = () => {
 
         {/* Portfolio Section */}
         {portfolioProjects.length > 0 && (
-          <div className="space-y-4">
+          <div className="space-y-4 -mt-8">
             <div className="text-center">
               <h2 className="text-2xl font-semibold text-gray-900 mb-2">
                 Portfolio
