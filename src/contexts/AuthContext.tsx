@@ -187,6 +187,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     signOut,
     updateUser,
     clearError,
+    setRedirectPath,
+    getRedirectPath,
   };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
