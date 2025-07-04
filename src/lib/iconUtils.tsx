@@ -58,7 +58,10 @@ import {
   Ruler,
   Calculator,
   Book,
+  BookOpen,
   FileText,
+  // Education
+  GraduationCap,
   // Actions & Arrows
   Play,
   Pause,
