@@ -5,6 +5,7 @@ import EditableProfileSection from "@/components/EditableProfileSection";
 import EditableLinksSection from "@/components/EditableLinksSection";
 import EditablePortfolioSection from "@/components/EditablePortfolioSection";
 import EditableExperienceSection from "@/components/EditableExperienceSection";
+import EditableEducationSection from "@/components/EditableEducationSection";
 import Logo from "@/components/Logo";
 import AuthButton from "@/components/AuthButton";
 import Footer from "@/components/Footer";
