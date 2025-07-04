@@ -121,22 +121,6 @@ export default function UnifiedProfileSection({
           onProfileChange={handleProfileChange}
         />
       </div>
-
-      {/* Links - only show if there are projects and not editing */}
-      {!isEditing && projects.length > 0 && (
-        <div className="space-y-2">
-          {projects.map((project) => (
-            <LinkButton
-              key={project.id}
-              href={project.href}
-              title={project.title}
-              description={project.description}
-              icon={project.icon}
-              onDirectLink={() => handleDirectLink(project.href)}
-            />
-          ))}
-        </div>
-      )}
     </div>
   );
 }
