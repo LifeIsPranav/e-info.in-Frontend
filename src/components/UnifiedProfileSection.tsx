@@ -31,15 +31,6 @@ export default function UnifiedProfileSection({
     setEditingProfile(finalProfile);
   }, [profile]);
 
-  const handleDirectLink = (href: string) => {
-    if (onDirectLink) {
-      onDirectLink(href);
-    } else {
-      // Default behavior
-      window.open(href, "_blank", "noopener,noreferrer");
-    }
-  };
-
   const handleStartEdit = () => {
     setEditingProfile(finalProfile);
     setIsEditing(true);
