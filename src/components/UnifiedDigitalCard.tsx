@@ -617,74 +617,73 @@ const UnifiedDigitalCard = forwardRef<
 
           {/* Card Back - Message Form */}
           <div
-              ref={backCardRef}
-              className="absolute top-0 left-0 w-full backface-hidden rounded-2xl bg-white shadow-lg border border-gray-100/80 overflow-hidden"
-              style={{
-                backfaceVisibility: "hidden",
-                transform: "rotateY(180deg)",
-              }}
-            >
-              <div className="min-h-80 flex flex-col">
-                {/* Header */}
-                <div className="flex items-center justify-between p-4 border-b border-gray-100 flex-shrink-0">
-                  <div
-                    className="flex-1 cursor-pointer"
-                    onClick={handleCloseCard}
-                  >
-                    <h2 className="text-xl font-semibold text-gray-900">
-                      Send Message
-                    </h2>
-                    <p className="text-gray-500 text-sm mt-1">Let's connect</p>
-                  </div>
-
-                  <Button
-                    variant="ghost"
-                    size="sm"
-                    onClick={handleCloseCard}
-                    className="text-gray-400 hover:text-gray-600 p-2 h-9 w-9 rounded-full hover:bg-gray-50"
-                  >
-                    <div className="flex flex-col items-center justify-center">
-                      <ArrowRight className="w-3 h-3 -mb-0.5" />
-                      <ArrowLeft className="w-3 h-3" />
-                    </div>
-                  </Button>
-                </div>
-
-                {/* Form Content */}
-                <div className="flex-1 p-4 min-h-0 flex flex-col">
-                  <div className="space-y-4 flex-1">
-                    <Input
-                      value={messageTitle}
-                      onChange={(e) => setMessageTitle(e.target.value)}
-                      placeholder="Subject"
-                      className="bg-gray-50 border-gray-200 text-gray-900 placeholder-gray-400 focus:border-gray-400 focus:ring-1 focus:ring-gray-400 h-11 text-sm"
-                      onClick={(e) => e.stopPropagation()}
-                    />
-
-                    <Textarea
-                      value={messageText}
-                      onChange={(e) => setMessageText(e.target.value)}
-                      placeholder="Your message..."
-                      className="bg-gray-50 border-gray-200 text-gray-900 placeholder-gray-400 focus:border-gray-400 focus:ring-1 focus:ring-gray-400 resize-none text-sm w-full h-full min-h-20"
-                      onClick={(e) => e.stopPropagation()}
-                    />
-                  </div>
-                </div>
-
-                {/* Send Button */}
-                <div className="p-4 border-t border-gray-100 bg-gray-50/50 flex-shrink-0">
-                  <Button
-                    onClick={handleSendMessage}
-                    disabled={!messageTitle.trim() || !messageText.trim()}
-                    className="w-full bg-gray-900 hover:bg-gray-800 text-white h-11 disabled:bg-gray-200 disabled:text-gray-400 text-sm font-medium transition-colors"
-                  >
-                    <Send className="w-4 h-4 mr-2" />
+            ref={backCardRef}
+            className="absolute top-0 left-0 w-full backface-hidden rounded-2xl bg-white shadow-lg border border-gray-100/80 overflow-hidden"
+            style={{
+              backfaceVisibility: "hidden",
+              transform: "rotateY(180deg)",
+            }}
+          >
+            <div className="min-h-80 flex flex-col">
+              {/* Header */}
+              <div className="flex items-center justify-between p-4 border-b border-gray-100 flex-shrink-0">
+                <div
+                  className="flex-1 cursor-pointer"
+                  onClick={handleCloseCard}
+                >
+                  <h2 className="text-xl font-semibold text-gray-900">
                     Send Message
-                  </Button>
+                  </h2>
+                  <p className="text-gray-500 text-sm mt-1">Let's connect</p>
+                </div>
+
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={handleCloseCard}
+                  className="text-gray-400 hover:text-gray-600 p-2 h-9 w-9 rounded-full hover:bg-gray-50"
+                >
+                  <div className="flex flex-col items-center justify-center">
+                    <ArrowRight className="w-3 h-3 -mb-0.5" />
+                    <ArrowLeft className="w-3 h-3" />
+                  </div>
+                </Button>
+              </div>
+
+              {/* Form Content */}
+              <div className="flex-1 p-4 min-h-0 flex flex-col">
+                <div className="space-y-4 flex-1">
+                  <Input
+                    value={messageTitle}
+                    onChange={(e) => setMessageTitle(e.target.value)}
+                    placeholder="Subject"
+                    className="bg-gray-50 border-gray-200 text-gray-900 placeholder-gray-400 focus:border-gray-400 focus:ring-1 focus:ring-gray-400 h-11 text-sm"
+                    onClick={(e) => e.stopPropagation()}
+                  />
+
+                  <Textarea
+                    value={messageText}
+                    onChange={(e) => setMessageText(e.target.value)}
+                    placeholder="Your message..."
+                    className="bg-gray-50 border-gray-200 text-gray-900 placeholder-gray-400 focus:border-gray-400 focus:ring-1 focus:ring-gray-400 resize-none text-sm w-full h-full min-h-20"
+                    onClick={(e) => e.stopPropagation()}
+                  />
                 </div>
               </div>
+
+              {/* Send Button */}
+              <div className="p-4 border-t border-gray-100 bg-gray-50/50 flex-shrink-0">
+                <Button
+                  onClick={handleSendMessage}
+                  disabled={!messageTitle.trim() || !messageText.trim()}
+                  className="w-full bg-gray-900 hover:bg-gray-800 text-white h-11 disabled:bg-gray-200 disabled:text-gray-400 text-sm font-medium transition-colors"
+                >
+                  <Send className="w-4 h-4 mr-2" />
+                  Send Message
+                </Button>
+              </div>
             </div>
-          )}
+          </div>
         </div>
       </div>
     );
