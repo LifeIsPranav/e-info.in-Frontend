@@ -1,15 +1,6 @@
 import { useState } from "react";
-import {
-  X,
-  ExternalLink,
-  ChevronLeft,
-  ChevronRight,
-  Eye,
-  MessageCircle,
-} from "lucide-react";
+import { X, ExternalLink, ChevronLeft, ChevronRight, Eye } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { useAuth } from "@/contexts/AuthContext";
-import { toast } from "sonner";
 
 interface ProjectImage {
   id: string;
