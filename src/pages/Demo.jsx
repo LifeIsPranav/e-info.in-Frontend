@@ -1,4 +1,5 @@
 import UnifiedProfileSection from "@/components/UnifiedProfileSection";
+import LinkButton from "@/components/LinkButton";
 import PortfolioSection from "@/components/PortfolioSection";
 import WorkExperienceSection from "@/components/WorkExperienceSection";
 import EducationSection from "@/components/EducationSection";
