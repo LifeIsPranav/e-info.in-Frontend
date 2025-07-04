@@ -165,6 +165,12 @@ const EditProfile = () => {
           projects={portfolioProjects}
           onProjectsUpdate={handlePortfolioProjectsUpdate}
         />
+
+        {/* Editable Education Section */}
+        <EditableEducationSection
+          education={education}
+          onEducationUpdate={handleEducationUpdate}
+        />
       </div>
       <Footer />
     </div>
