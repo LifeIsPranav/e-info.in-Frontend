@@ -63,6 +63,10 @@ export default function AuthButton() {
     navigate("/mycard");
   };
 
+  const handleViewCardClick = () => {
+    navigate("/demo");
+  };
+
   // Show loading spinner during auth operations
   if (isLoading) {
     return (
