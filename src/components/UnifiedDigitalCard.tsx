@@ -603,7 +603,7 @@ const UnifiedDigitalCard = forwardRef<
               </div>
 
               {/* Call to Action */}
-              {!isEditing && !canEdit && (
+              {!isEditing && (
                 <div className="p-4 border-t border-gray-100 bg-gray-50/50">
                   <div className="text-center py-2">
                     <span className="text-gray-500 text-sm font-medium">
