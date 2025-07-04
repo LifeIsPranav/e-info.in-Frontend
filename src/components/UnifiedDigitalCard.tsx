@@ -360,7 +360,15 @@ const UnifiedDigitalCard = forwardRef<
       e.preventDefault();
       e.stopPropagation();
 
-      if (!messageTitle.trim() || !messageText.trim()) return;
+      if (!isAuthenticated) {
+        toast.error("Please log in to send a message");
+        return;
+      }
+
+      if (!messageTitle.trim() || !messageText.trim()) {
+        toast.error("Please fill in both subject and message");
+        return;
+      }
 
       console.log("Sending message:", {
         title: messageTitle,
@@ -368,7 +376,7 @@ const UnifiedDigitalCard = forwardRef<
         timestamp: new Date().toISOString(),
       });
 
-      alert("Message sent successfully!");
+      toast.success("Message sent successfully!");
       setMessageTitle("");
       setMessageText("");
       setIsFlipped(false);
