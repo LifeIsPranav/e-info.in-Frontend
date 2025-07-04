@@ -1,4 +1,4 @@
-import { EducationData } from "@/components/Education";
+import type { EducationData } from "@/components/Education";
 import { GraduationCap, Award, BookOpen, Trophy } from "lucide-react";
 
 // Example education and certifications data
