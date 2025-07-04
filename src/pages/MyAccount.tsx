@@ -35,6 +35,7 @@ import {
 interface UserAccountData {
   name: string;
   username: string;
+  instantMessageSubject: string;
   instantMessage: string;
 }
 
