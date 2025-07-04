@@ -57,6 +57,17 @@ export function ProfileProvider({ children }: { children: React.ReactNode }) {
       const savedData = localStorage.getItem(STORAGE_KEY);
       if (savedData) {
         const parsed = JSON.parse(savedData);
+
+        // Check if data contains React elements and clear if so
+        const hasReactElements = JSON.stringify(parsed).includes('"$$typeof"');
+        if (hasReactElements) {
+          console.warn(
+            "Clearing localStorage due to invalid React elements in saved data",
+          );
+          localStorage.removeItem(STORAGE_KEY);
+          return;
+        }
+
         // Always merge with defaults to ensure all fields exist
         if (parsed.profile)
           setProfile({ ...defaultProfile, ...parsed.profile });
@@ -68,6 +79,8 @@ export function ProfileProvider({ children }: { children: React.ReactNode }) {
       }
     } catch (error) {
       console.warn("Failed to load profile data from localStorage:", error);
+      // Clear corrupted data
+      localStorage.removeItem(STORAGE_KEY);
     }
   }, []);
 
