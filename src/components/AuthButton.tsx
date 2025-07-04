@@ -2,7 +2,6 @@ import { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import {
   User,
-  Settings,
   LogOut,
   Mail,
   CreditCard,
@@ -63,11 +62,6 @@ export default function AuthButton() {
     navigate("/mycard");
   };
 
-  const handleSettingsClick = () => {
-    console.log("Opening settings...");
-    // You can implement a modal or navigate to settings page
-  };
-
   // Show loading spinner during auth operations
   if (isLoading) {
     return (
@@ -105,44 +99,28 @@ export default function AuthButton() {
       </DropdownMenuTrigger>
 
       <DropdownMenuContent
-        className="w-64 p-0 bg-white/95 backdrop-blur-md border-gray-200/20 shadow-xl shadow-gray-900/5"
+        className="w-56 p-2 bg-white border-gray-200 shadow-lg"
         align="end"
         forceMount
         sideOffset={8}
       >
-        {/* User Info Header with Gradient Background */}
-        <div className="p-4 bg-gradient-to-br from-gray-50 to-white border-b border-gray-100/80">
-          <div className="flex items-center space-x-3">
-            <Avatar className="h-10 w-10 ring-2 ring-gray-100 ring-offset-2">
-              <AvatarImage src={user?.avatar} alt={user?.name} />
-              <AvatarFallback className="bg-gradient-to-br from-gray-100 to-gray-200 text-gray-700 text-sm font-medium">
-                {user ? getUserInitials(user.name) : "U"}
-              </AvatarFallback>
-            </Avatar>
-            <div className="flex-1 min-w-0">
-              <p className="text-sm font-semibold text-gray-900 truncate">
-                {user?.name}
-              </p>
-              <p className="text-xs text-gray-500 truncate">{user?.email}</p>
+        {/* Error display if needed */}
+        {error && (
+          <div className="mb-2 p-2 bg-red-50 border border-red-200 rounded-md">
+            <div className="flex items-center justify-between">
+              <p className="text-xs text-red-600">{error}</p>
+              <button
+                onClick={clearError}
+                className="text-red-400 hover:text-red-600"
+              >
+                <X className="h-3 w-3" />
+              </button>
             </div>
           </div>
-          {error && (
-            <div className="mt-2 p-2 bg-red-50 border border-red-200 rounded-md">
-              <div className="flex items-center justify-between">
-                <p className="text-xs text-red-600">{error}</p>
-                <button
-                  onClick={clearError}
-                  className="text-red-400 hover:text-red-600"
-                >
-                  <X className="h-3 w-3" />
-                </button>
-              </div>
-            </div>
-          )}
-        </div>
+        )}
 
         {/* Menu Items */}
-        <div className="p-2 space-y-1">
+        <div className="space-y-1">
           <DropdownMenuItem
             onClick={handleDashboardClick}
             className="cursor-pointer rounded-lg px-3 py-2.5 text-sm font-medium text-gray-700 hover:bg-gray-50 hover:text-gray-900 transition-all duration-200 group"
@@ -165,14 +143,6 @@ export default function AuthButton() {
           >
             <User className="mr-3 h-4 w-4 text-gray-400 group-hover:text-gray-600 transition-colors" />
             <span>My Card</span>
-          </DropdownMenuItem>
-
-          <DropdownMenuItem
-            onClick={handleSettingsClick}
-            className="cursor-pointer rounded-lg px-3 py-2.5 text-sm font-medium text-gray-700 hover:bg-gray-50 hover:text-gray-900 transition-all duration-200 group"
-          >
-            <Settings className="mr-3 h-4 w-4 text-gray-400 group-hover:text-gray-600 transition-colors" />
-            <span>Settings</span>
           </DropdownMenuItem>
         </div>
 
