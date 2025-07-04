@@ -670,8 +670,9 @@ Best regards`;
                     onIconClick={() =>
                       !isEditing &&
                       profile.email &&
-                      copyToClipboard(profile.email, "Email")
+                      handleCopyWithAnimation(profile.email, "Email", "email")
                     }
+                    showTick={copyStates.email}
                   />
                   <EditableContactInfo
                     icon={Globe}
@@ -692,8 +693,13 @@ Best regards`;
                     onIconClick={() =>
                       !isEditing &&
                       profile.website &&
-                      copyToClipboard(profile.website, "Website")
+                      handleCopyWithAnimation(
+                        profile.website,
+                        "Website",
+                        "website",
+                      )
                     }
+                    showTick={copyStates.website}
                   />
                   <EditableContactInfo
                     icon={MapPin}
@@ -708,8 +714,13 @@ Best regards`;
                     onIconClick={() =>
                       !isEditing &&
                       profile.location &&
-                      copyToClipboard(profile.location, "Location")
+                      handleCopyWithAnimation(
+                        profile.location,
+                        "Location",
+                        "location",
+                      )
                     }
+                    showTick={copyStates.location}
                   />
                 </div>
 
