@@ -534,7 +534,7 @@ const UnifiedDigitalCard = forwardRef<
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
                   <EditableContactInfo
                     icon={Mail}
-                    value={profile.email}
+                    value={profile.email || ""}
                     isEditing={isEditing}
                     onChange={
                       isEditing
@@ -544,12 +544,14 @@ const UnifiedDigitalCard = forwardRef<
                     placeholder="email@example.com"
                     isClickable={!isEditing}
                     onClick={() =>
-                      !isEditing && handleExternalLink(profile.email, true)
+                      !isEditing &&
+                      profile.email &&
+                      handleExternalLink(profile.email, true)
                     }
                   />
                   <EditableContactInfo
                     icon={Globe}
-                    value={profile.website}
+                    value={profile.website || ""}
                     isEditing={isEditing}
                     onChange={
                       isEditing
@@ -559,12 +561,14 @@ const UnifiedDigitalCard = forwardRef<
                     placeholder="yourwebsite.com"
                     isClickable={!isEditing}
                     onClick={() =>
-                      !isEditing && handleExternalLink(profile.website)
+                      !isEditing &&
+                      profile.website &&
+                      handleExternalLink(profile.website)
                     }
                   />
                   <EditableContactInfo
                     icon={MapPin}
-                    value={profile.location}
+                    value={profile.location || ""}
                     isEditing={isEditing}
                     onChange={
                       isEditing
