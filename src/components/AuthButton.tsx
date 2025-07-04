@@ -23,12 +23,25 @@ import {
 import { useAuth } from "@/contexts/AuthContext";
 
 export default function AuthButton() {
-  const { user, isAuthenticated, isLoading, error, signOut, clearError } =
-    useAuth();
+  const {
+    user,
+    isAuthenticated,
+    isLoading,
+    error,
+    signOut,
+    clearError,
+    setRedirectPath,
+  } = useAuth();
   const navigate = useNavigate();
+  const location = useLocation();
 
-  // Handle sign in - navigate to auth page
+  // Handle sign in - set redirect path and navigate to auth page
   const handleSignIn = () => {
+    // If on home page, redirect to dashboard after auth
+    // Otherwise, redirect back to current page
+    const redirectTo =
+      location.pathname === "/" ? "/dashboard" : location.pathname;
+    setRedirectPath(redirectTo);
     navigate("/auth");
   };
 
