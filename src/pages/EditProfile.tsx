@@ -40,6 +40,7 @@ const EditProfile = () => {
   const [workExperiences, setWorkExperiences] = useState<WorkExperienceData[]>(
     defaultWorkExperiences,
   );
+  const [education, setEducation] = useState<EducationData[]>(defaultEducation);
 
   // Redirect to auth if not authenticated
   useEffect(() => {
