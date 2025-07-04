@@ -24,6 +24,8 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { PersonProfile } from "@/lib/profileData";
+import { useAuth } from "@/contexts/AuthContext";
+import { toast } from "sonner";
 
 interface UnifiedDigitalCardProps {
   profile: PersonProfile;
