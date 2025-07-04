@@ -50,6 +50,10 @@ const MyAccount = () => {
   const { toast } = useToast();
   const [isLoading, setIsLoading] = useState(false);
   const [deleteLoading, setDeleteLoading] = useState(false);
+  const [verificationData, setVerificationData] = useState({
+    username: "",
+    password: "",
+  });
   const [accountData, setAccountData] = useState<UserAccountData>({
     name: user?.name || "",
     username: user?.email?.split("@")[0] || "",
@@ -124,6 +128,28 @@ const MyAccount = () => {
   };
 
   const handleDeleteAccount = async () => {
+    // Validate username
+    if (verificationData.username !== accountData.username) {
+      toast({
+        title: "Username Mismatch",
+        description:
+          "The username you entered does not match your account username.",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    // Validate password (in a real app, this would be validated on the server)
+    if (!verificationData.password || verificationData.password.length < 6) {
+      toast({
+        title: "Invalid Password",
+        description:
+          "Please enter a valid password to confirm account deletion.",
+        variant: "destructive",
+      });
+      return;
+    }
+
     setDeleteLoading(true);
 
     try {
@@ -151,6 +177,8 @@ const MyAccount = () => {
       });
     } finally {
       setDeleteLoading(false);
+      // Reset verification data
+      setVerificationData({ username: "", password: "" });
     }
   };
 
@@ -364,7 +392,7 @@ const MyAccount = () => {
                 Delete Account
               </Button>
             </AlertDialogTrigger>
-            <AlertDialogContent>
+            <AlertDialogContent className="max-w-md">
               <AlertDialogHeader>
                 <AlertDialogTitle className="flex items-center gap-2">
                   <AlertTriangle className="w-5 h-5 text-red-500" />
@@ -372,17 +400,71 @@ const MyAccount = () => {
                 </AlertDialogTitle>
                 <AlertDialogDescription>
                   This action cannot be undone. This will permanently delete
-                  your account and remove all your data from our servers. All
-                  your profile information, settings, and activity will be
-                  permanently lost.
+                  your account and remove all your data from our servers.
                 </AlertDialogDescription>
               </AlertDialogHeader>
+
+              <div className="space-y-4 py-4">
+                <div className="space-y-2">
+                  <label className="text-sm font-medium text-gray-900">
+                    Confirm Username
+                  </label>
+                  <Input
+                    value={verificationData.username}
+                    onChange={(e) =>
+                      setVerificationData((prev) => ({
+                        ...prev,
+                        username: e.target.value,
+                      }))
+                    }
+                    placeholder={`Type "${accountData.username}" to confirm`}
+                    className="bg-gray-50 border-gray-300 focus:border-red-500 focus:ring-1 focus:ring-red-500"
+                  />
+                </div>
+
+                <div className="space-y-2">
+                  <label className="text-sm font-medium text-gray-900">
+                    Confirm Password
+                  </label>
+                  <Input
+                    type="password"
+                    value={verificationData.password}
+                    onChange={(e) =>
+                      setVerificationData((prev) => ({
+                        ...prev,
+                        password: e.target.value,
+                      }))
+                    }
+                    placeholder="Enter your password"
+                    className="bg-gray-50 border-gray-300 focus:border-red-500 focus:ring-1 focus:ring-red-500"
+                  />
+                </div>
+
+                <div className="bg-red-50 border border-red-200 rounded-md p-3">
+                  <p className="text-xs text-red-700">
+                    Please confirm your username and password to proceed with
+                    account deletion. All your profile information, settings,
+                    and activity will be permanently lost.
+                  </p>
+                </div>
+              </div>
+
               <AlertDialogFooter>
-                <AlertDialogCancel>Cancel</AlertDialogCancel>
+                <AlertDialogCancel
+                  onClick={() =>
+                    setVerificationData({ username: "", password: "" })
+                  }
+                >
+                  Cancel
+                </AlertDialogCancel>
                 <AlertDialogAction
                   onClick={handleDeleteAccount}
-                  disabled={deleteLoading}
-                  className="bg-red-600 hover:bg-red-700 text-white"
+                  disabled={
+                    deleteLoading ||
+                    !verificationData.username ||
+                    !verificationData.password
+                  }
+                  className="bg-red-600 hover:bg-red-700 text-white disabled:opacity-50"
                 >
                   {deleteLoading ? (
                     <div className="flex items-center gap-2">
