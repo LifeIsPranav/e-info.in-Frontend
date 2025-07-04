@@ -117,7 +117,7 @@ export const defaultProjects: ProjectLink[] = [
     projectDetails:
       "Access to design systems, wireframes, and interactive prototypes. See how I organize design files and collaborate with development teams.",
     href: "https://figma.com",
-    icon: <FigmaIcon />,
+    icon: null,
   },
   {
     id: "email",
