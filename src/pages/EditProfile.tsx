@@ -27,6 +27,7 @@ import {
   WorkExperienceData,
   defaultWorkExperiences,
 } from "@/lib/workExperienceData";
+import { EducationData, defaultEducation } from "@/lib/educationData";
 
 const EditProfile = () => {
   const { user, isAuthenticated, isLoading: authLoading } = useAuth();
