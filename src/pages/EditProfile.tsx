@@ -100,11 +100,13 @@ const EditProfile = () => {
           onProfileUpdate={updateProfile}
         />
 
-        {/* Editable Links Section */}
-        <EditableLinksSection
-          projects={projects}
-          onProjectsUpdate={updateProjects}
-        />
+        {/* Editable Links Section - Closer to profile card */}
+        <div className="-mt-14">
+          <EditableLinksSection
+            projects={projects}
+            onProjectsUpdate={updateProjects}
+          />
+        </div>
 
         {/* Editable Experience Section */}
         <EditableExperienceSection
