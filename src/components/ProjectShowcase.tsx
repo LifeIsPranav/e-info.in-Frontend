@@ -244,26 +244,7 @@ export default function ProjectShowcase({
                 View Project
               </Button>
             )}
-            <Button
-              onClick={handleConnect}
-              disabled={isMessageLoading || !isAuthenticated}
-              className="flex-1 bg-gray-900 hover:bg-gray-800 text-white h-10 disabled:opacity-60"
-              title={
-                !isAuthenticated
-                  ? "Sign in to send messages"
-                  : "Let's connect about this project"
-              }
-            >
-              <MessageCircle className="w-4 h-4 mr-2" />
-              {isMessageLoading ? "Sending..." : "Let's Connect"}
-            </Button>
           </div>
-
-          {!isAuthenticated && (
-            <p className="text-xs text-gray-500 text-center mt-2">
-              Sign in to connect with the project owner
-            </p>
-          )}
         </div>
       </div>
     </div>
