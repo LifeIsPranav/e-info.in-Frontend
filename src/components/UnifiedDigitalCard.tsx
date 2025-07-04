@@ -451,9 +451,9 @@ const UnifiedDigitalCard = forwardRef<
                 {/* Header with Image and Basic Info */}
                 <div className="flex flex-col md:flex-row md:items-start gap-4 mb-4">
                   <EditableProfileImage
-                    src={profile.profileImage}
-                    alt={profile.name}
-                    initials={createInitials(profile.name)}
+                    src={profile.profileImage || "/placeholder.svg"}
+                    alt={profile.name || "Profile"}
+                    initials={createInitials(profile.name || "U")}
                     isEditing={isEditing}
                     onImageChange={
                       isEditing
