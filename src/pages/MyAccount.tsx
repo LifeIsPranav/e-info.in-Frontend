@@ -57,6 +57,7 @@ const MyAccount = () => {
   const [accountData, setAccountData] = useState<UserAccountData>({
     name: user?.name || "",
     username: user?.email?.split("@")[0] || "",
+    instantMessageSubject: "Let's Connect!",
     instantMessage: "Hey there! I'm using e-info.me to connect and share.",
   });
 
