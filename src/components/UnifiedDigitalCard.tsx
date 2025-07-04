@@ -297,6 +297,7 @@ const UnifiedDigitalCard = forwardRef<
     },
     ref,
   ) => {
+    const { isAuthenticated } = useAuth();
     const [isFlipped, setIsFlipped] = useState(false);
     const [messageTitle, setMessageTitle] = useState("");
     const [messageText, setMessageText] = useState("");
