@@ -2,7 +2,6 @@ import { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import {
   User,
-  Settings,
   LogOut,
   Mail,
   CreditCard,
@@ -61,10 +60,6 @@ export default function AuthButton() {
 
   const handleProfileClick = () => {
     navigate("/mycard");
-  };
-
-  const handleSettingsClick = () => {
-    console.log("Opening settings...");
   };
 
   // Show loading spinner during auth operations
@@ -164,14 +159,6 @@ export default function AuthButton() {
           >
             <User className="mr-3 h-4 w-4 text-gray-400 group-hover:text-gray-600 transition-colors" />
             <span>My Card</span>
-          </DropdownMenuItem>
-
-          <DropdownMenuItem
-            onClick={handleSettingsClick}
-            className="cursor-pointer rounded-lg px-3 py-2.5 text-sm font-medium text-gray-700 hover:bg-gray-50 hover:text-gray-900 transition-all duration-200 group"
-          >
-            <Settings className="mr-3 h-4 w-4 text-gray-400 group-hover:text-gray-600 transition-colors" />
-            <span>Settings</span>
           </DropdownMenuItem>
         </div>
 
