@@ -64,7 +64,7 @@ export default function AuthButton() {
   };
 
   const handleSettingsClick = () => {
-    navigate("/settings");
+    console.log("Opening settings...");
   };
 
   // Show loading spinner during auth operations

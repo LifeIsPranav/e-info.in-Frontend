@@ -14,7 +14,6 @@ const Auth = React.lazy(() => import("./pages/Auth"));
 const EditProfile = React.lazy(() => import("./pages/EditProfile"));
 const MyAccount = React.lazy(() => import("./pages/MyAccount"));
 const Dashboard = React.lazy(() => import("./pages/Dashboard"));
-const Settings = React.lazy(() => import("./pages/Settings"));
 const NotFound = React.lazy(() => import("./pages/NotFound"));
 
 // Configure React Query with optimized defaults
@@ -52,7 +51,6 @@ const App = () => (
                 <Route path="/mycard" element={<EditProfile />} />
                 <Route path="/account" element={<MyAccount />} />
                 <Route path="/dashboard" element={<Dashboard />} />
-                <Route path="/settings" element={<Settings />} />
                 {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
                 <Route path="*" element={<NotFound />} />
               </Routes>

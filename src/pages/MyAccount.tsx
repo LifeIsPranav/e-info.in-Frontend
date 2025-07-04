@@ -11,7 +11,26 @@ import Logo from "@/components/Logo";
 import AuthButton from "@/components/AuthButton";
 import Footer from "@/components/Footer";
 import { Link } from "react-router-dom";
-import { User, Save, ArrowLeft, Home, CreditCard } from "lucide-react";
+import {
+  User,
+  Save,
+  ArrowLeft,
+  Home,
+  CreditCard,
+  Trash2,
+  AlertTriangle,
+} from "lucide-react";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
 
 interface UserAccountData {
   name: string;
@@ -20,10 +39,17 @@ interface UserAccountData {
 }
 
 const MyAccount = () => {
-  const { user, signIn, isAuthenticated, isLoading: authLoading } = useAuth();
+  const {
+    user,
+    signIn,
+    signOut,
+    isAuthenticated,
+    isLoading: authLoading,
+  } = useAuth();
   const navigate = useNavigate();
   const { toast } = useToast();
   const [isLoading, setIsLoading] = useState(false);
+  const [deleteLoading, setDeleteLoading] = useState(false);
   const [accountData, setAccountData] = useState<UserAccountData>({
     name: user?.name || "",
     username: user?.email?.split("@")[0] || "",
@@ -94,6 +120,37 @@ const MyAccount = () => {
       });
     } finally {
       setIsLoading(false);
+    }
+  };
+
+  const handleDeleteAccount = async () => {
+    setDeleteLoading(true);
+
+    try {
+      // Simulate account deletion process
+      await new Promise((resolve) => setTimeout(resolve, 2000));
+
+      // Clear all local data
+      localStorage.clear();
+
+      // Sign out
+      await signOut();
+
+      toast({
+        title: "Account Deleted",
+        description: "Your account has been permanently deleted.",
+        variant: "destructive",
+      });
+
+      navigate("/");
+    } catch (error) {
+      toast({
+        title: "Deletion Failed",
+        description: "Failed to delete account. Please try again.",
+        variant: "destructive",
+      });
+    } finally {
+      setDeleteLoading(false);
     }
   };
 
@@ -281,6 +338,64 @@ const MyAccount = () => {
               </p>
             </div>
           </div>
+        </div>
+
+        {/* Danger Zone */}
+        <div className="bg-red-50 border border-red-200 rounded-lg p-4">
+          <div className="flex items-start gap-3 mb-4">
+            <div className="w-5 h-5 rounded-full bg-red-500 flex items-center justify-center flex-shrink-0 mt-0.5">
+              <AlertTriangle className="w-3 h-3 text-white" />
+            </div>
+            <div>
+              <h4 className="text-sm font-medium text-red-900 mb-1">
+                Danger Zone
+              </h4>
+              <p className="text-xs text-red-700 leading-relaxed">
+                Once you delete your account, there is no going back. Please be
+                certain.
+              </p>
+            </div>
+          </div>
+
+          <AlertDialog>
+            <AlertDialogTrigger asChild>
+              <Button variant="destructive" className="w-full justify-start">
+                <Trash2 className="w-4 h-4 mr-2" />
+                Delete Account
+              </Button>
+            </AlertDialogTrigger>
+            <AlertDialogContent>
+              <AlertDialogHeader>
+                <AlertDialogTitle className="flex items-center gap-2">
+                  <AlertTriangle className="w-5 h-5 text-red-500" />
+                  Delete Account
+                </AlertDialogTitle>
+                <AlertDialogDescription>
+                  This action cannot be undone. This will permanently delete
+                  your account and remove all your data from our servers. All
+                  your profile information, settings, and activity will be
+                  permanently lost.
+                </AlertDialogDescription>
+              </AlertDialogHeader>
+              <AlertDialogFooter>
+                <AlertDialogCancel>Cancel</AlertDialogCancel>
+                <AlertDialogAction
+                  onClick={handleDeleteAccount}
+                  disabled={deleteLoading}
+                  className="bg-red-600 hover:bg-red-700 text-white"
+                >
+                  {deleteLoading ? (
+                    <div className="flex items-center gap-2">
+                      <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                      Deleting...
+                    </div>
+                  ) : (
+                    "Delete Account"
+                  )}
+                </AlertDialogAction>
+              </AlertDialogFooter>
+            </AlertDialogContent>
+          </AlertDialog>
         </div>
       </div>
       <Footer />
