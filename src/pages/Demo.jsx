@@ -1,4 +1,4 @@
-import ProfileSection from "@/components/ProfileSection";
+import UnifiedProfileSection from "@/components/UnifiedProfileSection";
 import PortfolioSection from "@/components/PortfolioSection";
 import WorkExperienceSection from "@/components/WorkExperienceSection";
 import EducationSection from "@/components/EducationSection";
@@ -6,6 +6,7 @@ import AuthButton from "@/components/AuthButton";
 import Logo from "@/components/Logo";
 import Footer from "@/components/Footer";
 import StarButton from "@/components/StarButton";
+import { useProfile } from "@/contexts/ProfileContext";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { Home } from "lucide-react";
