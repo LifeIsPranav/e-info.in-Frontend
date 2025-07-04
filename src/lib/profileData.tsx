@@ -97,7 +97,7 @@ export const defaultProjects: ProjectLink[] = [
     projectDetails:
       "In-depth case studies showcasing my design process from research to final implementation. Detailed breakdowns of user experience challenges and solutions.",
     href: "https://behance.net",
-    icon: <BehanceIcon />,
+    icon: null,
   },
   {
     id: "linkedin",
