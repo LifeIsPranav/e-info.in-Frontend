@@ -657,17 +657,31 @@ Best regards`;
                   <p className="text-gray-500 text-sm mt-1">Let's connect</p>
                 </div>
 
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  onClick={handleCloseCard}
-                  className="text-gray-400 hover:text-gray-600 p-2 h-9 w-9 rounded-full hover:bg-gray-50"
-                >
-                  <div className="flex flex-col items-center justify-center">
-                    <ArrowRight className="w-3 h-3 -mb-0.5" />
-                    <ArrowLeft className="w-3 h-3" />
-                  </div>
-                </Button>
+                <div className="flex items-center gap-2">
+                  {/* Instant Message Button */}
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    onClick={handleInstantMessage}
+                    className="text-blue-500 hover:text-blue-600 hover:bg-blue-50 p-2 h-9 w-9 rounded-full transition-colors"
+                    title="Quick message template"
+                  >
+                    <Zap className="w-4 h-4" />
+                  </Button>
+
+                  {/* Close Button */}
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    onClick={handleCloseCard}
+                    className="text-gray-400 hover:text-gray-600 p-2 h-9 w-9 rounded-full hover:bg-gray-50"
+                  >
+                    <div className="flex flex-col items-center justify-center">
+                      <ArrowRight className="w-3 h-3 -mb-0.5" />
+                      <ArrowLeft className="w-3 h-3" />
+                    </div>
+                  </Button>
+                </div>
               </div>
 
               {/* Form Content */}
