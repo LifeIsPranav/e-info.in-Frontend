@@ -568,7 +568,7 @@ Best regards`;
               {/* Profile Section */}
               <div className="flex-1 p-4">
                 {/* Header with Image and Basic Info */}
-                <div className="flex flex-col md:flex-row md:items-start gap-4 mb-4">
+                <div className="flex flex-col md:flex-row md:items-center gap-4 mb-4">
                   <EditableProfileImage
                     src={profile.profileImage || "/placeholder.svg"}
                     alt={profile.name || "Profile"}
@@ -581,7 +581,7 @@ Best regards`;
                     }
                   />
 
-                  <div className="flex-1 min-w-0 text-center md:text-left">
+                  <div className="flex-1 min-w-0 text-center md:text-left md:mt-1">
                     <div
                       className="inline-block"
                       onClick={(e) => e.stopPropagation()}
