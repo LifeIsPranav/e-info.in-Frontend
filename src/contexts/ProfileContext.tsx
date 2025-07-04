@@ -57,21 +57,21 @@ export function ProfileProvider({ children }: { children: React.ReactNode }) {
     console.log("Cleared localStorage to prevent React element errors");
   }, []);
 
-  // Save data to localStorage whenever state changes
-  useEffect(() => {
-    try {
-      const dataToSave = {
-        profile,
-        projects,
-        portfolioProjects,
-        workExperiences,
-        education,
-      };
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(dataToSave));
-    } catch (error) {
-      console.warn("Failed to save profile data to localStorage:", error);
-    }
-  }, [profile, projects, portfolioProjects, workExperiences, education]);
+  // Save data to localStorage whenever state changes (disabled to prevent loops)
+  // useEffect(() => {
+  //   try {
+  //     const dataToSave = {
+  //       profile,
+  //       projects,
+  //       portfolioProjects,
+  //       workExperiences,
+  //       education,
+  //     };
+  //     localStorage.setItem(STORAGE_KEY, JSON.stringify(dataToSave));
+  //   } catch (error) {
+  //     console.warn("Failed to save profile data to localStorage:", error);
+  //   }
+  // }, [profile, projects, portfolioProjects, workExperiences, education]);
 
   const updateProfile = (newProfile: PersonProfile) => {
     setProfile(newProfile);
