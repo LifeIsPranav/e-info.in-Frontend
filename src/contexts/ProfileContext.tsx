@@ -57,7 +57,9 @@ export function ProfileProvider({ children }: { children: React.ReactNode }) {
       const savedData = localStorage.getItem(STORAGE_KEY);
       if (savedData) {
         const parsed = JSON.parse(savedData);
-        if (parsed.profile) setProfile(parsed.profile);
+        // Always merge with defaults to ensure all fields exist
+        if (parsed.profile)
+          setProfile({ ...defaultProfile, ...parsed.profile });
         if (parsed.projects) setProjects(parsed.projects);
         if (parsed.portfolioProjects)
           setPortfolioProjects(parsed.portfolioProjects);
