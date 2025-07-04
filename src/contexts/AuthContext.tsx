@@ -25,6 +25,8 @@ interface AuthContextType {
   signOut: () => Promise<void>;
   updateUser: (updates: Partial<User>) => void;
   clearError: () => void;
+  setRedirectPath: (path: string) => void;
+  getRedirectPath: () => string;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
