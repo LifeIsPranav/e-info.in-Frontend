@@ -41,6 +41,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const [user, setUser] = useState<User | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [redirectPath, setRedirectPathState] = useState<string>("/dashboard");
 
   // Load user from localStorage on mount
   useEffect(() => {
