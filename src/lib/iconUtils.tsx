@@ -58,7 +58,10 @@ import {
   Ruler,
   Calculator,
   Book,
+  BookOpen,
   FileText,
+  // Education
+  GraduationCap,
   // Actions & Arrows
   Play,
   Pause,
@@ -143,7 +146,10 @@ export const iconMap: Record<string, React.ComponentType<any>> = {
   Ruler,
   Calculator,
   Book,
+  BookOpen,
   FileText,
+  // Education
+  GraduationCap,
   // Actions & Arrows
   Play,
   Pause,

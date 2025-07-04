@@ -5,6 +5,7 @@ import EditableProfileSection from "@/components/EditableProfileSection";
 import EditableLinksSection from "@/components/EditableLinksSection";
 import EditablePortfolioSection from "@/components/EditablePortfolioSection";
 import EditableExperienceSection from "@/components/EditableExperienceSection";
+import EditableEducationSection from "@/components/EditableEducationSection";
 import Logo from "@/components/Logo";
 import AuthButton from "@/components/AuthButton";
 import Footer from "@/components/Footer";
@@ -26,6 +27,8 @@ import {
   WorkExperienceData,
   defaultWorkExperiences,
 } from "@/lib/workExperienceData";
+import type { EducationData } from "@/components/Education";
+import { defaultEducation } from "@/lib/educationData";
 
 const EditProfile = () => {
   const { user, isAuthenticated, isLoading: authLoading } = useAuth();
@@ -38,6 +41,7 @@ const EditProfile = () => {
   const [workExperiences, setWorkExperiences] = useState<WorkExperienceData[]>(
     defaultWorkExperiences,
   );
+  const [education, setEducation] = useState<EducationData[]>(defaultEducation);
 
   // Redirect to auth if not authenticated
   useEffect(() => {
@@ -84,6 +88,12 @@ const EditProfile = () => {
     setWorkExperiences(updatedWorkExperiences);
     // Here you would typically save to a backend
     console.log("Work experiences updated:", updatedWorkExperiences);
+  };
+
+  const handleEducationUpdate = (updatedEducation: EducationData[]) => {
+    setEducation(updatedEducation);
+    // Here you would typically save to a backend
+    console.log("Education updated:", updatedEducation);
   };
 
   // Show loading while checking auth
@@ -155,6 +165,12 @@ const EditProfile = () => {
         <EditablePortfolioSection
           projects={portfolioProjects}
           onProjectsUpdate={handlePortfolioProjectsUpdate}
+        />
+
+        {/* Editable Education Section */}
+        <EditableEducationSection
+          education={education}
+          onEducationUpdate={handleEducationUpdate}
         />
       </div>
       <Footer />

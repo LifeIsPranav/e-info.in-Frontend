@@ -1,6 +1,7 @@
 import ProfileSection from "@/components/ProfileSection";
 import PortfolioSection from "@/components/PortfolioSection";
 import WorkExperienceSection from "@/components/WorkExperienceSection";
+import EducationSection from "@/components/EducationSection";
 import AuthButton from "@/components/AuthButton";
 import Logo from "@/components/Logo";
 import Footer from "@/components/Footer";
@@ -52,6 +53,19 @@ const Demo = () => {
             </p>
           </div>
           <PortfolioSection />
+        </div>
+
+        {/* Education Section */}
+        <div className="space-y-4">
+          <div className="text-center">
+            <h2 className="text-2xl font-semibold text-gray-900 mb-2">
+              Education & Certifications
+            </h2>
+            <p className="text-gray-600 text-sm">
+              My educational journey and professional certifications
+            </p>
+          </div>
+          <EducationSection />
         </div>
       </div>
 
