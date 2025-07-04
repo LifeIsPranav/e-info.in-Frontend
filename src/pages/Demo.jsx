@@ -38,43 +38,49 @@ const Demo = () => {
         />
 
         {/* Work Experience Section */}
-        <div className="space-y-4">
-          <div className="text-center">
-            <h2 className="text-2xl font-semibold text-gray-900 mb-2">
-              Experience
-            </h2>
-            <p className="text-gray-600 text-sm">
-              My professional journey and key achievements
-            </p>
+        {workExperiences.length > 0 && (
+          <div className="space-y-4">
+            <div className="text-center">
+              <h2 className="text-2xl font-semibold text-gray-900 mb-2">
+                Experience
+              </h2>
+              <p className="text-gray-600 text-sm">
+                My professional journey and key achievements
+              </p>
+            </div>
+            <WorkExperienceSection experiences={workExperiences} />
           </div>
-          <WorkExperienceSection />
-        </div>
+        )}
 
         {/* Portfolio Section */}
-        <div className="space-y-4">
-          <div className="text-center">
-            <h2 className="text-2xl font-semibold text-gray-900 mb-2">
-              Portfolio
-            </h2>
-            <p className="text-gray-600 text-sm">
-              Explore my latest projects and creative work
-            </p>
+        {portfolioProjects.length > 0 && (
+          <div className="space-y-4">
+            <div className="text-center">
+              <h2 className="text-2xl font-semibold text-gray-900 mb-2">
+                Portfolio
+              </h2>
+              <p className="text-gray-600 text-sm">
+                Explore my latest projects and creative work
+              </p>
+            </div>
+            <PortfolioSection projects={portfolioProjects} />
           </div>
-          <PortfolioSection />
-        </div>
+        )}
 
         {/* Education Section */}
-        <div className="space-y-4">
-          <div className="text-center">
-            <h2 className="text-2xl font-semibold text-gray-900 mb-2">
-              Education & Certifications
-            </h2>
-            <p className="text-gray-600 text-sm">
-              My educational journey and professional certifications
-            </p>
+        {education.length > 0 && (
+          <div className="space-y-4">
+            <div className="text-center">
+              <h2 className="text-2xl font-semibold text-gray-900 mb-2">
+                Education & Certifications
+              </h2>
+              <p className="text-gray-600 text-sm">
+                My educational journey and professional certifications
+              </p>
+            </div>
+            <EducationSection education={education} />
           </div>
-          <EducationSection />
-        </div>
+        )}
       </div>
 
       <Footer />
