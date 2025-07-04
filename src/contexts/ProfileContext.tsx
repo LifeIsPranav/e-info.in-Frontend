@@ -104,7 +104,7 @@ export function ProfileProvider({ children }: { children: React.ReactNode }) {
     console.log("Education updated:", newEducation);
   };
 
-  const initializeWithUserData = (userData: any) => {
+  const initializeWithUserData = useCallback((userData: any) => {
     if (userData) {
       setProfile((prev) => ({
         ...prev,
@@ -113,7 +113,7 @@ export function ProfileProvider({ children }: { children: React.ReactNode }) {
         profileImage: userData.avatar || prev.profileImage,
       }));
     }
-  };
+  }, []); // Empty dependency array since we use functional state update
 
   const value: ProfileContextType = {
     profile,
