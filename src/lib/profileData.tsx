@@ -106,7 +106,7 @@ export const defaultProjects: ProjectLink[] = [
     projectDetails:
       "Connect with me professionally to see my work experience, recommendations, and industry insights. Let's grow our professional network together.",
     href: "https://linkedin.com",
-    icon: <LinkedInIcon />,
+    icon: null,
   },
   {
     id: "figma",
