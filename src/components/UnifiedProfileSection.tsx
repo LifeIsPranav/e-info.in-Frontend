@@ -10,12 +10,9 @@ import {
 
 interface UnifiedProfileSectionProps {
   profile?: Partial<PersonProfile>;
-  projects?: ProjectLink[];
   className?: string;
-  onDirectLink?: (href: string) => void;
   canEdit?: boolean; // Controls whether edit button shows
   onProfileUpdate?: (profile: PersonProfile) => void;
-  onProjectsUpdate?: (projects: ProjectLink[]) => void;
 }
 
 export default function UnifiedProfileSection({
