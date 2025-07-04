@@ -89,6 +89,12 @@ const EditProfile = () => {
     console.log("Work experiences updated:", updatedWorkExperiences);
   };
 
+  const handleEducationUpdate = (updatedEducation: EducationData[]) => {
+    setEducation(updatedEducation);
+    // Here you would typically save to a backend
+    console.log("Education updated:", updatedEducation);
+  };
+
   // Show loading while checking auth
   if (authLoading) {
     return (
