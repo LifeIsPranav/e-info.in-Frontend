@@ -224,7 +224,7 @@ const MyAccount = () => {
       </div>
 
       {/* Main Content Container */}
-      <div className="w-full max-w-md mx-auto pt-24 pb-24 space-y-12">
+      <div className="w-full max-w-md mx-auto pt-24 pb-24 space-y-20">
         {/* Back Button */}
         <div className="flex items-center gap-3 mb-6">
           <Link
