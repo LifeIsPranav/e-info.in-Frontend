@@ -149,6 +149,14 @@ export default function AuthButton() {
             <User className="mr-3 h-4 w-4 text-gray-400 group-hover:text-gray-600 transition-colors" />
             <span>My Card</span>
           </DropdownMenuItem>
+
+          <DropdownMenuItem
+            onClick={handleViewCardClick}
+            className="cursor-pointer rounded-lg px-3 py-2.5 text-sm font-medium text-gray-700 hover:bg-gray-50 hover:text-gray-900 transition-all duration-200 group"
+          >
+            <Eye className="mr-3 h-4 w-4 text-gray-400 group-hover:text-gray-600 transition-colors" />
+            <span>View Card</span>
+          </DropdownMenuItem>
         </div>
 
         {/* Sign Out Section */}
