@@ -86,7 +86,7 @@ export const defaultProjects: ProjectLink[] = [
     projectDetails:
       "Featured UI/UX design shots including mobile app interfaces, web designs, and branding projects. Check out my latest work and creative explorations.",
     href: "https://dribbble.com",
-    icon: <DribbbleIcon />,
+    icon: null,
   },
   {
     id: "behance",
