@@ -336,7 +336,7 @@ const UnifiedDigitalCard = forwardRef<
     };
 
     const handleCardClick = () => {
-      if (!isEditing && !canEdit) {
+      if (!isEditing) {
         setIsFlipped(!isFlipped);
       }
     };
