@@ -1,39 +1,55 @@
 import { useState, useEffect, useRef } from "react";
-import DigitalCard from "@/components/DigitalCard";
-import LinkButton from "@/components/LinkButton";
-import {
-  PersonProfile,
-  ProjectLink,
-  defaultProfile,
-  defaultProjects,
-} from "@/lib/profileData";
+import UnifiedDigitalCard from "@/components/UnifiedDigitalCard";
+import { PersonProfile, defaultProfile } from "@/lib/profileData";
 
-interface ProfileSectionProps {
+interface UnifiedProfileSectionProps {
   profile?: Partial<PersonProfile>;
-  projects?: ProjectLink[];
   className?: string;
-  onDirectLink?: (href: string) => void;
+  canEdit?: boolean; // Controls whether edit button shows
+  onProfileUpdate?: (profile: PersonProfile) => void;
 }
 
-export default function ProfileSection({
+export default function UnifiedProfileSection({
   profile = {},
-  projects = defaultProjects,
   className = "",
-  onDirectLink,
-}: ProfileSectionProps) {
+  canEdit = false,
+  onProfileUpdate,
+}: UnifiedProfileSectionProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const digitalCardRef = useRef<{ handleOutsideClick: () => void }>(null);
+
+  // Local state for editing
+  const [isEditing, setIsEditing] = useState(false);
+  const [editingProfile, setEditingProfile] =
+    useState<PersonProfile>(defaultProfile);
 
   // Merge provided profile with defaults
   const finalProfile = { ...defaultProfile, ...profile };
 
-  const handleDirectLink = (href: string) => {
-    if (onDirectLink) {
-      onDirectLink(href);
-    } else {
-      // Default behavior
-      window.open(href, "_blank", "noopener,noreferrer");
+  // Initialize editing profile when profile changes
+  useEffect(() => {
+    setEditingProfile(finalProfile);
+  }, [profile]);
+
+  const handleStartEdit = () => {
+    setEditingProfile(finalProfile);
+    setIsEditing(true);
+  };
+
+  const handleSave = () => {
+    if (onProfileUpdate) {
+      onProfileUpdate(editingProfile);
     }
+    setIsEditing(false);
+  };
+
+  const handleCancel = () => {
+    setEditingProfile(finalProfile);
+    setIsEditing(false);
+  };
+
+  const handleProfileChange = (updatedProfile: PersonProfile) => {
+    setEditingProfile(updatedProfile);
   };
 
   // Close digital card when clicking outside
@@ -73,36 +89,20 @@ export default function ProfileSection({
     >
       {/* Digital Card */}
       <div className="digital-card-container">
-        <DigitalCard
+        <UnifiedDigitalCard
           ref={digitalCardRef}
-          name={finalProfile.name}
-          jobTitle={finalProfile.jobTitle}
-          bio={finalProfile.bio}
-          email={finalProfile.email}
-          website={finalProfile.website}
-          location={finalProfile.location}
-          profileImage={finalProfile.profileImage}
-          resumeUrl={finalProfile.resumeUrl}
-          skills={finalProfile.skills}
+          profile={isEditing ? editingProfile : finalProfile}
+          isEditing={isEditing}
+          canEdit={canEdit}
+          onEdit={handleStartEdit}
+          onSave={handleSave}
+          onCancel={handleCancel}
+          onProfileChange={handleProfileChange}
         />
-      </div>
-
-      {/* Links */}
-      <div className="space-y-2">
-        {projects.map((project) => (
-          <LinkButton
-            key={project.id}
-            href={project.href}
-            title={project.title}
-            description={project.description}
-            icon={project.icon}
-            onDirectLink={() => handleDirectLink(project.href)}
-          />
-        ))}
       </div>
     </div>
   );
 }
 
 // Export types for easy use
-export type { PersonProfile, ProjectLink };
+export type { PersonProfile };

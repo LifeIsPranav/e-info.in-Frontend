@@ -5,6 +5,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AuthProvider } from "@/contexts/AuthContext";
+import { ProfileProvider } from "@/contexts/ProfileContext";
 import ErrorBoundary from "@/components/common/ErrorBoundary";
 
 // Lazy load pages for better performance
@@ -42,24 +43,26 @@ const App = () => (
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
         <AuthProvider>
-          <Suspense fallback={<PageLoader message="Loading page..." />}>
-            <BrowserRouter>
-              <Routes>
-                <Route path="/" element={<Index />} />
-                <Route path="/demo" element={<Demo />} />
-                <Route path="/auth" element={<Auth />} />
-                <Route path="/mycard" element={<EditProfile />} />
-                <Route path="/account" element={<MyAccount />} />
-                <Route path="/dashboard" element={<Dashboard />} />
-                {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-                <Route path="*" element={<NotFound />} />
-              </Routes>
-            </BrowserRouter>
-          </Suspense>
+          <ProfileProvider>
+            <Suspense fallback={<PageLoader message="Loading page..." />}>
+              <BrowserRouter>
+                <Routes>
+                  <Route path="/" element={<Index />} />
+                  <Route path="/demo" element={<Demo />} />
+                  <Route path="/auth" element={<Auth />} />
+                  <Route path="/mycard" element={<EditProfile />} />
+                  <Route path="/account" element={<MyAccount />} />
+                  <Route path="/dashboard" element={<Dashboard />} />
+                  {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+                  <Route path="*" element={<NotFound />} />
+                </Routes>
+              </BrowserRouter>
+            </Suspense>
 
-          {/* Global toast notifications */}
-          <Toaster />
-          <Sonner />
+            {/* Global toast notifications */}
+            <Toaster />
+            <Sonner />
+          </ProfileProvider>
         </AuthProvider>
       </TooltipProvider>
     </QueryClientProvider>

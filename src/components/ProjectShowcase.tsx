@@ -1,15 +1,6 @@
 import { useState } from "react";
-import {
-  X,
-  ExternalLink,
-  ChevronLeft,
-  ChevronRight,
-  Eye,
-  MessageCircle,
-} from "lucide-react";
+import { X, ExternalLink, ChevronLeft, ChevronRight, Eye } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { useAuth } from "@/contexts/AuthContext";
-import { toast } from "sonner";
 
 interface ProjectImage {
   id: string;
@@ -43,9 +34,7 @@ export default function ProjectShowcase({
   onExpand,
   onDirectLink,
 }: ProjectShowcaseProps) {
-  const { isAuthenticated, user } = useAuth();
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  const [isMessageLoading, setIsMessageLoading] = useState(false);
   const currentImage = project.images[currentImageIndex] || project.images[0];
 
   const handleMainClick = () => {
@@ -80,32 +69,6 @@ export default function ProjectShowcase({
   const handleVisitProject = () => {
     if (project.href) {
       window.open(project.href, "_blank", "noopener,noreferrer");
-    }
-  };
-
-  const handleConnect = async () => {
-    if (!isAuthenticated) {
-      toast.error("Please sign in to send messages");
-      return;
-    }
-
-    if (!user) return;
-
-    setIsMessageLoading(true);
-
-    try {
-      // Simulate API delay for messaging
-      await new Promise((resolve) => setTimeout(resolve, 500));
-
-      // In a real app, you would send the message to a backend
-      toast.success(
-        `Message sent! The project owner will get back to you soon.`,
-      );
-    } catch (error) {
-      console.error("Failed to send message:", error);
-      toast.error("Failed to send message. Please try again.");
-    } finally {
-      setIsMessageLoading(false);
     }
   };
 
@@ -270,26 +233,7 @@ export default function ProjectShowcase({
                 View Project
               </Button>
             )}
-            <Button
-              onClick={handleConnect}
-              disabled={isMessageLoading || !isAuthenticated}
-              className="flex-1 bg-gray-900 hover:bg-gray-800 text-white h-10 disabled:opacity-60"
-              title={
-                !isAuthenticated
-                  ? "Sign in to send messages"
-                  : "Let's connect about this project"
-              }
-            >
-              <MessageCircle className="w-4 h-4 mr-2" />
-              {isMessageLoading ? "Sending..." : "Let's Connect"}
-            </Button>
           </div>
-
-          {!isAuthenticated && (
-            <p className="text-xs text-gray-500 text-center mt-2">
-              Sign in to connect with the project owner
-            </p>
-          )}
         </div>
       </div>
     </div>

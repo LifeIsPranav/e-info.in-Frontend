@@ -1,7 +1,8 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { useAuth } from "@/contexts/AuthContext";
+import { useProfile } from "@/contexts/ProfileContext";
 import { useNavigate } from "react-router-dom";
-import EditableProfileSection from "@/components/EditableProfileSection";
+import UnifiedProfileSection from "@/components/UnifiedProfileSection";
 import EditableLinksSection from "@/components/EditableLinksSection";
 import EditablePortfolioSection from "@/components/EditablePortfolioSection";
 import EditableExperienceSection from "@/components/EditableExperienceSection";
@@ -13,35 +14,23 @@ import LoadingSpinner from "@/components/common/LoadingSpinner";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { Home } from "lucide-react";
-import {
-  PersonProfile,
-  ProjectLink,
-  defaultProfile,
-  defaultProjects,
-} from "@/lib/profileData";
-import {
-  PortfolioProject,
-  defaultPortfolioProjects,
-} from "@/lib/portfolioData";
-import {
-  WorkExperienceData,
-  defaultWorkExperiences,
-} from "@/lib/workExperienceData";
-import type { EducationData } from "@/components/Education";
-import { defaultEducation } from "@/lib/educationData";
 
 const EditProfile = () => {
   const { user, isAuthenticated, isLoading: authLoading } = useAuth();
+  const {
+    profile,
+    projects,
+    portfolioProjects,
+    workExperiences,
+    education,
+    updateProfile,
+    updateProjects,
+    updatePortfolioProjects,
+    updateWorkExperiences,
+    updateEducation,
+    initializeWithUserData,
+  } = useProfile();
   const navigate = useNavigate();
-  const [profile, setProfile] = useState<PersonProfile>(defaultProfile);
-  const [projects, setProjects] = useState<ProjectLink[]>(defaultProjects);
-  const [portfolioProjects, setPortfolioProjects] = useState<
-    PortfolioProject[]
-  >(defaultPortfolioProjects);
-  const [workExperiences, setWorkExperiences] = useState<WorkExperienceData[]>(
-    defaultWorkExperiences,
-  );
-  const [education, setEducation] = useState<EducationData[]>(defaultEducation);
 
   // Redirect to auth if not authenticated
   useEffect(() => {
@@ -53,48 +42,9 @@ const EditProfile = () => {
   // Initialize profile with user data if available
   useEffect(() => {
     if (user) {
-      setProfile((prev) => ({
-        ...prev,
-        name: user.name,
-        email: user.email,
-        profileImage: user.avatar || prev.profileImage,
-      }));
+      initializeWithUserData(user);
     }
-  }, [user]);
-
-  const handleProfileUpdate = (updatedProfile: PersonProfile) => {
-    setProfile(updatedProfile);
-    // Here you would typically save to a backend
-    console.log("Profile updated:", updatedProfile);
-  };
-
-  const handleProjectsUpdate = (updatedProjects: ProjectLink[]) => {
-    setProjects(updatedProjects);
-    // Here you would typically save to a backend
-    console.log("Projects updated:", updatedProjects);
-  };
-
-  const handlePortfolioProjectsUpdate = (
-    updatedPortfolioProjects: PortfolioProject[],
-  ) => {
-    setPortfolioProjects(updatedPortfolioProjects);
-    // Here you would typically save to a backend
-    console.log("Portfolio projects updated:", updatedPortfolioProjects);
-  };
-
-  const handleWorkExperiencesUpdate = (
-    updatedWorkExperiences: WorkExperienceData[],
-  ) => {
-    setWorkExperiences(updatedWorkExperiences);
-    // Here you would typically save to a backend
-    console.log("Work experiences updated:", updatedWorkExperiences);
-  };
-
-  const handleEducationUpdate = (updatedEducation: EducationData[]) => {
-    setEducation(updatedEducation);
-    // Here you would typically save to a backend
-    console.log("Education updated:", updatedEducation);
-  };
+  }, [user]); // Remove initializeWithUserData from deps to prevent infinite loop
 
   // Show loading while checking auth
   if (authLoading) {
@@ -132,7 +82,7 @@ const EditProfile = () => {
       </div>
 
       {/* Main Content Container */}
-      <div className="w-full max-w-lg mx-auto pt-16 pb-16 space-y-8">
+      <div className="w-full max-w-lg mx-auto pt-24 pb-24 space-y-20">
         {/* Info Section */}
         <div className="text-center">
           <h2 className="text-2xl font-semibold text-gray-900 mb-2">
@@ -144,33 +94,36 @@ const EditProfile = () => {
         </div>
 
         {/* Editable Profile Section */}
-        <EditableProfileSection
+        <UnifiedProfileSection
           profile={profile}
-          onProfileUpdate={handleProfileUpdate}
+          canEdit={true}
+          onProfileUpdate={updateProfile}
         />
 
-        {/* Editable Links Section */}
-        <EditableLinksSection
-          projects={projects}
-          onProjectsUpdate={handleProjectsUpdate}
-        />
+        {/* Editable Links Section - Closer to profile card */}
+        <div className="-mt-14">
+          <EditableLinksSection
+            projects={projects}
+            onProjectsUpdate={updateProjects}
+          />
+        </div>
 
         {/* Editable Experience Section */}
         <EditableExperienceSection
           experiences={workExperiences}
-          onExperiencesUpdate={handleWorkExperiencesUpdate}
+          onExperiencesUpdate={updateWorkExperiences}
         />
 
         {/* Editable Portfolio Section */}
         <EditablePortfolioSection
           projects={portfolioProjects}
-          onProjectsUpdate={handlePortfolioProjectsUpdate}
+          onProjectsUpdate={updatePortfolioProjects}
         />
 
         {/* Editable Education Section */}
         <EditableEducationSection
           education={education}
-          onEducationUpdate={handleEducationUpdate}
+          onEducationUpdate={updateEducation}
         />
       </div>
       <Footer />

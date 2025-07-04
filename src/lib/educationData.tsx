@@ -11,7 +11,7 @@ export const defaultEducation: EducationData[] = [
     location: "Berkeley, CA",
     description:
       "Focused on software engineering, data structures, algorithms, and user interface design. Graduated with honors and completed a senior capstone project in web development.",
-    icon: <GraduationCap className="w-4 h-4 text-gray-600" />,
+    icon: null,
     type: "degree",
     gpa: "3.8/4.0",
     achievements: [
@@ -40,7 +40,7 @@ export const defaultEducation: EducationData[] = [
     location: "Online",
     description:
       "Advanced certification demonstrating expertise in designing distributed applications and systems on the AWS platform. Covers advanced architectural patterns, security, and cost optimization.",
-    icon: <Award className="w-4 h-4 text-gray-600" />,
+    icon: null,
     type: "certification",
     achievements: [
       "Scored 850/1000 on certification exam",
@@ -66,7 +66,7 @@ export const defaultEducation: EducationData[] = [
     location: "San Francisco, CA",
     description:
       "Intensive 12-week program covering user experience research, interface design, prototyping, and design thinking methodologies. Hands-on projects with real clients.",
-    icon: <BookOpen className="w-4 h-4 text-gray-600" />,
+    icon: null,
     type: "certificate",
     achievements: [
       "Completed 480 hours of intensive training",
@@ -94,7 +94,7 @@ export const defaultEducation: EducationData[] = [
     location: "Online",
     description:
       "Comprehensive program covering the entire UX design process from user research to high-fidelity prototypes. Completed multiple portfolio projects and case studies.",
-    icon: <Trophy className="w-4 h-4 text-gray-600" />,
+    icon: null,
     type: "certification",
     achievements: [
       "Completed 6-course series in 4 months",

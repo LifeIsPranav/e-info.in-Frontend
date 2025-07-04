@@ -35,6 +35,7 @@ import {
 interface UserAccountData {
   name: string;
   username: string;
+  instantMessageSubject: string;
   instantMessage: string;
 }
 
@@ -56,6 +57,7 @@ const MyAccount = () => {
   const [accountData, setAccountData] = useState<UserAccountData>({
     name: user?.name || "",
     username: user?.email?.split("@")[0] || "",
+    instantMessageSubject: "Let's Connect!",
     instantMessage: "Hey there! I'm using e-info.me to connect and share.",
   });
 
@@ -222,7 +224,7 @@ const MyAccount = () => {
       </div>
 
       {/* Main Content Container */}
-      <div className="w-full max-w-md mx-auto pt-16 pb-16 space-y-8">
+      <div className="w-full max-w-md mx-auto pt-24 pb-24 space-y-20">
         {/* Back Button */}
         <div className="flex items-center gap-3 mb-6">
           <Link
@@ -295,10 +297,28 @@ const MyAccount = () => {
               </p>
             </div>
 
+            {/* Instant Message Subject Field */}
+            <div className="space-y-2">
+              <label className="text-sm font-semibold text-gray-800">
+                Instant Message Subject
+              </label>
+              <Input
+                value={accountData.instantMessageSubject}
+                onChange={(e) =>
+                  handleFieldChange("instantMessageSubject", e.target.value)
+                }
+                placeholder="Subject for instant messages..."
+                className="bg-gray-50 border-gray-200 text-gray-900 placeholder-gray-400 focus:border-gray-400 focus:ring-1 focus:ring-gray-400 font-medium"
+              />
+              <p className="text-xs text-gray-500">
+                Subject line for the instant message template
+              </p>
+            </div>
+
             {/* Instant Message Field */}
             <div className="space-y-2">
               <label className="text-sm font-semibold text-gray-800">
-                Instant Message
+                Instant Message Body
               </label>
               <Textarea
                 value={accountData.instantMessage}
@@ -309,7 +329,7 @@ const MyAccount = () => {
                 className="bg-gray-50 border-gray-200 text-gray-900 placeholder-gray-400 focus:border-gray-400 focus:ring-1 focus:ring-gray-400 font-medium min-h-20 resize-none"
               />
               <p className="text-xs text-gray-500">
-                Set instant message for quick communication. This will be
+                Message body for the instant message template. This will be
                 displayed when people want to message you quickly.
               </p>
             </div>

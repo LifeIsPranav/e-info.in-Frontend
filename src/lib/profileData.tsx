@@ -86,7 +86,7 @@ export const defaultProjects: ProjectLink[] = [
     projectDetails:
       "Featured UI/UX design shots including mobile app interfaces, web designs, and branding projects. Check out my latest work and creative explorations.",
     href: "https://dribbble.com",
-    icon: <DribbbleIcon />,
+    icon: null,
   },
   {
     id: "behance",
@@ -97,7 +97,7 @@ export const defaultProjects: ProjectLink[] = [
     projectDetails:
       "In-depth case studies showcasing my design process from research to final implementation. Detailed breakdowns of user experience challenges and solutions.",
     href: "https://behance.net",
-    icon: <BehanceIcon />,
+    icon: null,
   },
   {
     id: "linkedin",
@@ -106,7 +106,7 @@ export const defaultProjects: ProjectLink[] = [
     projectDetails:
       "Connect with me professionally to see my work experience, recommendations, and industry insights. Let's grow our professional network together.",
     href: "https://linkedin.com",
-    icon: <LinkedInIcon />,
+    icon: null,
   },
   {
     id: "figma",
@@ -117,7 +117,7 @@ export const defaultProjects: ProjectLink[] = [
     projectDetails:
       "Access to design systems, wireframes, and interactive prototypes. See how I organize design files and collaborate with development teams.",
     href: "https://figma.com",
-    icon: <FigmaIcon />,
+    icon: null,
   },
   {
     id: "email",
@@ -126,7 +126,7 @@ export const defaultProjects: ProjectLink[] = [
     projectDetails:
       "Get in touch directly for project inquiries, collaborations, or just to say hello. I typically respond within 24 hours.",
     href: "mailto:alex@example.com",
-    icon: <EmailIcon />,
+    icon: null,
   },
 ];
 
