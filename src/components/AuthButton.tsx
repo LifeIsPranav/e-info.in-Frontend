@@ -64,8 +64,7 @@ export default function AuthButton() {
   };
 
   const handleSettingsClick = () => {
-    console.log("Opening settings...");
-    // You can implement a modal or navigate to settings page
+    navigate("/settings");
   };
 
   // Show loading spinner during auth operations

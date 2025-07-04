@@ -15,6 +15,7 @@ export const ROUTES = {
   EDIT_PROFILE: "/mycard",
   ACCOUNT: "/account",
   DASHBOARD: "/dashboard",
+  SETTINGS: "/settings",
 } as const;
 
 // UI Constants
