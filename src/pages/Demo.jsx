@@ -30,7 +30,7 @@ const Demo = () => {
       </div>
 
       {/* Main Content Container */}
-      <div className="w-full max-w-lg mx-auto pt-24 pb-24 space-y-20">
+      <div className="w-full max-w-lg mx-auto pt-24 pb-40 space-y-20">
         {/* Profile Section */}
         <UnifiedProfileSection profile={profile} canEdit={false} />
 
