@@ -25,6 +25,8 @@ interface AuthContextType {
   signOut: () => Promise<void>;
   updateUser: (updates: Partial<User>) => void;
   clearError: () => void;
+  setRedirectPath: (path: string) => void;
+  getRedirectPath: () => string;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -39,6 +41,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const [user, setUser] = useState<User | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [redirectPath, setRedirectPathState] = useState<string>("/dashboard");
 
   // Load user from localStorage on mount
   useEffect(() => {
@@ -142,6 +145,14 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     setError(null);
   }, []);
 
+  const setRedirectPath = useCallback((path: string) => {
+    setRedirectPathState(path);
+  }, []);
+
+  const getRedirectPath = useCallback(() => {
+    return redirectPath;
+  }, [redirectPath]);
+
   // Auto-refresh session before expiry
   useEffect(() => {
     if (!user) return;
@@ -176,6 +187,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     signOut,
     updateUser,
     clearError,
+    setRedirectPath,
+    getRedirectPath,
   };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

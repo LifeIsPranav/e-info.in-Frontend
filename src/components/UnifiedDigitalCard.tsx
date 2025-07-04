@@ -20,6 +20,7 @@ import {
   Upload,
   Plus,
   Zap,
+  Check,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -55,6 +56,30 @@ const handleExternalLink = (url: string, useMailto = false): void => {
   const finalUrl = useMailto ? `mailto:${url}` : `https://${url}`;
   const target = useMailto ? "_self" : "_blank";
   window.open(finalUrl, target, useMailto ? "" : "noopener,noreferrer");
+};
+
+const copyToClipboard = async (text: string, type: string): Promise<void> => {
+  try {
+    await navigator.clipboard.writeText(text);
+    toast.success(`${type} copied to clipboard!`);
+  } catch (err) {
+    // Fallback for older browsers
+    const textArea = document.createElement("textarea");
+    textArea.value = text;
+    textArea.style.position = "fixed";
+    textArea.style.left = "-999999px";
+    textArea.style.top = "-999999px";
+    document.body.appendChild(textArea);
+    textArea.focus();
+    textArea.select();
+    try {
+      document.execCommand("copy");
+      toast.success(`${type} copied to clipboard!`);
+    } catch (err) {
+      toast.error("Failed to copy to clipboard");
+    }
+    document.body.removeChild(textArea);
+  }
 };
 
 // Sub-components
@@ -174,6 +199,8 @@ const EditableContactInfo = ({
   placeholder,
   isClickable = false,
   onClick,
+  onIconClick,
+  showTick = false,
 }: {
   icon: any;
   value: string;
@@ -182,9 +209,21 @@ const EditableContactInfo = ({
   placeholder?: string;
   isClickable?: boolean;
   onClick?: () => void;
+  onIconClick?: () => void;
+  showTick?: boolean;
 }) => (
   <div className="flex items-center text-gray-600 justify-center md:justify-start">
-    <Icon className="w-4 h-4 mr-2 text-gray-400 flex-shrink-0" />
+    {showTick ? (
+      <Check className="w-4 h-4 mr-2 text-green-500 flex-shrink-0 transition-all duration-200" />
+    ) : (
+      <Icon
+        className="w-4 h-4 mr-2 text-gray-400 flex-shrink-0 cursor-pointer hover:text-gray-600 transition-colors"
+        onClick={(e: any) => {
+          e.stopPropagation();
+          onIconClick?.();
+        }}
+      />
+    )}
     {isEditing ? (
       <Input
         value={value}
@@ -305,6 +344,11 @@ const UnifiedDigitalCard = forwardRef<
     const [cardHeight, setCardHeight] = useState(320); // minimum height
     const frontCardRef = useRef<HTMLDivElement>(null);
     const backCardRef = useRef<HTMLDivElement>(null);
+    const [copyStates, setCopyStates] = useState({
+      email: false,
+      website: false,
+      location: false,
+    });
 
     // Expose outside click handler through ref
     useImperativeHandle(ref, () => ({
@@ -354,6 +398,50 @@ const UnifiedDigitalCard = forwardRef<
       e.stopPropagation();
       if (profile.resumeUrl) {
         handleExternalLink(profile.resumeUrl);
+      }
+    };
+
+    const handleCopyWithAnimation = async (
+      text: string,
+      type: string,
+      field: keyof typeof copyStates,
+    ) => {
+      try {
+        await navigator.clipboard.writeText(text);
+        toast.success(`${type} copied to clipboard!`);
+
+        // Show tick animation
+        setCopyStates((prev) => ({ ...prev, [field]: true }));
+
+        // Reset after 2 seconds
+        setTimeout(() => {
+          setCopyStates((prev) => ({ ...prev, [field]: false }));
+        }, 2000);
+      } catch (err) {
+        // Fallback for older browsers
+        const textArea = document.createElement("textarea");
+        textArea.value = text;
+        textArea.style.position = "fixed";
+        textArea.style.left = "-999999px";
+        textArea.style.top = "-999999px";
+        document.body.appendChild(textArea);
+        textArea.focus();
+        textArea.select();
+        try {
+          document.execCommand("copy");
+          toast.success(`${type} copied to clipboard!`);
+
+          // Show tick animation
+          setCopyStates((prev) => ({ ...prev, [field]: true }));
+
+          // Reset after 2 seconds
+          setTimeout(() => {
+            setCopyStates((prev) => ({ ...prev, [field]: false }));
+          }, 2000);
+        } catch (err) {
+          toast.error("Failed to copy to clipboard");
+        }
+        document.body.removeChild(textArea);
       }
     };
 
@@ -480,7 +568,7 @@ Best regards`;
               {/* Profile Section */}
               <div className="flex-1 p-4">
                 {/* Header with Image and Basic Info */}
-                <div className="flex flex-col md:flex-row md:items-start gap-4 mb-4">
+                <div className="flex flex-col md:flex-row md:items-center gap-4 mb-4">
                   <EditableProfileImage
                     src={profile.profileImage || "/placeholder.svg"}
                     alt={profile.name || "Profile"}
@@ -493,7 +581,7 @@ Best regards`;
                     }
                   />
 
-                  <div className="flex-1 min-w-0 text-center md:text-left">
+                  <div className="flex-1 min-w-0 text-center md:text-left md:mt-1">
                     <div
                       className="inline-block"
                       onClick={(e) => e.stopPropagation()}
@@ -579,6 +667,12 @@ Best regards`;
                       profile.email &&
                       handleExternalLink(profile.email, true)
                     }
+                    onIconClick={() =>
+                      !isEditing &&
+                      profile.email &&
+                      handleCopyWithAnimation(profile.email, "Email", "email")
+                    }
+                    showTick={copyStates.email}
                   />
                   <EditableContactInfo
                     icon={Globe}
@@ -596,6 +690,16 @@ Best regards`;
                       profile.website &&
                       handleExternalLink(profile.website)
                     }
+                    onIconClick={() =>
+                      !isEditing &&
+                      profile.website &&
+                      handleCopyWithAnimation(
+                        profile.website,
+                        "Website",
+                        "website",
+                      )
+                    }
+                    showTick={copyStates.website}
                   />
                   <EditableContactInfo
                     icon={MapPin}
@@ -607,6 +711,16 @@ Best regards`;
                         : undefined
                     }
                     placeholder="Your location"
+                    onIconClick={() =>
+                      !isEditing &&
+                      profile.location &&
+                      handleCopyWithAnimation(
+                        profile.location,
+                        "Location",
+                        "location",
+                      )
+                    }
+                    showTick={copyStates.location}
                   />
                 </div>
 
