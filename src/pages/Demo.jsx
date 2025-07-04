@@ -30,13 +30,13 @@ const Demo = () => {
       </div>
 
       {/* Main Content Container */}
-      <div className="w-full max-w-lg mx-auto pt-24 pb-24 space-y-12">
+      <div className="w-full max-w-lg mx-auto pt-24 pb-24 space-y-20">
         {/* Profile Section */}
         <UnifiedProfileSection profile={profile} canEdit={false} />
 
-        {/* Links Section */}
+        {/* Links Section - Closer to profile card */}
         {projects.length > 0 && (
-          <div className="space-y-2">
+          <div className="space-y-2 -mt-14">
             {projects.map((project) => (
               <LinkButton
                 key={project.id}
