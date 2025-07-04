@@ -1,7 +1,8 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { useAuth } from "@/contexts/AuthContext";
+import { useProfile } from "@/contexts/ProfileContext";
 import { useNavigate } from "react-router-dom";
-import EditableProfileSection from "@/components/EditableProfileSection";
+import UnifiedProfileSection from "@/components/UnifiedProfileSection";
 import EditableLinksSection from "@/components/EditableLinksSection";
 import EditablePortfolioSection from "@/components/EditablePortfolioSection";
 import EditableExperienceSection from "@/components/EditableExperienceSection";
@@ -13,22 +14,6 @@ import LoadingSpinner from "@/components/common/LoadingSpinner";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { Home } from "lucide-react";
-import {
-  PersonProfile,
-  ProjectLink,
-  defaultProfile,
-  defaultProjects,
-} from "@/lib/profileData";
-import {
-  PortfolioProject,
-  defaultPortfolioProjects,
-} from "@/lib/portfolioData";
-import {
-  WorkExperienceData,
-  defaultWorkExperiences,
-} from "@/lib/workExperienceData";
-import type { EducationData } from "@/components/Education";
-import { defaultEducation } from "@/lib/educationData";
 
 const EditProfile = () => {
   const { user, isAuthenticated, isLoading: authLoading } = useAuth();
