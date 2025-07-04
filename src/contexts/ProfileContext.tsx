@@ -39,23 +39,6 @@ const ProfileContext = createContext<ProfileContextType | undefined>(undefined);
 
 const STORAGE_KEY = "fusion_profile_data";
 
-// Utility function to clean React elements from objects
-const cleanReactElements = (obj: any): any => {
-  if (obj === null || obj === undefined) return obj;
-  if (typeof obj !== "object") return obj;
-  if (Array.isArray(obj)) return obj.map(cleanReactElements);
-
-  // If it's a React element, return null
-  if (obj.$$typeof || obj._owner || obj.props) return null;
-
-  // Clean object properties
-  const cleaned: any = {};
-  for (const [key, value] of Object.entries(obj)) {
-    cleaned[key] = cleanReactElements(value);
-  }
-  return cleaned;
-};
-
 export function ProfileProvider({ children }: { children: React.ReactNode }) {
   // Initialize state with default values
   const [profile, setProfile] = useState<PersonProfile>(defaultProfile);
