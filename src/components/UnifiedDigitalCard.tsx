@@ -468,7 +468,7 @@ const UnifiedDigitalCard = forwardRef<
                       onClick={(e) => e.stopPropagation()}
                     >
                       <EditableField
-                        value={profile.name}
+                        value={profile.name || ""}
                         isEditing={isEditing}
                         onChange={
                           isEditing
@@ -479,7 +479,7 @@ const UnifiedDigitalCard = forwardRef<
                         className="text-xl md:text-2xl font-semibold text-gray-900 mb-1 leading-tight block w-full"
                       />
                       <EditableField
-                        value={profile.jobTitle}
+                        value={profile.jobTitle || ""}
                         isEditing={isEditing}
                         onChange={
                           isEditing
