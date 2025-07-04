@@ -17,16 +17,20 @@ import { Home } from "lucide-react";
 
 const EditProfile = () => {
   const { user, isAuthenticated, isLoading: authLoading } = useAuth();
+  const {
+    profile,
+    projects,
+    portfolioProjects,
+    workExperiences,
+    education,
+    updateProfile,
+    updateProjects,
+    updatePortfolioProjects,
+    updateWorkExperiences,
+    updateEducation,
+    initializeWithUserData,
+  } = useProfile();
   const navigate = useNavigate();
-  const [profile, setProfile] = useState<PersonProfile>(defaultProfile);
-  const [projects, setProjects] = useState<ProjectLink[]>(defaultProjects);
-  const [portfolioProjects, setPortfolioProjects] = useState<
-    PortfolioProject[]
-  >(defaultPortfolioProjects);
-  const [workExperiences, setWorkExperiences] = useState<WorkExperienceData[]>(
-    defaultWorkExperiences,
-  );
-  const [education, setEducation] = useState<EducationData[]>(defaultEducation);
 
   // Redirect to auth if not authenticated
   useEffect(() => {
@@ -38,48 +42,9 @@ const EditProfile = () => {
   // Initialize profile with user data if available
   useEffect(() => {
     if (user) {
-      setProfile((prev) => ({
-        ...prev,
-        name: user.name,
-        email: user.email,
-        profileImage: user.avatar || prev.profileImage,
-      }));
+      initializeWithUserData(user);
     }
-  }, [user]);
-
-  const handleProfileUpdate = (updatedProfile: PersonProfile) => {
-    setProfile(updatedProfile);
-    // Here you would typically save to a backend
-    console.log("Profile updated:", updatedProfile);
-  };
-
-  const handleProjectsUpdate = (updatedProjects: ProjectLink[]) => {
-    setProjects(updatedProjects);
-    // Here you would typically save to a backend
-    console.log("Projects updated:", updatedProjects);
-  };
-
-  const handlePortfolioProjectsUpdate = (
-    updatedPortfolioProjects: PortfolioProject[],
-  ) => {
-    setPortfolioProjects(updatedPortfolioProjects);
-    // Here you would typically save to a backend
-    console.log("Portfolio projects updated:", updatedPortfolioProjects);
-  };
-
-  const handleWorkExperiencesUpdate = (
-    updatedWorkExperiences: WorkExperienceData[],
-  ) => {
-    setWorkExperiences(updatedWorkExperiences);
-    // Here you would typically save to a backend
-    console.log("Work experiences updated:", updatedWorkExperiences);
-  };
-
-  const handleEducationUpdate = (updatedEducation: EducationData[]) => {
-    setEducation(updatedEducation);
-    // Here you would typically save to a backend
-    console.log("Education updated:", updatedEducation);
-  };
+  }, [user, initializeWithUserData]);
 
   // Show loading while checking auth
   if (authLoading) {
