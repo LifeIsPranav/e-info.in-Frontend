@@ -50,7 +50,7 @@ export const defaultPortfolioProjects: PortfolioProject[] = [
     description: "Analytics Platform",
     category: "Web Design",
     href: "https://behance.net/gallery/saas-dashboard",
-    icon: <Globe className="w-4 h-4 text-gray-600" />,
+    icon: null,
     images: [
       {
         id: "web-1",
@@ -80,7 +80,7 @@ export const defaultPortfolioProjects: PortfolioProject[] = [
     title: "Brand Identity",
     description: "Tech Startup Branding",
     category: "Branding",
-    icon: <Palette className="w-4 h-4 text-gray-600" />,
+    icon: null,
     images: [
       {
         id: "brand-1",
@@ -110,7 +110,7 @@ export const defaultPortfolioProjects: PortfolioProject[] = [
     title: "Photography",
     description: "Product & Lifestyle",
     category: "Photography",
-    icon: <Camera className="w-4 h-4 text-gray-600" />,
+    icon: null,
     images: [
       {
         id: "photo-1",
@@ -141,7 +141,7 @@ export const defaultPortfolioProjects: PortfolioProject[] = [
     description: "Full-Stack Projects",
     category: "Development",
     href: "https://github.com/username/projects",
-    icon: <Code className="w-4 h-4 text-gray-600" />,
+    icon: null,
     images: [
       {
         id: "dev-1",
@@ -171,7 +171,7 @@ export const defaultPortfolioProjects: PortfolioProject[] = [
     title: "Design Consulting",
     description: "Strategic Design",
     category: "Consulting",
-    icon: <Briefcase className="w-4 h-4 text-gray-600" />,
+    icon: null,
     images: [
       {
         id: "consult-1",
