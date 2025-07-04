@@ -497,7 +497,7 @@ const UnifiedDigitalCard = forwardRef<
                 {/* Bio Section */}
                 <div className="mb-4" onClick={(e) => e.stopPropagation()}>
                   <EditableField
-                    value={profile.bio}
+                    value={profile.bio || ""}
                     isEditing={isEditing}
                     onChange={
                       isEditing
