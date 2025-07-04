@@ -17,12 +17,9 @@ interface UnifiedProfileSectionProps {
 
 export default function UnifiedProfileSection({
   profile = {},
-  projects = defaultProjects,
   className = "",
-  onDirectLink,
   canEdit = false,
   onProfileUpdate,
-  onProjectsUpdate,
 }: UnifiedProfileSectionProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const digitalCardRef = useRef<{ handleOutsideClick: () => void }>(null);
