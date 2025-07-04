@@ -200,6 +200,7 @@ const EditableContactInfo = ({
   isClickable = false,
   onClick,
   onIconClick,
+  showTick = false,
 }: {
   icon: any;
   value: string;
@@ -209,15 +210,20 @@ const EditableContactInfo = ({
   isClickable?: boolean;
   onClick?: () => void;
   onIconClick?: () => void;
+  showTick?: boolean;
 }) => (
   <div className="flex items-center text-gray-600 justify-center md:justify-start">
-    <Icon
-      className="w-4 h-4 mr-2 text-gray-400 flex-shrink-0 cursor-pointer hover:text-gray-600 transition-colors"
-      onClick={(e: any) => {
-        e.stopPropagation();
-        onIconClick?.();
-      }}
-    />
+    {showTick ? (
+      <Check className="w-4 h-4 mr-2 text-green-500 flex-shrink-0 transition-all duration-200" />
+    ) : (
+      <Icon
+        className="w-4 h-4 mr-2 text-gray-400 flex-shrink-0 cursor-pointer hover:text-gray-600 transition-colors"
+        onClick={(e: any) => {
+          e.stopPropagation();
+          onIconClick?.();
+        }}
+      />
+    )}
     {isEditing ? (
       <Input
         value={value}
