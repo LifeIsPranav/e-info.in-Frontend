@@ -145,6 +145,14 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     setError(null);
   }, []);
 
+  const setRedirectPath = useCallback((path: string) => {
+    setRedirectPathState(path);
+  }, []);
+
+  const getRedirectPath = useCallback(() => {
+    return redirectPath;
+  }, [redirectPath]);
+
   // Auto-refresh session before expiry
   useEffect(() => {
     if (!user) return;
