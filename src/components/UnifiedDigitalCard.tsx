@@ -305,7 +305,7 @@ const EditableSkills = ({
               onChange={(e) => setNewSkill(e.target.value)}
               onKeyPress={(e) => e.key === "Enter" && addSkill()}
               placeholder="Add skill"
-              className="h-7 px-2 text-xs bg-blue-50/50 border-blue-200 focus:border-blue-400 focus:ring-1 focus:ring-blue-400 w-20"
+              className="h-7 px-2 text-xs bg-blue-50/50 border-blue-200 focus:border-blue-400 focus:ring-1 focus:ring-blue-400 w-20 text-gray-900 placeholder-gray-400"
             />
             <button
               onClick={addSkill}
