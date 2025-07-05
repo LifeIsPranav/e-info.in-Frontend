@@ -29,14 +29,14 @@ const Demo = () => {
         <AuthButton />
       </div>
 
-      {/* Main Content Container */}
+      {/* Main Content Container - Custom spacing for profile and links */}
       <div className="w-full max-w-lg mx-auto pt-24 pb-40">
         {/* Profile Section */}
         <UnifiedProfileSection profile={profile} canEdit={false} />
 
         {/* Links Section - No gap with profile card */}
         {projects.length > 0 && (
-          <div className="space-y-2">
+          <div className="space-y-2 -mt-1">
             {projects.map((project) => (
               <LinkButton
                 key={project.id}
@@ -52,50 +52,53 @@ const Demo = () => {
           </div>
         )}
 
-        {/* Work Experience Section */}
-        {workExperiences.length > 0 && (
-          <div className="space-y-4 mt-20">
-            <div className="text-center">
-              <h2 className="text-2xl font-semibold text-gray-900 mb-2">
-                Experience
-              </h2>
-              <p className="text-gray-600 text-sm">
-                My professional journey and key achievements
-              </p>
+        {/* Sections with proper spacing */}
+        <div className="mt-20 space-y-20">
+          {/* Work Experience Section */}
+          {workExperiences.length > 0 && (
+            <div className="space-y-4">
+              <div className="text-center">
+                <h2 className="text-2xl font-semibold text-gray-900 mb-2">
+                  Experience
+                </h2>
+                <p className="text-gray-600 text-sm">
+                  My professional journey and key achievements
+                </p>
+              </div>
+              <WorkExperienceSection experiences={workExperiences} />
             </div>
-            <WorkExperienceSection experiences={workExperiences} />
-          </div>
-        )}
+          )}
 
-        {/* Portfolio Section */}
-        {portfolioProjects.length > 0 && (
-          <div className="space-y-4 mt-20">
-            <div className="text-center">
-              <h2 className="text-2xl font-semibold text-gray-900 mb-2">
-                Portfolio
-              </h2>
-              <p className="text-gray-600 text-sm">
-                Explore my latest projects and creative work
-              </p>
+          {/* Portfolio Section */}
+          {portfolioProjects.length > 0 && (
+            <div className="space-y-4">
+              <div className="text-center">
+                <h2 className="text-2xl font-semibold text-gray-900 mb-2">
+                  Portfolio
+                </h2>
+                <p className="text-gray-600 text-sm">
+                  Explore my latest projects and creative work
+                </p>
+              </div>
+              <PortfolioSection projects={portfolioProjects} />
             </div>
-            <PortfolioSection projects={portfolioProjects} />
-          </div>
-        )}
+          )}
 
-        {/* Education Section */}
-        {education.length > 0 && (
-          <div className="space-y-4 mt-20">
-            <div className="text-center">
-              <h2 className="text-2xl font-semibold text-gray-900 mb-2">
-                Education & Certifications
-              </h2>
-              <p className="text-gray-600 text-sm">
-                My educational journey and professional certifications
-              </p>
+          {/* Education Section */}
+          {education.length > 0 && (
+            <div className="space-y-4">
+              <div className="text-center">
+                <h2 className="text-2xl font-semibold text-gray-900 mb-2">
+                  Education & Certifications
+                </h2>
+                <p className="text-gray-600 text-sm">
+                  My educational journey and professional certifications
+                </p>
+              </div>
+              <EducationSection education={education} />
             </div>
-            <EducationSection education={education} />
-          </div>
-        )}
+          )}
+        </div>
       </div>
 
       <Footer />
