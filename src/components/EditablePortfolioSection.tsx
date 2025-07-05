@@ -258,7 +258,7 @@ const EditablePortfolioItem = ({
                           )
                         }
                         placeholder="Image URL"
-                        className="text-xs bg-white border-gray-300 h-7"
+                        className="text-xs bg-white border-gray-300 text-gray-900 placeholder-gray-400 h-7"
                       />
                     </div>
                     <div className="space-y-1">
@@ -273,7 +273,7 @@ const EditablePortfolioItem = ({
                           )
                         }
                         placeholder="Image title"
-                        className="text-xs bg-white border-gray-300 h-7"
+                        className="text-xs bg-white border-gray-300 text-gray-900 placeholder-gray-400 h-7"
                       />
                     </div>
                   </div>
