@@ -290,7 +290,7 @@ const EditablePortfolioItem = ({
                         )
                       }
                       placeholder="Image description"
-                      className="text-xs bg-white border-gray-300 min-h-16 resize-none"
+                      className="text-xs bg-white border-gray-300 text-gray-900 placeholder-gray-400 min-h-16 resize-none"
                     />
                   </div>
                 </div>
