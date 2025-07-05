@@ -35,8 +35,8 @@ export const UI_CONFIG = {
 
 // Default profile data
 export const DEFAULT_PROFILE = {
-  name: "Alex Johnson",
-  jobTitle: "UI/UX Designer",
+  name: "Pranav",
+  jobTitle: "Developer & Consultant",
   bio: "Creating digital experiences that matter. Clean, functional, human-centered design.",
   email: "alex@example.com",
   website: "alexjohnson.design",

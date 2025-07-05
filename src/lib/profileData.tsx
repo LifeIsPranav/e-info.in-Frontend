@@ -23,8 +23,8 @@ export interface ProjectLink {
 
 // Default profile
 export const defaultProfile: PersonProfile = {
-  name: "Alex Johnson",
-  jobTitle: "UI/UX Designer",
+  name: "Pranav",
+  jobTitle: "Developer & Consultant",
   bio: "Creating digital experiences that matter. Clean, functional, human-centered design.",
   email: "alex@example.com",
   website: "alexjohnson.design",
