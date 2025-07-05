@@ -12,8 +12,10 @@ import AuthButton from "@/components/AuthButton";
 import Footer from "@/components/Footer";
 import LoadingSpinner from "@/components/common/LoadingSpinner";
 import { Button } from "@/components/ui/button";
+import { Switch } from "@/components/ui/switch";
+import { Label } from "@/components/ui/label";
 import { Link } from "react-router-dom";
-import { LayoutDashboard } from "lucide-react";
+import { LayoutDashboard, Eye, EyeOff, Settings } from "lucide-react";
 
 const EditProfile = () => {
   const { user, isAuthenticated, isLoading: authLoading } = useAuth();
