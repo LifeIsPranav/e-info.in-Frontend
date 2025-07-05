@@ -34,9 +34,9 @@ const Demo = () => {
         {/* Profile Section */}
         <UnifiedProfileSection profile={profile} canEdit={false} />
 
-        {/* Links Section - Closer to profile card */}
+        {/* Links Section - No gap with profile card */}
         {projects.length > 0 && (
-          <div className="space-y-2 -mt-16">
+          <div className="space-y-2 -mt-20">
             {projects.map((project) => (
               <LinkButton
                 key={project.id}
