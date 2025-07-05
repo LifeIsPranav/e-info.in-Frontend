@@ -34,9 +34,9 @@ const Demo = () => {
         {/* Profile Section */}
         <UnifiedProfileSection profile={profile} canEdit={false} />
 
-        {/* Links Section - Minimal gap with profile card */}
+        {/* Links Section - Double the current gap from profile card */}
         {projects.length > 0 && (
-          <div className="space-y-2 -mt-2">
+          <div className="space-y-2 mt-4">
             {projects.map((project) => (
               <LinkButton
                 key={project.id}
@@ -52,53 +52,50 @@ const Demo = () => {
           </div>
         )}
 
-        {/* Sections with original large spacing */}
-        <div className="mt-24 space-y-24">
-          {/* Work Experience Section */}
-          {workExperiences.length > 0 && (
-            <div className="space-y-4">
-              <div className="text-center">
-                <h2 className="text-2xl font-semibold text-gray-900 mb-2">
-                  Experience
-                </h2>
-                <p className="text-gray-600 text-sm">
-                  My professional journey and key achievements
-                </p>
-              </div>
-              <WorkExperienceSection experiences={workExperiences} />
+        {/* Work Experience Section */}
+        {workExperiences.length > 0 && (
+          <div className="space-y-4 mt-24">
+            <div className="text-center">
+              <h2 className="text-2xl font-semibold text-gray-900 mb-2">
+                Experience
+              </h2>
+              <p className="text-gray-600 text-sm">
+                My professional journey and key achievements
+              </p>
             </div>
-          )}
+            <WorkExperienceSection experiences={workExperiences} />
+          </div>
+        )}
 
-          {/* Portfolio Section */}
-          {portfolioProjects.length > 0 && (
-            <div className="space-y-4">
-              <div className="text-center">
-                <h2 className="text-2xl font-semibold text-gray-900 mb-2">
-                  Portfolio
-                </h2>
-                <p className="text-gray-600 text-sm">
-                  Explore my latest projects and creative work
-                </p>
-              </div>
-              <PortfolioSection projects={portfolioProjects} />
+        {/* Portfolio Section */}
+        {portfolioProjects.length > 0 && (
+          <div className="space-y-4 mt-24">
+            <div className="text-center">
+              <h2 className="text-2xl font-semibold text-gray-900 mb-2">
+                Portfolio
+              </h2>
+              <p className="text-gray-600 text-sm">
+                Explore my latest projects and creative work
+              </p>
             </div>
-          )}
+            <PortfolioSection projects={portfolioProjects} />
+          </div>
+        )}
 
-          {/* Education Section */}
-          {education.length > 0 && (
-            <div className="space-y-4">
-              <div className="text-center">
-                <h2 className="text-2xl font-semibold text-gray-900 mb-2">
-                  Education & Certifications
-                </h2>
-                <p className="text-gray-600 text-sm">
-                  My educational journey and professional certifications
-                </p>
-              </div>
-              <EducationSection education={education} />
+        {/* Education Section */}
+        {education.length > 0 && (
+          <div className="space-y-4 mt-24">
+            <div className="text-center">
+              <h2 className="text-2xl font-semibold text-gray-900 mb-2">
+                Education & Certifications
+              </h2>
+              <p className="text-gray-600 text-sm">
+                My educational journey and professional certifications
+              </p>
             </div>
-          )}
-        </div>
+            <EducationSection education={education} />
+          </div>
+        )}
       </div>
 
       <Footer />
