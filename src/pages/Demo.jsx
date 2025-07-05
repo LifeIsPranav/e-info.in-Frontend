@@ -13,8 +13,14 @@ import { Link } from "react-router-dom";
 import { Home } from "lucide-react";
 
 const Demo = () => {
-  const { profile, projects, portfolioProjects, workExperiences, education } =
-    useProfile();
+  const {
+    profile,
+    projects,
+    portfolioProjects,
+    workExperiences,
+    education,
+    visibilitySettings,
+  } = useProfile();
 
   return (
     <div className="min-h-screen bg-gray-50 p-4 md:p-6 relative">
@@ -35,7 +41,7 @@ const Demo = () => {
         <UnifiedProfileSection profile={profile} canEdit={false} />
 
         {/* Links Section - Double the current gap from profile card */}
-        {projects.length > 0 && (
+        {visibilitySettings.showLinks && projects.length > 0 && (
           <div className="space-y-2 mt-4">
             {projects.map((project) => (
               <LinkButton
@@ -53,46 +59,52 @@ const Demo = () => {
         )}
 
         {/* Work Experience Section */}
-        {workExperiences.length > 0 && (
+        {visibilitySettings.showExperience && workExperiences.length > 0 && (
           <div className="space-y-4 mt-24">
-            <div className="text-center">
-              <h2 className="text-2xl font-semibold text-gray-900 mb-2">
-                Experience
-              </h2>
-              <p className="text-gray-600 text-sm">
-                My professional journey and key achievements
-              </p>
-            </div>
+            {visibilitySettings.showTitles && (
+              <div className="text-center">
+                <h2 className="text-2xl font-semibold text-gray-900 mb-2">
+                  Experience
+                </h2>
+                <p className="text-gray-600 text-sm">
+                  My professional journey and key achievements
+                </p>
+              </div>
+            )}
             <WorkExperienceSection experiences={workExperiences} />
           </div>
         )}
 
         {/* Portfolio Section */}
-        {portfolioProjects.length > 0 && (
+        {visibilitySettings.showPortfolio && portfolioProjects.length > 0 && (
           <div className="space-y-4 mt-24">
-            <div className="text-center">
-              <h2 className="text-2xl font-semibold text-gray-900 mb-2">
-                Portfolio
-              </h2>
-              <p className="text-gray-600 text-sm">
-                Explore my latest projects and creative work
-              </p>
-            </div>
+            {visibilitySettings.showTitles && (
+              <div className="text-center">
+                <h2 className="text-2xl font-semibold text-gray-900 mb-2">
+                  Portfolio
+                </h2>
+                <p className="text-gray-600 text-sm">
+                  Explore my latest projects and creative work
+                </p>
+              </div>
+            )}
             <PortfolioSection projects={portfolioProjects} />
           </div>
         )}
 
         {/* Education Section */}
-        {education.length > 0 && (
+        {visibilitySettings.showEducation && education.length > 0 && (
           <div className="space-y-4 mt-24">
-            <div className="text-center">
-              <h2 className="text-2xl font-semibold text-gray-900 mb-2">
-                Education & Certifications
-              </h2>
-              <p className="text-gray-600 text-sm">
-                My educational journey and professional certifications
-              </p>
-            </div>
+            {visibilitySettings.showTitles && (
+              <div className="text-center">
+                <h2 className="text-2xl font-semibold text-gray-900 mb-2">
+                  Education & Certifications
+                </h2>
+                <p className="text-gray-600 text-sm">
+                  My educational journey and professional certifications
+                </p>
+              </div>
+            )}
             <EducationSection education={education} />
           </div>
         )}
