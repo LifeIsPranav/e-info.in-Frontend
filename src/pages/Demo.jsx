@@ -36,7 +36,7 @@ const Demo = () => {
 
         {/* Links Section - No gap with profile card */}
         {projects.length > 0 && (
-          <div className="space-y-2 -mt-20">
+          <div className="space-y-2 -mt-14">
             {projects.map((project) => (
               <LinkButton
                 key={project.id}
