@@ -34,9 +34,9 @@ const Demo = () => {
         {/* Profile Section */}
         <UnifiedProfileSection profile={profile} canEdit={false} />
 
-        {/* Links Section - No gap with profile card */}
+        {/* Links Section - Minimal gap with profile card */}
         {projects.length > 0 && (
-          <div className="space-y-2 -mt-1">
+          <div className="space-y-2 -mt-2">
             {projects.map((project) => (
               <LinkButton
                 key={project.id}
@@ -52,8 +52,8 @@ const Demo = () => {
           </div>
         )}
 
-        {/* Sections with proper spacing */}
-        <div className="mt-20 space-y-20">
+        {/* Sections with original large spacing */}
+        <div className="mt-24 space-y-24">
           {/* Work Experience Section */}
           {workExperiences.length > 0 && (
             <div className="space-y-4">
