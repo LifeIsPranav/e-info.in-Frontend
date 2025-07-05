@@ -23,11 +23,13 @@ const EditProfile = () => {
     portfolioProjects,
     workExperiences,
     education,
+    visibilitySettings,
     updateProfile,
     updateProjects,
     updatePortfolioProjects,
     updateWorkExperiences,
     updateEducation,
+    updateVisibilitySettings,
     initializeWithUserData,
   } = useProfile();
   const navigate = useNavigate();
