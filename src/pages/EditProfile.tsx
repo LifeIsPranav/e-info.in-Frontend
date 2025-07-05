@@ -104,6 +104,136 @@ const EditProfile = () => {
           onProfileUpdate={updateProfile}
         />
 
+        {/* Visibility Controls Section */}
+        <div className="bg-white border border-gray-100 rounded-xl p-6 shadow-sm mt-8">
+          <div className="flex items-center gap-2 mb-4">
+            <Settings className="w-5 h-5 text-gray-600" />
+            <h3 className="text-lg font-semibold text-gray-900">
+              Visibility Settings
+            </h3>
+          </div>
+          <p className="text-sm text-gray-600 mb-6">
+            Control which sections are visible on your public profile
+          </p>
+
+          <div className="space-y-4">
+            {/* Section Visibility Controls */}
+            <div className="grid grid-cols-2 gap-4">
+              <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                <div className="flex items-center gap-2">
+                  <Label
+                    htmlFor="show-links"
+                    className="text-sm font-medium text-gray-700"
+                  >
+                    Links Section
+                  </Label>
+                </div>
+                <Switch
+                  id="show-links"
+                  checked={visibilitySettings.showLinks}
+                  onCheckedChange={(checked) =>
+                    updateVisibilitySettings({
+                      ...visibilitySettings,
+                      showLinks: checked,
+                    })
+                  }
+                />
+              </div>
+
+              <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                <div className="flex items-center gap-2">
+                  <Label
+                    htmlFor="show-experience"
+                    className="text-sm font-medium text-gray-700"
+                  >
+                    Experience Section
+                  </Label>
+                </div>
+                <Switch
+                  id="show-experience"
+                  checked={visibilitySettings.showExperience}
+                  onCheckedChange={(checked) =>
+                    updateVisibilitySettings({
+                      ...visibilitySettings,
+                      showExperience: checked,
+                    })
+                  }
+                />
+              </div>
+
+              <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                <div className="flex items-center gap-2">
+                  <Label
+                    htmlFor="show-portfolio"
+                    className="text-sm font-medium text-gray-700"
+                  >
+                    Portfolio Section
+                  </Label>
+                </div>
+                <Switch
+                  id="show-portfolio"
+                  checked={visibilitySettings.showPortfolio}
+                  onCheckedChange={(checked) =>
+                    updateVisibilitySettings({
+                      ...visibilitySettings,
+                      showPortfolio: checked,
+                    })
+                  }
+                />
+              </div>
+
+              <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                <div className="flex items-center gap-2">
+                  <Label
+                    htmlFor="show-education"
+                    className="text-sm font-medium text-gray-700"
+                  >
+                    Education Section
+                  </Label>
+                </div>
+                <Switch
+                  id="show-education"
+                  checked={visibilitySettings.showEducation}
+                  onCheckedChange={(checked) =>
+                    updateVisibilitySettings({
+                      ...visibilitySettings,
+                      showEducation: checked,
+                    })
+                  }
+                />
+              </div>
+            </div>
+
+            {/* Title Visibility Control */}
+            <div className="border-t border-gray-200 pt-4">
+              <div className="flex items-center justify-between p-4 bg-blue-50 rounded-lg border border-blue-200">
+                <div>
+                  <Label
+                    htmlFor="show-titles"
+                    className="text-sm font-semibold text-gray-800"
+                  >
+                    Show Section Titles & Descriptions
+                  </Label>
+                  <p className="text-xs text-gray-600 mt-1">
+                    When disabled, only content will be shown without section
+                    headers
+                  </p>
+                </div>
+                <Switch
+                  id="show-titles"
+                  checked={visibilitySettings.showTitles}
+                  onCheckedChange={(checked) =>
+                    updateVisibilitySettings({
+                      ...visibilitySettings,
+                      showTitles: checked,
+                    })
+                  }
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+
         {/* Editable Links Section - Closer to profile card */}
         <div className="-mt-14">
           <EditableLinksSection
