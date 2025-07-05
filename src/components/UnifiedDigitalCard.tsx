@@ -305,7 +305,7 @@ const EditableSkills = ({
               onChange={(e) => setNewSkill(e.target.value)}
               onKeyPress={(e) => e.key === "Enter" && addSkill()}
               placeholder="Add skill"
-              className="h-7 px-2 text-xs bg-blue-50/50 border-blue-200 focus:border-blue-400 focus:ring-1 focus:ring-blue-400 w-20"
+              className="h-7 px-2 text-xs bg-blue-50/50 border-blue-200 focus:border-blue-400 focus:ring-1 focus:ring-blue-400 w-20 text-gray-900 placeholder-gray-400"
             />
             <button
               onClick={addSkill}
@@ -641,7 +641,7 @@ Best regards`;
                         handleProfileFieldChange("resumeUrl", e.target.value)
                       }
                       placeholder="https://your-resume-link.com"
-                      className="text-sm bg-blue-50/50 border-blue-200 focus:border-blue-400 focus:ring-1 focus:ring-blue-400"
+                      className="text-sm bg-blue-50/50 border-blue-200 focus:border-blue-400 focus:ring-1 focus:ring-blue-400 text-gray-900 placeholder-gray-400"
                     />
                     <p className="text-xs text-gray-500 mt-1">
                       Add a link to your resume, portfolio, or CV

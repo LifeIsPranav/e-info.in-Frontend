@@ -238,7 +238,7 @@ const EditableExperienceItem = ({
                         )
                       }
                       placeholder="Achievement description"
-                      className="text-xs bg-gray-50 border-gray-200 h-8 flex-1"
+                      className="text-xs bg-gray-50 border-gray-200 text-gray-900 placeholder-gray-400 h-8 flex-1"
                     />
                     <Button
                       onClick={() => handleRemoveAchievement(achievementIndex)}

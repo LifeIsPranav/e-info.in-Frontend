@@ -22,6 +22,14 @@ import {
 import type { EducationData } from "@/components/Education";
 import { defaultEducation } from "@/lib/educationData";
 
+interface VisibilitySettings {
+  showLinks: boolean;
+  showExperience: boolean;
+  showPortfolio: boolean;
+  showEducation: boolean;
+  showTitles: boolean;
+}
+
 interface ProfileContextType {
   // Profile data
   profile: PersonProfile;
@@ -30,12 +38,16 @@ interface ProfileContextType {
   workExperiences: WorkExperienceData[];
   education: EducationData[];
 
+  // Visibility settings
+  visibilitySettings: VisibilitySettings;
+
   // Update functions
   updateProfile: (profile: PersonProfile) => void;
   updateProjects: (projects: ProjectLink[]) => void;
   updatePortfolioProjects: (projects: PortfolioProject[]) => void;
   updateWorkExperiences: (experiences: WorkExperienceData[]) => void;
   updateEducation: (education: EducationData[]) => void;
+  updateVisibilitySettings: (settings: VisibilitySettings) => void;
 
   // Utility functions
   initializeWithUserData: (userData: any) => void;
@@ -56,6 +68,14 @@ export function ProfileProvider({ children }: { children: React.ReactNode }) {
     defaultWorkExperiences,
   );
   const [education, setEducation] = useState<EducationData[]>(defaultEducation);
+  const [visibilitySettings, setVisibilitySettings] =
+    useState<VisibilitySettings>({
+      showLinks: true,
+      showExperience: true,
+      showPortfolio: true,
+      showEducation: true,
+      showTitles: true,
+    });
 
   // Clear localStorage once on mount to avoid React element issues
   useEffect(() => {
@@ -110,6 +130,14 @@ export function ProfileProvider({ children }: { children: React.ReactNode }) {
     console.log("Education updated:", newEducation);
   }, []);
 
+  const updateVisibilitySettings = useCallback(
+    (newSettings: VisibilitySettings) => {
+      setVisibilitySettings(newSettings);
+      console.log("Visibility settings updated:", newSettings);
+    },
+    [],
+  );
+
   const initializeWithUserData = useCallback((userData: any) => {
     if (userData) {
       setProfile((prev) => ({
@@ -127,11 +155,13 @@ export function ProfileProvider({ children }: { children: React.ReactNode }) {
     portfolioProjects,
     workExperiences,
     education,
+    visibilitySettings,
     updateProfile,
     updateProjects,
     updatePortfolioProjects,
     updateWorkExperiences,
     updateEducation,
+    updateVisibilitySettings,
     initializeWithUserData,
   };
 

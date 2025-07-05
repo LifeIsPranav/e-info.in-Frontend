@@ -440,7 +440,7 @@ const MyAccount = () => {
                       setVerificationData({ username: e.target.value })
                     }
                     placeholder={`Type "${accountData.username}" to confirm`}
-                    className="bg-white border-gray-300 focus:border-red-500 focus:ring-2 focus:ring-red-500/20 text-center font-mono"
+                    className="bg-white border-gray-300 focus:border-red-500 focus:ring-2 focus:ring-red-500/20 text-center font-mono text-gray-900 placeholder-gray-400"
                   />
                 </div>
               </div>
