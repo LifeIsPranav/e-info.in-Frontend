@@ -83,10 +83,7 @@ export default function UnifiedProfileSection({
   }, []);
 
   return (
-    <div
-      ref={containerRef}
-      className={`w-full max-w-lg mx-auto space-y-6 ${className}`}
-    >
+    <div ref={containerRef} className={`w-full max-w-lg mx-auto ${className}`}>
       {/* Digital Card */}
       <div className="digital-card-container">
         <UnifiedDigitalCard

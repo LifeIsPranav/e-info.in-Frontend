@@ -29,14 +29,14 @@ const Demo = () => {
         <AuthButton />
       </div>
 
-      {/* Main Content Container */}
-      <div className="w-full max-w-lg mx-auto pt-24 pb-40 space-y-20">
+      {/* Main Content Container - Custom spacing for profile and links */}
+      <div className="w-full max-w-lg mx-auto pt-24 pb-40">
         {/* Profile Section */}
         <UnifiedProfileSection profile={profile} canEdit={false} />
 
-        {/* Links Section - Closer to profile card */}
+        {/* Links Section - Double the current gap from profile card */}
         {projects.length > 0 && (
-          <div className="space-y-2 -mt-16">
+          <div className="space-y-2 mt-4">
             {projects.map((project) => (
               <LinkButton
                 key={project.id}
@@ -54,7 +54,7 @@ const Demo = () => {
 
         {/* Work Experience Section */}
         {workExperiences.length > 0 && (
-          <div className="space-y-4">
+          <div className="space-y-4 mt-24">
             <div className="text-center">
               <h2 className="text-2xl font-semibold text-gray-900 mb-2">
                 Experience
@@ -69,7 +69,7 @@ const Demo = () => {
 
         {/* Portfolio Section */}
         {portfolioProjects.length > 0 && (
-          <div className="space-y-4">
+          <div className="space-y-4 mt-24">
             <div className="text-center">
               <h2 className="text-2xl font-semibold text-gray-900 mb-2">
                 Portfolio
@@ -84,7 +84,7 @@ const Demo = () => {
 
         {/* Education Section */}
         {education.length > 0 && (
-          <div className="space-y-4">
+          <div className="space-y-4 mt-24">
             <div className="text-center">
               <h2 className="text-2xl font-semibold text-gray-900 mb-2">
                 Education & Certifications
